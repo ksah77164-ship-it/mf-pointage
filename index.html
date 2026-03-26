@@ -12,10 +12,8 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;}
-.app{width:100%;max-width:380px;}
+.app{width:100%;max-width:360px;}
 .screen{display:none;}.screen.actif{display:block;}
-
-/* LOGO */
 .logo{text-align:center;margin-bottom:1.2rem;}
 .logo-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 8px;}
 .logo-icon.bleu{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
@@ -25,14 +23,10 @@ body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:
 .logo-icon.violet{background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
 .logo-title{font-size:18px;font-weight:900;color:#fff;}
 .logo-sub{font-size:12px;color:#64748b;margin-top:2px;}
-
-/* VEHICULE */
 .veh-card{background:#1e293b;border-radius:14px;padding:1rem;margin-bottom:1rem;border:1px solid #334155;text-align:center;}
 .veh-immat{font-size:24px;font-weight:900;color:#fff;letter-spacing:2px;}
 .veh-client{font-size:13px;color:#94a3b8;margin-top:3px;}
 .veh-modele{font-size:11px;color:#64748b;margin-top:2px;}
-
-/* BOUTONS PRINCIPAUX */
 .btn-group{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem;}
 .btn-main{color:#fff;border:none;padding:16px;border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;width:100%;}
 .btn-main.vert{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 4px 16px rgba(34,197,94,0.25);}
@@ -40,13 +34,8 @@ body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:
 .btn-main.orange{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 4px 16px rgba(245,158,11,0.25);}
 .btn-main.violet{background:linear-gradient(135deg,#8b5cf6,#7c3aed);box-shadow:0 4px 16px rgba(139,92,246,0.25);}
 .btn-main:disabled{opacity:0.4;pointer-events:none;}
-.btn-back{background:#1e293b;color:#64748b;border:1.5px solid #334155;padding:12px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;width:100%;}
-
-/* FORM */
 .form-card{background:#1e293b;border-radius:14px;padding:1rem;margin-bottom:1rem;border:1px solid #334155;}
 .step-label{font-size:11px;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
-
-/* SERVICE BUTTONS */
 .svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:12px;}
 .svc-btn{padding:14px 6px;border-radius:10px;border:2px solid #334155;font-size:12px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;background:#0f172a;color:#475569;}
 .svc-btn.sel.Carrosserie{background:#1a1200;border-color:#fbbf24;color:#fbbf24;}
@@ -54,47 +43,47 @@ body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:
 .svc-btn.sel.Peinture{background:#1a0015;border-color:#f472b6;color:#f472b6;}
 .svc-icon{font-size:20px;display:block;margin-bottom:3px;}
 
-/* PRENOM BUTTONS */
-.prenom-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-.prenom-btn{padding:11px 14px;border-radius:10px;border:2px solid #334155;font-size:14px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;background:#0f172a;color:#475569;flex:1;min-width:80px;text-align:center;}
-.prenom-btn.sel.start{background:#0d1f0d;border-color:#22c55e;color:#22c55e;}
-.prenom-btn.sel.stop{background:#1a0808;border-color:#ef4444;color:#ef4444;}
-.prenom-btn.sel.pause{background:#1a1200;border-color:#f59e0b;color:#f59e0b;}
-.prenom-btn.sel.reprendre{background:#150020;border-color:#8b5cf6;color:#8b5cf6;}
+/* CLAVIER CODE */
+.code-zone{display:none;margin-bottom:12px;}
+.code-display{display:flex;justify-content:center;gap:10px;margin-bottom:16px;}
+.code-digit{width:48px;height:56px;background:#0f172a;border:2px solid #334155;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;}
+.code-digit.filled{border-color:#3b82f6;background:#001020;}
+.code-digit.error{border-color:#ef4444;background:#1a0808;}
+.clavier{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px;}
+.key{background:#1e293b;border:1.5px solid #334155;border-radius:10px;padding:16px 8px;font-size:20px;font-weight:800;color:#fff;cursor:pointer;text-align:center;font-family:'Inter',sans-serif;}
+.key:active{background:#334155;}
+.key.del{font-size:16px;color:#64748b;}
+.key.empty{background:transparent;border-color:transparent;cursor:default;}
+.employe-trouve{background:#0d1f0d;border:1px solid #22c55e40;border-radius:10px;padding:10px 14px;margin-bottom:10px;text-align:center;display:none;}
+.employe-nom{font-size:16px;font-weight:900;color:#22c55e;}
+.employe-svc{font-size:11px;color:#475569;margin-top:2px;}
 
-/* MOTIF PAUSE */
 .motif-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;}
 .motif-btn{padding:14px 8px;border-radius:10px;border:2px solid #334155;font-size:12px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;background:#0f172a;color:#475569;}
 .motif-btn.sel{background:#1a1200;border-color:#f59e0b;color:#f59e0b;}
 .motif-icon{font-size:22px;display:block;margin-bottom:3px;}
-
 textarea{width:100%;background:#0f172a;border:1.5px solid #334155;border-radius:10px;padding:10px 12px;font-size:13px;font-family:'Inter',sans-serif;color:#fff;outline:none;min-height:60px;resize:vertical;margin-bottom:10px;}
-textarea:focus{border-color:#3b82f6;}
-
-/* SUCCES */
-.succes{text-align:center;padding:1.5rem 0.5rem;}
-.succes-icon{font-size:54px;margin-bottom:0.8rem;}
-.succes-title{font-size:20px;font-weight:900;margin-bottom:6px;}
+.erreur-msg{background:#1a0808;border:1px solid #ef444440;border-radius:8px;padding:8px 12px;font-size:12px;color:#f87171;margin-bottom:8px;text-align:center;}
+.succes{text-align:center;padding:2rem 0.5rem;}
+.succes-icon{font-size:64px;margin-bottom:1rem;}
+.succes-title{font-size:22px;font-weight:900;margin-bottom:6px;}
 .succes-title.vert{color:#22c55e;}
 .succes-title.orange{color:#f59e0b;}
 .succes-title.violet{color:#8b5cf6;}
-.succes-duree{font-size:32px;font-weight:900;color:#fff;margin:0.8rem 0;}
-.succes-sub{font-size:13px;color:#64748b;line-height:1.7;white-space:pre-line;}
-
-.erreur-msg{background:#1a0808;border:1px solid #ef444440;border-radius:8px;padding:8px 12px;font-size:12px;color:#f87171;margin-bottom:8px;text-align:center;}
-.loading{text-align:center;color:#64748b;padding:2rem;font-size:13px;}
+.succes-duree{font-size:36px;font-weight:900;color:#fff;margin:1rem 0;}
+.succes-sub{font-size:13px;color:#64748b;line-height:1.8;white-space:pre-line;}
+.succes-info{font-size:12px;color:#334155;margin-top:1.5rem;padding:10px;background:#1e293b;border-radius:10px;}
+.loading{text-align:center;color:#64748b;padding:2rem;}
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- CHARGEMENT -->
   <div class="screen actif" id="s-loading">
     <div class="logo"><div class="logo-icon bleu">🔧</div><div class="logo-title">Motors Factory</div><div class="logo-sub">Chargement...</div></div>
     <div class="loading">⏳</div>
   </div>
 
-  <!-- ACCUEIL -->
   <div class="screen" id="s-accueil">
     <div class="logo"><div class="logo-icon bleu">🔧</div><div class="logo-title">Motors Factory</div><div class="logo-sub">Pointage véhicule</div></div>
     <div class="veh-card">
@@ -103,251 +92,304 @@ textarea:focus{border-color:#3b82f6;}
       <div class="veh-modele" id="v-modele">—</div>
     </div>
     <div class="btn-group">
-      <button class="btn-main vert" onclick="aller('s-start')">▶&nbsp; Démarrer</button>
-      <button class="btn-main orange" onclick="aller('s-pause')">⏸&nbsp; Pause</button>
-      <button class="btn-main violet" onclick="aller('s-reprendre')">▶▶&nbsp; Reprendre</button>
-      <button class="btn-main rouge" onclick="aller('s-stop')">⏹&nbsp; Terminer</button>
+      <button class="btn-main vert" onclick="initAction('start')">▶&nbsp; Démarrer</button>
+      <button class="btn-main orange" onclick="initAction('pause')">⏸&nbsp; Pause</button>
+      <button class="btn-main violet" onclick="initAction('reprendre')">▶▶&nbsp; Reprendre</button>
+      <button class="btn-main rouge" onclick="initAction('stop')">⏹&nbsp; Terminer</button>
     </div>
   </div>
 
-  <!-- DEMARRER -->
-  <div class="screen" id="s-start">
-    <div class="logo"><div class="logo-icon vert">▶️</div><div class="logo-title">Démarrer</div><div class="logo-sub" id="lbl-start">—</div></div>
-    <div class="form-card">
-      <div class="step-label">① Service</div>
-      <div class="svc-grid">
-        <button class="svc-btn" id="sb-Carrosserie" onclick="choisirSvc('Carrosserie','start')"><span class="svc-icon">🚗</span>Carrosserie</button>
-        <button class="svc-btn" id="sb-Mécanique" onclick="choisirSvc('Mécanique','start')"><span class="svc-icon">🔧</span>Mécanique</button>
-        <button class="svc-btn" id="sb-Peinture" onclick="choisirSvc('Peinture','start')"><span class="svc-icon">🎨</span>Peinture</button>
-      </div>
-      <div id="start-prenom-zone" style="display:none;">
-        <div class="step-label">② Prénom</div>
-        <div class="prenom-grid" id="start-prenom-grid"></div>
-        <button class="btn-main vert" id="btn-start" onclick="demarrer()" disabled>▶ Commencer</button>
-      </div>
+  <!-- ECRAN ACTION (service + code) -->
+  <div class="screen" id="s-action">
+    <div class="logo">
+      <div class="logo-icon" id="action-icon">▶️</div>
+      <div class="logo-title" id="action-titre">Action</div>
+      <div class="logo-sub" id="action-immat">—</div>
     </div>
-    <div id="err-start"></div>
-    <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
-  </div>
-
-  <!-- PAUSE -->
-  <div class="screen" id="s-pause">
-    <div class="logo"><div class="logo-icon orange">⏸️</div><div class="logo-title">Pause</div><div class="logo-sub" id="lbl-pause">—</div></div>
     <div class="form-card">
       <div class="step-label">① Service</div>
       <div class="svc-grid">
-        <button class="svc-btn" id="psb-Carrosserie" onclick="choisirSvc('Carrosserie','pause')"><span class="svc-icon">🚗</span>Carrosserie</button>
-        <button class="svc-btn" id="psb-Mécanique" onclick="choisirSvc('Mécanique','pause')"><span class="svc-icon">🔧</span>Mécanique</button>
-        <button class="svc-btn" id="psb-Peinture" onclick="choisirSvc('Peinture','pause')"><span class="svc-icon">🎨</span>Peinture</button>
+        <button class="svc-btn" id="asb-Carrosserie" onclick="choisirSvc('Carrosserie')"><span class="svc-icon">🚗</span>Carrosserie</button>
+        <button class="svc-btn" id="asb-Mécanique" onclick="choisirSvc('Mécanique')"><span class="svc-icon">🔧</span>Mécanique</button>
+        <button class="svc-btn" id="asb-Peinture" onclick="choisirSvc('Peinture')"><span class="svc-icon">🎨</span>Peinture</button>
       </div>
-      <div id="pause-prenom-zone" style="display:none;">
-        <div class="step-label">② Prénom</div>
-        <div class="prenom-grid" id="pause-prenom-grid"></div>
-        <div class="step-label" style="margin-top:8px;">③ Motif</div>
-        <div class="motif-grid">
-          <button class="motif-btn" id="motif-dejeuner" onclick="choisirMotif('🍽️ Pause déjeuner')"><span class="motif-icon">🍽️</span>Déjeuner</button>
-          <button class="motif-btn" id="motif-piece" onclick="choisirMotif('🔩 Attente pièce')"><span class="motif-icon">🔩</span>Attente pièce</button>
+      <div class="code-zone" id="code-zone">
+        <div class="step-label">② Code employé</div>
+        <div class="code-display">
+          <div class="code-digit" id="cd-0">_</div>
+          <div class="code-digit" id="cd-1">_</div>
+          <div class="code-digit" id="cd-2">_</div>
+          <div class="code-digit" id="cd-3">_</div>
         </div>
-        <button class="btn-main orange" id="btn-pause" onclick="validerPause()" disabled>⏸ Mettre en pause</button>
+        <div class="employe-trouve" id="emp-trouve">
+          <div class="employe-nom" id="emp-nom">—</div>
+          <div class="employe-svc" id="emp-svc">—</div>
+        </div>
+        <div class="clavier">
+          <button class="key" onclick="taper('1')">1</button>
+          <button class="key" onclick="taper('2')">2</button>
+          <button class="key" onclick="taper('3')">3</button>
+          <button class="key" onclick="taper('4')">4</button>
+          <button class="key" onclick="taper('5')">5</button>
+          <button class="key" onclick="taper('6')">6</button>
+          <button class="key" onclick="taper('7')">7</button>
+          <button class="key" onclick="taper('8')">8</button>
+          <button class="key" onclick="taper('9')">9</button>
+          <button class="key empty"></button>
+          <button class="key" onclick="taper('0')">0</button>
+          <button class="key del" onclick="effacer()">⌫</button>
+        </div>
       </div>
+      <!-- MOTIF PAUSE -->
+      <div id="motif-zone" style="display:none;">
+        <div class="step-label">③ Motif de pause</div>
+        <div class="motif-grid">
+          <button class="motif-btn" id="motif-dej" onclick="choisirMotif('🍽️ Pause déjeuner')"><span class="motif-icon">🍽️</span>Déjeuner</button>
+          <button class="motif-btn" id="motif-pce" onclick="choisirMotif('🔩 Attente pièce')"><span class="motif-icon">🔩</span>Attente pièce</button>
+        </div>
+      </div>
+      <!-- COMMENTAIRE STOP -->
+      <div id="comment-zone" style="display:none;">
+        <div class="step-label">③ Commentaire (optionnel)</div>
+        <textarea id="stop-comment" placeholder="Ex: Vidange faite..."></textarea>
+      </div>
+      <button class="btn-main" id="btn-valider" style="display:none;" onclick="valider()">Valider</button>
     </div>
-    <div id="err-pause"></div>
-    <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
+    <div id="err-action"></div>
   </div>
 
-  <!-- REPRENDRE -->
-  <div class="screen" id="s-reprendre">
-    <div class="logo"><div class="logo-icon violet">▶️</div><div class="logo-title">Reprendre</div><div class="logo-sub" id="lbl-reprendre">—</div></div>
-    <div class="form-card">
-      <div class="step-label">① Service</div>
-      <div class="svc-grid">
-        <button class="svc-btn" id="rsb-Carrosserie" onclick="choisirSvc('Carrosserie','reprendre')"><span class="svc-icon">🚗</span>Carrosserie</button>
-        <button class="svc-btn" id="rsb-Mécanique" onclick="choisirSvc('Mécanique','reprendre')"><span class="svc-icon">🔧</span>Mécanique</button>
-        <button class="svc-btn" id="rsb-Peinture" onclick="choisirSvc('Peinture','reprendre')"><span class="svc-icon">🎨</span>Peinture</button>
-      </div>
-      <div id="reprendre-prenom-zone" style="display:none;">
-        <div class="step-label">② Prénom</div>
-        <div class="prenom-grid" id="reprendre-prenom-grid"></div>
-        <button class="btn-main violet" id="btn-reprendre" onclick="validerReprendre()" disabled>▶▶ Reprendre le travail</button>
-      </div>
+  <!-- SUCCES FINAL - PAS DE RETOUR -->
+  <div class="screen" id="s-ok">
+    <div class="succes">
+      <div class="succes-icon" id="ok-icon">✅</div>
+      <div class="succes-title" id="ok-title">Action effectuée</div>
+      <div class="succes-duree" id="ok-duree" style="display:none;">—</div>
+      <div class="succes-sub" id="ok-sub">—</div>
+      <div class="succes-info">🔒 Pour effectuer une nouvelle action,<br>veuillez rescanner le QR code du véhicule.</div>
     </div>
-    <div id="err-reprendre"></div>
-    <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
   </div>
 
-  <!-- TERMINER -->
-  <div class="screen" id="s-stop">
-    <div class="logo"><div class="logo-icon rouge">⏹️</div><div class="logo-title">Terminer</div><div class="logo-sub" id="lbl-stop">—</div></div>
-    <div class="form-card">
-      <div class="step-label">① Service</div>
-      <div class="svc-grid">
-        <button class="svc-btn" id="ssb-Carrosserie" onclick="choisirSvc('Carrosserie','stop')"><span class="svc-icon">🚗</span>Carrosserie</button>
-        <button class="svc-btn" id="ssb-Mécanique" onclick="choisirSvc('Mécanique','stop')"><span class="svc-icon">🔧</span>Mécanique</button>
-        <button class="svc-btn" id="ssb-Peinture" onclick="choisirSvc('Peinture','stop')"><span class="svc-icon">🎨</span>Peinture</button>
-      </div>
-      <div id="stop-prenom-zone" style="display:none;">
-        <div class="step-label">② Prénom</div>
-        <div class="prenom-grid" id="stop-prenom-grid"></div>
-        <textarea id="stop-commentaire" placeholder="Commentaire optionnel..."></textarea>
-        <button class="btn-main rouge" id="btn-stop" onclick="terminer()" disabled>⏹ Terminer</button>
-      </div>
+  <div class="screen" id="s-erreur">
+    <div class="succes">
+      <div class="succes-icon">❌</div>
+      <div class="succes-title" style="color:#ef4444;">Véhicule introuvable</div>
+      <div class="succes-sub">Contactez le responsable.</div>
     </div>
-    <div id="err-stop"></div>
-    <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
   </div>
-
-  <!-- SUCCES -->
-  <div class="screen" id="s-ok-start"><div class="succes"><div class="succes-icon">✅</div><div class="succes-title vert">Démarré !</div><div class="succes-sub" id="ok-start-txt"></div><button class="btn-back" style="margin-top:1.5rem;" onclick="recharger()">← Retour</button></div></div>
-  <div class="screen" id="s-ok-pause"><div class="succes"><div class="succes-icon">⏸️</div><div class="succes-title orange">Pause enregistrée</div><div class="succes-sub" id="ok-pause-txt"></div><button class="btn-back" style="margin-top:1.5rem;" onclick="recharger()">← Retour</button></div></div>
-  <div class="screen" id="s-ok-reprendre"><div class="succes"><div class="succes-icon">▶️</div><div class="succes-title violet">Reprise !</div><div class="succes-sub" id="ok-reprendre-txt"></div><button class="btn-back" style="margin-top:1.5rem;" onclick="recharger()">← Retour</button></div></div>
-  <div class="screen" id="s-ok-stop"><div class="succes"><div class="succes-icon">🎉</div><div class="succes-title vert">Terminé !</div><div class="succes-duree" id="ok-duree">—</div><div class="succes-sub" id="ok-stop-txt"></div><button class="btn-back" style="margin-top:1.5rem;" onclick="recharger()">← Retour</button></div></div>
-  <div class="screen" id="s-erreur"><div class="succes"><div class="succes-icon">❌</div><div class="succes-title" style="color:#ef4444;">Véhicule introuvable</div><div class="succes-sub">Contactez le responsable.</div></div></div>
 
 </div>
 <script>
 const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
 let vehiculeId=null,veh=null,pts=[],emps=[];
-let svc={start:null,pause:null,reprendre:null,stop:null};
-let prenom={start:null,pause:null,reprendre:null,stop:null};
-let motifPause=null;
+let actionMode=null,svcChoisi=null,empChoisi=null,motifChoisi=null;
+let codeActuel='';
+
+const ACTIONS={
+  start:{icon:'▶️',titre:'Démarrer',classe:'vert',btnTxt:'▶ Commencer le travail'},
+  pause:{icon:'⏸️',titre:'Pause',classe:'orange',btnTxt:'⏸ Mettre en pause'},
+  reprendre:{icon:'▶️',titre:'Reprendre',classe:'violet',btnTxt:'▶▶ Reprendre'},
+  stop:{icon:'⏹️',titre:'Terminer',classe:'rouge',btnTxt:'⏹ Terminer le travail'}
+};
 
 function getParam(p){return new URLSearchParams(window.location.search).get(p);}
 function fmt(min){if(!min||min<=0)return'0 min';if(min<60)return Math.round(min)+' min';return Math.floor(min/60)+'h'+(min%60>0?Math.floor(min%60)+'min':'');}
 
-function aller(id){
+function afficher(id){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('actif');});
   document.getElementById(id).classList.add('actif');
-  // Reset selon écran
-  if(id==='s-start'){
-    svc.start=null;prenom.start=null;
-    document.getElementById('lbl-start').textContent=veh?veh['Immatriculation']:'';
-    resetSvc('sb-');resetPrenomZone('start-prenom-zone','start-prenom-grid');
-    document.getElementById('btn-start').disabled=true;
-    document.getElementById('err-start').innerHTML='';
-  }
-  if(id==='s-pause'){
-    svc.pause=null;prenom.pause=null;motifPause=null;
-    document.getElementById('lbl-pause').textContent=veh?veh['Immatriculation']:'';
-    resetSvc('psb-');resetPrenomZone('pause-prenom-zone','pause-prenom-grid');
-    document.getElementById('motif-dejeuner').className='motif-btn';
-    document.getElementById('motif-piece').className='motif-btn';
-    document.getElementById('btn-pause').disabled=true;
-    document.getElementById('err-pause').innerHTML='';
-  }
-  if(id==='s-reprendre'){
-    svc.reprendre=null;prenom.reprendre=null;
-    document.getElementById('lbl-reprendre').textContent=veh?veh['Immatriculation']:'';
-    resetSvc('rsb-');resetPrenomZone('reprendre-prenom-zone','reprendre-prenom-grid');
-    document.getElementById('btn-reprendre').disabled=true;
-    document.getElementById('err-reprendre').innerHTML='';
-  }
-  if(id==='s-stop'){
-    svc.stop=null;prenom.stop=null;
-    document.getElementById('lbl-stop').textContent=veh?veh['Immatriculation']:'';
-    resetSvc('ssb-');resetPrenomZone('stop-prenom-zone','stop-prenom-grid');
-    document.getElementById('stop-commentaire').value='';
-    document.getElementById('btn-stop').disabled=true;
-    document.getElementById('err-stop').innerHTML='';
-  }
 }
 
-function resetSvc(prefix){
+function initAction(mode){
+  actionMode=mode;svcChoisi=null;empChoisi=null;motifChoisi=null;codeActuel='';
+  const a=ACTIONS[mode];
+  const icon=document.getElementById('action-icon');
+  icon.textContent=a.icon;
+  icon.className='logo-icon '+a.classe;
+  document.getElementById('action-titre').textContent=a.titre;
+  document.getElementById('action-immat').textContent=veh?veh['Immatriculation']:'';
+  // Reset service
   ['Carrosserie','Mécanique','Peinture'].forEach(function(s){
-    const b=document.getElementById(prefix+s);
-    if(b)b.className='svc-btn';
+    document.getElementById('asb-'+s).className='svc-btn';
   });
-}
-
-function resetPrenomZone(zoneId,gridId){
-  document.getElementById(zoneId).style.display='none';
-  document.getElementById(gridId).innerHTML='';
-}
-
-function choisirSvc(s,mode){
-  svc[mode]=s;
-  prenom[mode]=null;
-  if(mode==='pause')motifPause=null;
-
-  // Reset boutons service du bon mode
-  const prefixes={start:'sb-',pause:'psb-',reprendre:'rsb-',stop:'ssb-'};
-  resetSvc(prefixes[mode]);
-  const btn=document.getElementById(prefixes[mode]+s);
-  if(btn)btn.className='svc-btn sel '+s;
-
-  // Charger prénoms selon service ET mode
-  const zoneId=mode+'-prenom-zone';
-  const gridId=mode+'-prenom-grid';
-  
-  // Pour pause : montrer seulement ceux qui sont en cours (pas en pause)
-  // Pour reprendre : montrer seulement ceux qui sont en pause
-  let prenomsFiltres=emps.filter(function(e){return e.service===s;});
-  
-  if(mode==='pause'){
-    // Filtrer : seulement ceux qui ont un pointage en cours et pas en pause
-    const enCoursPrenoms=pts.filter(function(p){
-      return !p['Heure fin']&&String(p['En pause']||'')!=='Oui';
-    }).map(function(p){return p['Prénom employé'];});
-    prenomsFiltres=prenomsFiltres.filter(function(e){return enCoursPrenoms.indexOf(e.prenom)!==-1;});
-  }
-  
-  if(mode==='reprendre'){
-    // Filtrer : seulement ceux qui sont en pause
-    const enPausePrenoms=pts.filter(function(p){
-      return String(p['En pause']||'')==='Oui'&&!p['Heure fin'];
-    }).map(function(p){return p['Prénom employé'];});
-    prenomsFiltres=prenomsFiltres.filter(function(e){return enPausePrenoms.indexOf(e.prenom)!==-1;});
-  }
-
+  // Reset code
+  codeActuel='';
+  majAffichageCode();
+  document.getElementById('emp-trouve').style.display='none';
+  document.getElementById('code-zone').style.display='none';
+  document.getElementById('motif-zone').style.display='none';
+  document.getElementById('comment-zone').style.display='none';
+  document.getElementById('btn-valider').style.display='none';
+  document.getElementById('err-action').innerHTML='';
   if(mode==='stop'){
-    // Filtrer : seulement ceux qui ont un pointage en cours
-    const actifs=pts.filter(function(p){return !p['Heure fin'];}).map(function(p){return p['Prénom employé'];});
-    prenomsFiltres=prenomsFiltres.filter(function(e){return actifs.indexOf(e.prenom)!==-1;});
+    document.getElementById('stop-comment').value='';
   }
+  afficher('s-action');
+}
 
-  const grid=document.getElementById(gridId);
-  grid.innerHTML=prenomsFiltres.map(function(e){
-    return'<button class="prenom-btn" id="pb-'+mode+'-'+e.prenom+'" onclick="choisirPrenom(\''+e.prenom+'\',\''+mode+'\')">'+e.prenom+'</button>';
-  }).join('');
+function choisirSvc(s){
+  svcChoisi=s;
+  ['Carrosserie','Mécanique','Peinture'].forEach(function(x){
+    document.getElementById('asb-'+x).className='svc-btn'+(x===s?' sel '+s:'');
+  });
+  // Réinitialiser code
+  codeActuel='';empChoisi=null;motifChoisi=null;
+  majAffichageCode();
+  document.getElementById('emp-trouve').style.display='none';
+  document.getElementById('code-zone').style.display='block';
+  document.getElementById('motif-zone').style.display='none';
+  document.getElementById('comment-zone').style.display='none';
+  document.getElementById('btn-valider').style.display='none';
+}
 
-  if(prenomsFiltres.length===0){
-    grid.innerHTML='<div style="font-size:12px;color:#475569;padding:8px;">Aucun employé disponible</div>';
+function taper(chiffre){
+  if(codeActuel.length>=4)return;
+  codeActuel+=chiffre;
+  majAffichageCode();
+  if(codeActuel.length===4)verifierCode();
+}
+
+function effacer(){
+  if(codeActuel.length===0)return;
+  codeActuel=codeActuel.slice(0,-1);
+  empChoisi=null;
+  document.getElementById('emp-trouve').style.display='none';
+  document.getElementById('motif-zone').style.display='none';
+  document.getElementById('comment-zone').style.display='none';
+  document.getElementById('btn-valider').style.display='none';
+  // Reset couleur digits
+  for(var i=0;i<4;i++){
+    document.getElementById('cd-'+i).className='code-digit'+(i<codeActuel.length?' filled':'');
   }
+  majAffichageCode();
+}
 
-  document.getElementById(zoneId).style.display='block';
-  
-  // Désactiver bouton valider
-  const btnIds={start:'btn-start',pause:'btn-pause',reprendre:'btn-reprendre',stop:'btn-stop'};
-  document.getElementById(btnIds[mode]).disabled=true;
-
-  // Pause : aussi reset motif
-  if(mode==='pause'){
-    document.getElementById('motif-dejeuner').className='motif-btn';
-    document.getElementById('motif-piece').className='motif-btn';
+function majAffichageCode(){
+  for(var i=0;i<4;i++){
+    const el=document.getElementById('cd-'+i);
+    el.textContent=i<codeActuel.length?'●':'_';
+    el.className='code-digit'+(i<codeActuel.length?' filled':'');
   }
 }
 
-function choisirPrenom(p,mode){
-  prenom[mode]=p;
-  document.querySelectorAll('[id^="pb-'+mode+'-"]').forEach(function(b){
-    b.className='prenom-btn';
+function verifierCode(){
+  // Chercher l'employé avec ce code ET ce service
+  const emp=emps.find(function(e){
+    return String(e.code)===codeActuel&&e.service===svcChoisi;
   });
-  const btn=document.getElementById('pb-'+mode+'-'+p);
-  if(btn)btn.className='prenom-btn sel '+mode;
-  
-  // Activer bouton sauf pause (besoin motif aussi)
-  const btnIds={start:'btn-start',pause:'btn-pause',reprendre:'btn-reprendre',stop:'btn-stop'};
-  if(mode==='pause'){
-    document.getElementById('btn-pause').disabled=!motifPause;
+
+  if(!emp){
+    // Mauvais code — afficher erreur
+    for(var i=0;i<4;i++){
+      document.getElementById('cd-'+i).className='code-digit error';
+    }
+    setTimeout(function(){
+      codeActuel='';
+      majAffichageCode();
+    },800);
+    return;
+  }
+
+  // Code correct
+  empChoisi=emp;
+  document.getElementById('emp-nom').textContent=emp.prenom;
+  document.getElementById('emp-svc').textContent=emp.service;
+  document.getElementById('emp-trouve').style.display='block';
+
+  // Vérifier disponibilité selon action
+  const ptEnCours=pts.find(function(p){
+    return String(p['Prénom employé']||'').toLowerCase()===emp.prenom.toLowerCase()&&!p['Heure fin'];
+  });
+  const ptEnPause=ptEnCours&&String(ptEnCours['En pause']||'')==='Oui';
+  const ptActif=ptEnCours&&!ptEnPause;
+
+  document.getElementById('err-action').innerHTML='';
+
+  if(actionMode==='start'&&ptEnCours){
+    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' a déjà un pointage en cours !</div>';
+    return;
+  }
+  if(actionMode==='pause'&&!ptActif){
+    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n\'est pas en cours de travail.</div>';
+    return;
+  }
+  if(actionMode==='reprendre'&&!ptEnPause){
+    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n\'est pas en pause.</div>';
+    return;
+  }
+  if(actionMode==='stop'&&!ptEnCours){
+    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n\'a pas de pointage en cours.</div>';
+    return;
+  }
+
+  // Afficher options selon action
+  if(actionMode==='pause'){
+    document.getElementById('motif-zone').style.display='block';
+  } else if(actionMode==='stop'){
+    document.getElementById('comment-zone').style.display='block';
+    afficherBtnValider();
   } else {
-    document.getElementById(btnIds[mode]).disabled=false;
+    afficherBtnValider();
   }
 }
 
 function choisirMotif(motif){
-  motifPause=motif;
-  document.getElementById('motif-dejeuner').className='motif-btn'+(motif.includes('dejeuner')||motif.includes('Déjeuner')?' sel':'');
-  document.getElementById('motif-piece').className='motif-btn'+(motif.includes('pièce')||motif.includes('Attente')?' sel':'');
-  document.getElementById('btn-pause').disabled=!prenom.pause;
+  motifChoisi=motif;
+  document.getElementById('motif-dej').className='motif-btn'+(motif.includes('Déjeuner')||motif.includes('dejeuner')?' sel':'');
+  document.getElementById('motif-pce').className='motif-btn'+(motif.includes('pièce')||motif.includes('Attente')?' sel':'');
+  afficherBtnValider();
+}
+
+function afficherBtnValider(){
+  const btn=document.getElementById('btn-valider');
+  btn.style.display='block';
+  btn.textContent=ACTIONS[actionMode].btnTxt;
+  btn.className='btn-main '+ACTIONS[actionMode].classe;
+}
+
+async function valider(){
+  if(!empChoisi)return;
+  const btn=document.getElementById('btn-valider');
+  btn.disabled=true;btn.textContent='⏳ En cours...';
+
+  const ptEnCours=pts.find(function(p){
+    return String(p['Prénom employé']||'').toLowerCase()===empChoisi.prenom.toLowerCase()&&!p['Heure fin'];
+  });
+
+  try{
+    let data={};
+    if(actionMode==='start'){
+      data=await post({action:'demarrer',vehiculeId:vehiculeId,prenom:empChoisi.prenom,service:svcChoisi});
+      afficherSucces('✅','vert','Pointage démarré !',empChoisi.prenom+' — '+svcChoisi+'\n'+veh['Immatriculation']+'\nDémarré à '+(String(data.heureDebut||'').substring(11,16)),false);
+    }
+    else if(actionMode==='pause'){
+      if(!motifChoisi){document.getElementById('err-action').innerHTML='<div class="erreur-msg">Choisis un motif !</div>';btn.disabled=false;btn.textContent=ACTIONS[actionMode].btnTxt;return;}
+      data=await post({action:'pause',idPointage:ptEnCours['ID Pointage'],motif:motifChoisi});
+      afficherSucces('⏸️','orange','Pause enregistrée',empChoisi.prenom+'\n'+motifChoisi+'\n'+veh['Immatriculation'],false);
+    }
+    else if(actionMode==='reprendre'){
+      data=await post({action:'reprendre',idPointage:ptEnCours['ID Pointage']});
+      afficherSucces('▶️','violet','Reprise du travail !',empChoisi.prenom+'\n'+veh['Immatriculation'],false);
+    }
+    else if(actionMode==='stop'){
+      const commentaire=document.getElementById('stop-comment').value.trim();
+      data=await post({action:'terminer',idPointage:ptEnCours['ID Pointage'],commentaire:commentaire});
+      afficherSucces('🎉','vert','Travail terminé !',empChoisi.prenom+' — '+svcChoisi+'\n'+veh['Immatriculation'],data.dureeMin);
+    }
+  }catch(e){
+    document.getElementById('err-action').innerHTML='<div class="erreur-msg">Erreur réseau. Réessaie.</div>';
+    btn.disabled=false;btn.textContent=ACTIONS[actionMode].btnTxt;
+  }
+}
+
+function afficherSucces(icon,classe,titre,sub,duree){
+  document.getElementById('ok-icon').textContent=icon;
+  document.getElementById('ok-title').textContent=titre;
+  document.getElementById('ok-title').className='succes-title '+classe;
+  document.getElementById('ok-sub').textContent=sub;
+  const dureeEl=document.getElementById('ok-duree');
+  if(duree){dureeEl.style.display='block';dureeEl.textContent=fmt(duree);}
+  else{dureeEl.style.display='none';}
+  afficher('s-ok');
 }
 
 async function post(body){
@@ -355,107 +397,23 @@ async function post(body){
   return res.json();
 }
 
-function trouverPointage(prenomVal,enPause){
-  return pts.find(function(p){
-    const matchPrenom=String(p['Prénom employé']||'').toLowerCase()===prenomVal.toLowerCase();
-    const pasTermine=!p['Heure fin'];
-    if(enPause===true)return matchPrenom&&pasTermine&&String(p['En pause']||'')==='Oui';
-    if(enPause===false)return matchPrenom&&pasTermine&&String(p['En pause']||'')!=='Oui';
-    return matchPrenom&&pasTermine;
-  });
-}
-
-async function demarrer(){
-  if(!svc.start||!prenom.start)return;
-  const btn=document.getElementById('btn-start');
-  btn.disabled=true;btn.textContent='⏳...';
-  try{
-    const data=await post({action:'demarrer',vehiculeId:vehiculeId,prenom:prenom.start,service:svc.start});
-    document.getElementById('ok-start-txt').textContent=prenom.start+' — '+svc.start+'\n'+veh['Immatriculation'];
-    aller('s-ok-start');
-  }catch(e){
-    document.getElementById('err-start').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
-    btn.disabled=false;btn.textContent='▶ Commencer';
-  }
-}
-
-async function validerPause(){
-  if(!svc.pause||!prenom.pause||!motifPause)return;
-  const pt=trouverPointage(prenom.pause,false);
-  if(!pt){
-    document.getElementById('err-pause').innerHTML='<div class="erreur-msg">'+prenom.pause+' n\'a pas de pointage en cours.</div>';
-    return;
-  }
-  const btn=document.getElementById('btn-pause');
-  btn.disabled=true;btn.textContent='⏳...';
-  try{
-    await post({action:'pause',idPointage:pt['ID Pointage'],motif:motifPause});
-    document.getElementById('ok-pause-txt').textContent=prenom.pause+'\n'+motifPause+'\n'+veh['Immatriculation'];
-    aller('s-ok-pause');
-  }catch(e){
-    document.getElementById('err-pause').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
-    btn.disabled=false;btn.textContent='⏸ Mettre en pause';
-  }
-}
-
-async function validerReprendre(){
-  if(!svc.reprendre||!prenom.reprendre)return;
-  const pt=trouverPointage(prenom.reprendre,true);
-  if(!pt){
-    document.getElementById('err-reprendre').innerHTML='<div class="erreur-msg">'+prenom.reprendre+' n\'est pas en pause.</div>';
-    return;
-  }
-  const btn=document.getElementById('btn-reprendre');
-  btn.disabled=true;btn.textContent='⏳...';
-  try{
-    await post({action:'reprendre',idPointage:pt['ID Pointage']});
-    document.getElementById('ok-reprendre-txt').textContent=prenom.reprendre+'\n'+veh['Immatriculation'];
-    aller('s-ok-reprendre');
-  }catch(e){
-    document.getElementById('err-reprendre').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
-    btn.disabled=false;btn.textContent='▶▶ Reprendre';
-  }
-}
-
-async function terminer(){
-  if(!svc.stop||!prenom.stop)return;
-  const pt=trouverPointage(prenom.stop,null);
-  if(!pt){
-    document.getElementById('err-stop').innerHTML='<div class="erreur-msg">'+prenom.stop+' n\'a pas de pointage en cours.</div>';
-    return;
-  }
-  const commentaire=document.getElementById('stop-commentaire').value.trim();
-  const btn=document.getElementById('btn-stop');
-  btn.disabled=true;btn.textContent='⏳...';
-  try{
-    const data=await post({action:'terminer',idPointage:pt['ID Pointage'],commentaire:commentaire});
-    document.getElementById('ok-duree').textContent=fmt(data.dureeMin||0);
-    document.getElementById('ok-stop-txt').textContent=prenom.stop+' — '+svc.stop+'\n'+veh['Immatriculation'];
-    aller('s-ok-stop');
-  }catch(e){
-    document.getElementById('err-stop').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
-    btn.disabled=false;btn.textContent='⏹ Terminer';
-  }
-}
-
 async function charger(){
   vehiculeId=getParam('v');
-  if(!vehiculeId){aller('s-erreur');return;}
+  if(!vehiculeId){afficher('s-erreur');return;}
   try{
     const res=await fetch(API+'?action=vehicule&v='+vehiculeId+'&t='+Date.now());
     const data=await res.json();
-    if(!data.vehicule){aller('s-erreur');return;}
+    if(!data.vehicule){afficher('s-erreur');return;}
     veh=data.vehicule;
     pts=data.pointages||[];
     emps=data.employes||[];
     document.getElementById('v-immat').textContent=veh['Immatriculation']||'—';
     document.getElementById('v-client').textContent=veh['Client']||'—';
     document.getElementById('v-modele').textContent=veh['Modèle']||'—';
-    aller('s-accueil');
-  }catch(e){aller('s-erreur');}
+    afficher('s-accueil');
+  }catch(e){afficher('s-erreur');}
 }
 
-function recharger(){charger();}
 charger();
 </script>
 </body>

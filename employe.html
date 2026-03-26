@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Employé — Motors Factory</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#f0f5ff;min-height:100vh;}
+.header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);padding:1rem 1.5rem;display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(255,255,255,0.15);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+.header-title{font-size:16px;font-weight:800;color:#fff;}
+.header-sub{font-size:11px;color:rgba(255,255,255,0.6);}
+.content{padding:1.2rem;max-width:800px;margin:0 auto;}
+.emp-header{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.2rem;margin-bottom:1rem;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.emp-avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;flex-shrink:0;}
+.emp-avatar.Carrosserie{background:linear-gradient(135deg,#f59e0b,#d97706);}
+.emp-avatar.Mécanique{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
+.emp-avatar.Peinture{background:linear-gradient(135deg,#ec4899,#db2777);}
+.emp-nom{font-size:18px;font-weight:800;color:#0f172a;}
+.emp-meta{font-size:12px;color:#64748b;margin-top:2px;}
+.kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:1rem;}
+.kpi{background:#fff;border-radius:10px;padding:12px;border:1px solid #e2e8f0;text-align:center;}
+.kpi-nb{font-size:22px;font-weight:800;color:#1d4ed8;}
+.kpi-label{font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;margin-top:3px;}
+.section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:1rem;}
+.section-header{background:#f8faff;padding:10px 14px;border-bottom:1px solid #e2e8f0;font-size:13px;font-weight:700;color:#0f172a;display:flex;justify-content:space-between;align-items:center;}
+.periode-btns{display:flex;gap:4px;}
+.pbtn{padding:4px 10px;border-radius:6px;border:1.5px solid #e2e8f0;font-size:11px;font-weight:700;cursor:pointer;background:#fff;color:#94a3b8;font-family:'Inter',sans-serif;}
+.pbtn.actif{background:#1d4ed8;border-color:#1d4ed8;color:#fff;}
+table{width:100%;border-collapse:collapse;}
+th{background:#f8faff;padding:8px 12px;text-align:left;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;border-bottom:1px solid #e2e8f0;}
+td{padding:9px 12px;font-size:12px;color:#0f172a;border-bottom:1px solid #f1f5f9;}
+tr:last-child td{border-bottom:none;}
+.badge-svc{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:700;}
+.badge-svc.Carrosserie{background:#fef3c7;color:#d97706;}
+.badge-svc.Mécanique{background:#eff6ff;color:#1d4ed8;}
+.badge-svc.Peinture{background:#fdf2f8;color:#db2777;}
+.pause-badge{font-size:10px;background:#fef3c7;color:#d97706;padding:2px 6px;border-radius:4px;font-weight:600;}
+.vide{text-align:center;padding:2rem;color:#94a3b8;font-size:13px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <button class="back-btn" onclick="history.back()">← Retour</button>
+  <div>
+    <div class="header-title" id="hdr-nom">Employé</div>
+    <div class="header-sub" id="hdr-sub">Performance</div>
+  </div>
+</div>
+<div class="content">
+  <div class="emp-header">
+    <div class="emp-avatar" id="emp-avatar">?</div>
+    <div>
+      <div class="emp-nom" id="emp-nom">—</div>
+      <div class="emp-meta" id="emp-meta">—</div>
+    </div>
+    <div style="margin-left:auto;text-align:right;">
+      <div style="font-size:22px;font-weight:900;color:#1d4ed8;" id="score-total">—</div>
+      <div style="font-size:11px;color:#94a3b8;">Heures totales</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-nb" id="k-sessions">—</div><div class="kpi-label">Sessions</div></div>
+    <div class="kpi"><div class="kpi-nb" id="k-vehicules">—</div><div class="kpi-label">Véhicules</div></div>
+    <div class="kpi"><div class="kpi-nb" id="k-pauses">—</div><div class="kpi-label">Pauses</div></div>
+    <div class="kpi"><div class="kpi-nb" id="k-cout">—</div><div class="kpi-label">Coût MO</div></div>
+  </div>
+
+  <!-- PAR JOUR -->
+  <div class="section">
+    <div class="section-header">
+      📅 Performance par jour
+      <div class="periode-btns">
+        <button class="pbtn actif" onclick="changerPeriode('7',this)">7j</button>
+        <button class="pbtn" onclick="changerPeriode('30',this)">30j</button>
+        <button class="pbtn" onclick="changerPeriode('tout',this)">Tout</button>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>Date</th><th>Sessions</th><th>Temps</th><th>Pauses</th><th>Coût</th></tr></thead>
+      <tbody id="table-jours"></tbody>
+    </table>
+  </div>
+
+  <!-- PAR VEHICULE -->
+  <div class="section">
+    <div class="section-header">🚗 Performance par véhicule</div>
+    <table>
+      <thead><tr><th>Immat.</th><th>Client</th><th>Date</th><th>Sessions</th><th>Temps</th><th>Pauses</th><th>Motifs pause</th></tr></thead>
+      <tbody id="table-vehicules"></tbody>
+    </table>
+  </div>
+
+  <!-- DETAIL POINTAGES -->
+  <div class="section">
+    <div class="section-header">📋 Détail de tous les pointages</div>
+    <table>
+      <thead><tr><th>Date</th><th>Véhicule</th><th>Début</th><th>Fin</th><th>Durée</th><th>Pause</th><th>Commentaire</th></tr></thead>
+      <tbody id="table-detail"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
+let tousPointages=[],empData=null,periode='7';
+
+function fmt(min){if(!min||min<=0)return'0 min';if(min<60)return Math.round(min)+' min';return Math.floor(min/60)+'h'+(min%60>0?Math.floor(min%60)+'min':'');}
+function fmtEur(v){return(parseFloat(v)||0).toFixed(0)+'€';}
+
+function getParam(p){return new URLSearchParams(window.location.search).get(p);}
+
+function filtrerParPeriode(pts){
+  const now=new Date();
+  return pts.filter(function(p){
+    if(periode==='tout')return true;
+    const ds=String(p['Date']||p['Heure début']||'');
+    const parts=ds.split('/');
+    if(parts.length<3)return true;
+    const d=new Date(parts[2].substring(0,4)+'-'+parts[1]+'-'+parts[0]);
+    if(isNaN(d))return true;
+    const diffJ=(now-d)/(1000*60*60*24);
+    return diffJ<=parseInt(periode);
+  });
+}
+
+function changerPeriode(p,btn){
+  periode=p;
+  document.querySelectorAll('.pbtn').forEach(function(b){b.classList.remove('actif');});
+  btn.classList.add('actif');
+  rendreTout();
+}
+
+function rendreTout(){
+  const pts=filtrerParPeriode(tousPointages);
+  const totalMin=pts.reduce(function(a,p){return a+(parseInt(p['Durée (min)'])||0);},0);
+  const nbPauses=pts.filter(function(p){return String(p['En pause']||'')==='Oui'||p['Motif pause'];}).length;
+  const taux=empData?parseFloat(empData.tauxHoraire)||0:0;
+  const cout=(totalMin/60)*taux;
+
+  document.getElementById('score-total').textContent=fmt(totalMin);
+  document.getElementById('k-sessions').textContent=pts.filter(function(p){return p['Durée (min)'];}).length;
+  document.getElementById('k-vehicules').textContent=new Set(pts.map(function(p){return p['ID Véhicule'];})).size;
+  document.getElementById('k-pauses').textContent=nbPauses;
+  document.getElementById('k-cout').textContent=fmtEur(cout);
+
+  // Par jour
+  const parJour={};
+  pts.forEach(function(p){
+    const d=String(p['Date']||'').substring(0,10);
+    if(!d)return;
+    if(!parJour[d])parJour[d]={sessions:0,totalMin:0,pauses:0};
+    if(p['Durée (min)']){parJour[d].sessions++;parJour[d].totalMin+=parseInt(p['Durée (min)'])||0;}
+    if(p['Motif pause'])parJour[d].pauses++;
+  });
+  const joursTriees=Object.keys(parJour).sort().reverse();
+  document.getElementById('table-jours').innerHTML=joursTriees.length>0?joursTriees.map(function(j){
+    const s=parJour[j];
+    const c=(s.totalMin/60)*taux;
+    return'<tr><td><strong>'+j+'</strong></td><td>'+s.sessions+'</td><td>'+fmt(s.totalMin)+'</td><td>'+(s.pauses||'—')+'</td><td>'+fmtEur(c)+'</td></tr>';
+  }).join(''):'<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:1rem;">Aucune donnée</td></tr>';
+
+  // Par véhicule
+  const parVeh={};
+  pts.forEach(function(p){
+    const id=p['ID Véhicule'];
+    if(!id)return;
+    if(!parVeh[id])parVeh[id]={immat:p['Immatriculation'],sessions:0,totalMin:0,pauses:0,motifs:[],date:String(p['Date']||'').substring(0,10)};
+    if(p['Durée (min)']){parVeh[id].sessions++;parVeh[id].totalMin+=parseInt(p['Durée (min)'])||0;}
+    if(p['Motif pause']){parVeh[id].pauses++;parVeh[id].motifs.push(p['Motif pause']);}
+  });
+  document.getElementById('table-vehicules').innerHTML=Object.values(parVeh).length>0?Object.values(parVeh).sort(function(a,b){return b.totalMin-a.totalMin;}).map(function(v){
+    return'<tr><td><strong>'+v.immat+'</strong></td><td>—</td><td>'+v.date+'</td><td>'+v.sessions+'</td><td>'+fmt(v.totalMin)+'</td><td>'+(v.pauses||'—')+'</td><td style="font-size:11px;color:#64748b;">'+(v.motifs.join(', ')||'—')+'</td></tr>';
+  }).join(''):'<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:1rem;">Aucune donnée</td></tr>';
+
+  // Détail
+  const ptsFiltres=pts.filter(function(p){return p['Heure début'];}).sort(function(a,b){
+    return String(b['Heure début']||'').localeCompare(String(a['Heure début']||''));
+  });
+  document.getElementById('table-detail').innerHTML=ptsFiltres.length>0?ptsFiltres.map(function(p){
+    const enPause=String(p['En pause']||'')==='Oui';
+    const motif=p['Motif pause']||'';
+    return'<tr>'
+      +'<td>'+String(p['Date']||'').substring(0,10)+'</td>'
+      +'<td><strong>'+p['Immatriculation']+'</strong></td>'
+      +'<td>'+String(p['Heure début']||'').substring(11,16)+'</td>'
+      +'<td>'+(p['Heure fin']?String(p['Heure fin']||'').substring(11,16):'<span style="color:#22c55e;font-weight:700;">En cours</span>')+'</td>'
+      +'<td>'+fmt(parseInt(p['Durée (min)'])||0)+'</td>'
+      +'<td>'+(enPause?'<span class="pause-badge">⏸ '+motif+'</span>':motif?'<span class="pause-badge">'+motif+'</span>':'—')+'</td>'
+      +'<td style="color:#64748b;font-size:11px;">'+(p['Commentaire']||'—')+'</td>'
+      +'</tr>';
+  }).join(''):'<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
+}
+
+async function init(){
+  const prenom=getParam('prenom');
+  if(!prenom){document.body.innerHTML='<div style="padding:2rem;text-align:center;color:#94a3b8;">Employé non spécifié</div>';return;}
+
+  try{
+    const res=await fetch(API+'?action=tous&t='+Date.now());
+    const data=await res.json();
+    const employes=data.employes||[];
+    const pointages=data.pointages||[];
+
+    empData=employes.find(function(e){return e.prenom===prenom;});
+    tousPointages=pointages.filter(function(p){
+      return String(p['Prénom employé']||'').toLowerCase()===prenom.toLowerCase();
+    });
+
+    const svc=empData?empData.service:'';
+    const initiales=prenom.charAt(0).toUpperCase();
+
+    document.getElementById('hdr-nom').textContent=prenom;
+    document.getElementById('hdr-sub').textContent=svc+' — Performance détaillée';
+    const av=document.getElementById('emp-avatar');
+    av.textContent=initiales;
+    av.className='emp-avatar '+(svc||'Mécanique');
+    document.getElementById('emp-nom').textContent=prenom;
+    document.getElementById('emp-meta').textContent=svc+(empData?' · '+empData.tauxHoraire+'€/h':'');
+
+    rendreTout();
+  }catch(e){
+    document.body.innerHTML='<div style="padding:2rem;text-align:center;color:#94a3b8;">Erreur de chargement</div>';
+  }
+}
+
+init();
+</script>
+</body>
+</html>
