@@ -217,6 +217,9 @@ function afficherOnglet(nom,btn){
 }
 
 async function creerVehicule(){
+  const btn=document.querySelector('.btn-creer');
+  if(btn.disabled)return;
+  
   const immat=document.getElementById('f-immat').value.trim().toUpperCase();
   const client=document.getElementById('f-client').value.trim();
   const modele=document.getElementById('f-modele').value.trim();
@@ -225,6 +228,10 @@ async function creerVehicule(){
     document.getElementById('erreur-creation').innerHTML='<div class="erreur">Immatriculation et client sont obligatoires.</div>';
     return;
   }
+  
+  // Désactiver le bouton pour éviter double clic
+  btn.disabled=true;
+  btn.textContent='⏳ Création en cours...';
   
   try{
     const res=await fetch(API,{method:'POST',body:JSON.stringify({action:'creer',immat:immat,client:client,modele:modele})});
@@ -239,6 +246,9 @@ async function creerVehicule(){
     afficherQR(immat,data.qrUrl,data.id);
   }catch(e){
     document.getElementById('erreur-creation').innerHTML='<div class="erreur">Erreur. Réessaie.</div>';
+  }finally{
+    btn.disabled=false;
+    btn.textContent='➕ Créer et générer le QR code';
   }
 }
 
