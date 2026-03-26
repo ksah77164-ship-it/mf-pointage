@@ -15,6 +15,7 @@ body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:
 .app{width:100%;max-width:400px;}
 .screen{display:none;}
 .screen.actif{display:block;}
+
 .logo{text-align:center;margin-bottom:1.5rem;}
 .logo-icon{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 10px;}
 .logo-icon.bleu{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
@@ -22,71 +23,84 @@ body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:
 .logo-icon.rouge{background:linear-gradient(135deg,#ef4444,#dc2626);}
 .logo-title{font-size:20px;font-weight:900;color:#fff;}
 .logo-sub{font-size:12px;color:#64748b;margin-top:3px;}
+
 .veh-card{background:#1e293b;border-radius:16px;padding:1.2rem;margin-bottom:1rem;border:1px solid #334155;text-align:center;}
 .veh-immat{font-size:26px;font-weight:900;color:#fff;letter-spacing:2px;}
 .veh-client{font-size:14px;color:#94a3b8;margin-top:4px;}
 .veh-modele{font-size:12px;color:#64748b;margin-top:2px;}
+
 .en-cours{background:#0d1f0d;border:1px solid #22c55e30;border-radius:12px;padding:10px 14px;margin-bottom:1rem;}
 .en-cours-title{font-size:11px;font-weight:700;color:#22c55e;text-transform:uppercase;margin-bottom:8px;}
 .pt-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #22c55e15;}
 .pt-row:last-child{border-bottom:none;}
 .pt-prenom{font-size:13px;font-weight:700;color:#fff;}
-.pt-service{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:700;margin-left:4px;}
-.pt-service.Carrosserie{background:#fef3c720;color:#fbbf24;}
-.pt-service.Mécanique{background:#eff6ff20;color:#60a5fa;}
-.pt-service.Peinture{background:#fdf2f820;color:#f472b6;}
+.pt-svc{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:700;margin-left:4px;}
+.pt-svc.Carrosserie{background:#fef3c720;color:#fbbf24;}
+.pt-svc.Mécanique{background:#eff6ff20;color:#60a5fa;}
+.pt-svc.Peinture{background:#fdf2f820;color:#f472b6;}
 .pt-depuis{font-size:11px;color:#4ade80;}
+
 .histo{background:#1e293b;border-radius:12px;padding:10px 14px;margin-bottom:1rem;border:1px solid #334155;}
 .histo-title{font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;margin-bottom:8px;}
 .histo-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #334155;}
 .histo-row:last-child{border-bottom:none;}
-.histo-left{display:flex;align-items:center;gap:6px;}
 .histo-prenom{font-size:12px;color:#94a3b8;font-weight:600;}
 .histo-duree{font-size:12px;font-weight:700;color:#60a5fa;}
-.btn-group{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem;}
-.btn-start{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;padding:16px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 4px 20px rgba(34,197,94,0.3);}
-.btn-stop{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border:none;padding:16px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 4px 20px rgba(239,68,68,0.3);}
-.btn-back{background:#1e293b;color:#64748b;border:1.5px solid #334155;padding:12px;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;width:100%;}
-.btn-submit{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;border:none;padding:14px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;width:100%;margin-bottom:10px;}
-.btn-submit:disabled{opacity:0.5;pointer-events:none;}
-.form-card{background:#1e293b;border-radius:16px;padding:1.2rem;margin-bottom:1rem;border:1px solid #334155;}
-.form-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:1rem;text-align:center;}
-label{font-size:11px;font-weight:700;color:#64748b;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;}
-select,textarea{width:100%;background:#0f172a;border:1.5px solid #334155;border-radius:10px;padding:12px 14px;font-size:15px;font-family:'Inter',sans-serif;color:#fff;margin-bottom:12px;outline:none;-webkit-appearance:none;appearance:none;}
-select:focus,textarea:focus{border-color:#3b82f6;}
-select option{background:#1e293b;color:#fff;}
-textarea{min-height:70px;resize:vertical;font-size:13px;}
 
-/* SERVICE SELECTOR */
-.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px;}
-.service-btn{padding:14px 8px;border-radius:12px;border:2px solid #334155;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;background:#0f172a;color:#64748b;transition:all 0.15s;}
-.service-btn.actif.Carrosserie{background:#1a1500;border-color:#fbbf24;color:#fbbf24;}
-.service-btn.actif.Mécanique{background:#001020;border-color:#60a5fa;color:#60a5fa;}
-.service-btn.actif.Peinture{background:#1a0010;border-color:#f472b6;color:#f472b6;}
-.service-icon{font-size:22px;display:block;margin-bottom:4px;}
+.btn-group{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem;}
+.btn-start{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;padding:18px;border-radius:14px;font-size:17px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 4px 20px rgba(34,197,94,0.3);}
+.btn-stop{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border:none;padding:18px;border-radius:14px;font-size:17px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 4px 20px rgba(239,68,68,0.3);}
+.btn-back{background:#1e293b;color:#64748b;border:1.5px solid #334155;padding:14px;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;width:100%;}
+.btn-valider{color:#fff;border:none;padding:16px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;width:100%;margin-bottom:10px;}
+.btn-valider.vert{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 4px 16px rgba(34,197,94,0.3);}
+.btn-valider.rouge{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 4px 16px rgba(239,68,68,0.3);}
+.btn-valider:disabled{opacity:0.4;pointer-events:none;}
+
+.form-card{background:#1e293b;border-radius:16px;padding:1.2rem;margin-bottom:1rem;border:1px solid #334155;}
+.step-title{font-size:13px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+
+/* SERVICE BUTTONS */
+.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:16px;}
+.svc-btn{padding:16px 8px;border-radius:12px;border:2px solid #334155;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;background:#0f172a;color:#475569;transition:all 0.2s;}
+.svc-btn:active{transform:scale(0.95);}
+.svc-btn.sel.Carrosserie{background:#1a1200;border-color:#fbbf24;color:#fbbf24;}
+.svc-btn.sel.Mécanique{background:#001020;border-color:#60a5fa;color:#60a5fa;}
+.svc-btn.sel.Peinture{background:#1a0015;border-color:#f472b6;color:#f472b6;}
+.svc-icon{font-size:24px;display:block;margin-bottom:5px;}
+
+/* PRENOM BUTTONS */
+.prenom-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.prenom-btn{padding:12px 16px;border-radius:10px;border:2px solid #334155;font-size:14px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;background:#0f172a;color:#475569;transition:all 0.2s;flex:1;min-width:100px;text-align:center;}
+.prenom-btn:active{transform:scale(0.95);}
+.prenom-btn.sel{background:#1e3a2a;border-color:#22c55e;color:#22c55e;}
+.prenom-btn.sel.stop{background:#1a0808;border-color:#ef4444;color:#ef4444;}
+
+/* COMMENTAIRE */
+textarea{width:100%;background:#0f172a;border:1.5px solid #334155;border-radius:10px;padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;color:#fff;outline:none;min-height:70px;resize:vertical;margin-bottom:12px;}
+textarea:focus{border-color:#3b82f6;}
+
+.erreur-msg{background:#1a0808;border:1px solid #ef444440;border-radius:8px;padding:10px;font-size:13px;color:#f87171;margin-bottom:10px;text-align:center;}
 
 .succes{text-align:center;padding:1.5rem 1rem;}
-.succes-icon{font-size:56px;margin-bottom:1rem;}
-.succes-title{font-size:20px;font-weight:900;margin-bottom:6px;}
+.succes-icon{font-size:60px;margin-bottom:1rem;}
+.succes-title{font-size:22px;font-weight:900;margin-bottom:6px;}
 .succes-title.vert{color:#22c55e;}
-.succes-duree{font-size:32px;font-weight:900;color:#fff;margin:0.8rem 0;}
-.succes-sub{font-size:13px;color:#64748b;line-height:1.6;}
-.erreur-msg{background:#1a0808;border:1px solid #ef444440;border-radius:8px;padding:8px 12px;font-size:12px;color:#f87171;margin-bottom:8px;text-align:center;}
-.loading{text-align:center;color:#64748b;padding:1.5rem;font-size:13px;}
-.badge-service{display:inline-block;font-size:11px;padding:3px 8px;border-radius:6px;font-weight:700;margin-top:4px;}
-.badge-service.Carrosserie{background:#fef3c720;color:#fbbf24;border:1px solid #fbbf2440;}
-.badge-service.Mécanique{background:#eff6ff20;color:#60a5fa;border:1px solid #60a5fa40;}
-.badge-service.Peinture{background:#fdf2f820;color:#f472b6;border:1px solid #f472b640;}
+.succes-duree{font-size:36px;font-weight:900;color:#fff;margin:1rem 0;}
+.succes-sub{font-size:13px;color:#64748b;line-height:1.7;white-space:pre-line;}
+
+.loading{text-align:center;color:#64748b;padding:2rem;font-size:13px;}
 </style>
 </head>
 <body>
 <div class="app">
 
+  <!-- CHARGEMENT -->
   <div class="screen actif" id="s-loading">
     <div class="logo"><div class="logo-icon bleu">🔧</div><div class="logo-title">Motors Factory</div><div class="logo-sub">Chargement...</div></div>
-    <div class="loading">Récupération du véhicule...</div>
+    <div class="loading">⏳ Récupération du véhicule...</div>
   </div>
 
+  <!-- ACCUEIL -->
   <div class="screen" id="s-accueil">
     <div class="logo"><div class="logo-icon bleu">🔧</div><div class="logo-title">Motors Factory</div><div class="logo-sub">Pointage véhicule</div></div>
     <div class="veh-card">
@@ -97,53 +111,54 @@ textarea{min-height:70px;resize:vertical;font-size:13px;}
     <div id="zone-en-cours"></div>
     <div id="zone-histo"></div>
     <div class="btn-group">
-      <button class="btn-start" onclick="aller('s-form-start')">▶&nbsp; Démarrer mon pointage</button>
-      <button class="btn-stop" onclick="aller('s-form-stop')">⏹&nbsp; Terminer mon pointage</button>
+      <button class="btn-start" onclick="aller('s-start')">▶&nbsp;&nbsp;Démarrer mon pointage</button>
+      <button class="btn-stop" onclick="aller('s-stop')">⏹&nbsp;&nbsp;Terminer mon pointage</button>
     </div>
   </div>
 
-  <div class="screen" id="s-form-start">
-    <div class="logo"><div class="logo-icon vert">▶️</div><div class="logo-title">Démarrer</div><div class="logo-sub" id="start-immat">—</div></div>
+  <!-- DEMARRER -->
+  <div class="screen" id="s-start">
+    <div class="logo"><div class="logo-icon vert">▶️</div><div class="logo-title">Démarrer</div><div class="logo-sub" id="start-immat-label">—</div></div>
     <div class="form-card">
-      <div class="form-title">1. Votre service</div>
-      <div class="service-grid">
-        <button class="service-btn" id="svc-Carrosserie" onclick="choisirService('Carrosserie')"><span class="service-icon">🚗</span>Carrosserie</button>
-        <button class="service-btn" id="svc-Mécanique" onclick="choisirService('Mécanique')"><span class="service-icon">🔧</span>Mécanique</button>
-        <button class="service-btn" id="svc-Peinture" onclick="choisirService('Peinture')"><span class="service-icon">🎨</span>Peinture</button>
+      <div class="step-title">① Votre service</div>
+      <div class="svc-grid">
+        <button class="svc-btn" id="sb-Carrosserie" onclick="choisirSvc('Carrosserie','start')"><span class="svc-icon">🚗</span>Carrosserie</button>
+        <button class="svc-btn" id="sb-Mécanique" onclick="choisirSvc('Mécanique','start')"><span class="svc-icon">🔧</span>Mécanique</button>
+        <button class="svc-btn" id="sb-Peinture" onclick="choisirSvc('Peinture','start')"><span class="svc-icon">🎨</span>Peinture</button>
       </div>
-      <div id="prenom-zone" style="display:none;">
-        <div class="form-title" style="margin-top:4px;">2. Votre prénom</div>
-        <label>Choisissez votre prénom</label>
-        <select id="start-prenom"><option value="">-- Sélectionner --</option></select>
-        <button class="btn-submit" id="btn-start-submit" onclick="demarrer()">▶ Commencer le travail</button>
+      <div id="start-prenom-zone" style="display:none;">
+        <div class="step-title">② Votre prénom</div>
+        <div class="prenom-grid" id="start-prenom-grid"></div>
+        <button class="btn-valider vert" id="btn-valider-start" onclick="demarrer()" disabled>▶ Commencer le travail</button>
       </div>
-      <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
     </div>
     <div id="err-start"></div>
+    <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
   </div>
 
-  <div class="screen" id="s-form-stop">
-    <div class="logo"><div class="logo-icon rouge">⏹️</div><div class="logo-title">Terminer</div><div class="logo-sub" id="stop-immat">—</div></div>
+  <!-- TERMINER -->
+  <div class="screen" id="s-stop">
+    <div class="logo"><div class="logo-icon rouge">⏹️</div><div class="logo-title">Terminer</div><div class="logo-sub" id="stop-immat-label">—</div></div>
     <div class="form-card">
-      <div class="form-title">1. Votre service</div>
-      <div class="service-grid">
-        <button class="service-btn" id="svc-stop-Carrosserie" onclick="choisirServiceStop('Carrosserie')"><span class="service-icon">🚗</span>Carrosserie</button>
-        <button class="service-btn" id="svc-stop-Mécanique" onclick="choisirServiceStop('Mécanique')"><span class="service-icon">🔧</span>Mécanique</button>
-        <button class="service-btn" id="svc-stop-Peinture" onclick="choisirServiceStop('Peinture')"><span class="service-icon">🎨</span>Peinture</button>
+      <div class="step-title">① Votre service</div>
+      <div class="svc-grid">
+        <button class="svc-btn" id="ssb-Carrosserie" onclick="choisirSvc('Carrosserie','stop')"><span class="svc-icon">🚗</span>Carrosserie</button>
+        <button class="svc-btn" id="ssb-Mécanique" onclick="choisirSvc('Mécanique','stop')"><span class="svc-icon">🔧</span>Mécanique</button>
+        <button class="svc-btn" id="ssb-Peinture" onclick="choisirSvc('Peinture','stop')"><span class="svc-icon">🎨</span>Peinture</button>
       </div>
-      <div id="prenom-stop-zone" style="display:none;">
-        <div class="form-title" style="margin-top:4px;">2. Votre prénom</div>
-        <label>Choisissez votre prénom</label>
-        <select id="stop-prenom"><option value="">-- Sélectionner --</option></select>
-        <label style="margin-top:4px;">Commentaire (optionnel)</label>
+      <div id="stop-prenom-zone" style="display:none;">
+        <div class="step-title">② Votre prénom</div>
+        <div class="prenom-grid" id="stop-prenom-grid"></div>
+        <div class="step-title" style="margin-top:4px;">③ Commentaire (optionnel)</div>
         <textarea id="stop-commentaire" placeholder="Ex : Vidange faite, pare-choc remplacé..."></textarea>
-        <button class="btn-submit" id="btn-stop-submit" onclick="terminer()">⏹ Terminer mon travail</button>
+        <button class="btn-valider rouge" id="btn-valider-stop" onclick="terminer()" disabled>⏹ Terminer mon travail</button>
       </div>
-      <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
     </div>
     <div id="err-stop"></div>
+    <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
   </div>
 
+  <!-- SUCCES DEMARRER -->
   <div class="screen" id="s-ok-start">
     <div class="succes">
       <div class="succes-icon">✅</div>
@@ -153,6 +168,7 @@ textarea{min-height:70px;resize:vertical;font-size:13px;}
     </div>
   </div>
 
+  <!-- SUCCES TERMINER -->
   <div class="screen" id="s-ok-stop">
     <div class="succes">
       <div class="succes-icon">🎉</div>
@@ -163,6 +179,7 @@ textarea{min-height:70px;resize:vertical;font-size:13px;}
     </div>
   </div>
 
+  <!-- ERREUR -->
   <div class="screen" id="s-erreur">
     <div class="succes">
       <div class="succes-icon">❌</div>
@@ -174,62 +191,83 @@ textarea{min-height:70px;resize:vertical;font-size:13px;}
 </div>
 <script>
 const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
-let vehiculeId=null,vehiculeData=null,pointagesData=[],employesData=[],serviceChoisi=null,serviceStopChoisi=null;
+let vehiculeId=null,vehiculeData=null,pointagesData=[],employesData=[];
+let svcStart=null,prenomStart=null,svcStop=null,prenomStop=null;
 
 function aller(id){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('actif');});
   document.getElementById(id).classList.add('actif');
-  if(id==='s-form-start'){
-    document.getElementById('start-immat').textContent=vehiculeData?vehiculeData['Immatriculation']:'';
-    serviceChoisi=null;
-    document.querySelectorAll('[id^="svc-"]:not([id^="svc-stop"])').forEach(function(b){b.classList.remove('actif');});
-    document.getElementById('prenom-zone').style.display='none';
+  if(id==='s-start'){
+    document.getElementById('start-immat-label').textContent=vehiculeData?vehiculeData['Immatriculation']:'';
+    svcStart=null;prenomStart=null;
+    document.querySelectorAll('[id^="sb-"]').forEach(function(b){b.className='svc-btn';});
+    document.getElementById('start-prenom-zone').style.display='none';
     document.getElementById('err-start').innerHTML='';
+    document.getElementById('btn-valider-start').disabled=true;
   }
-  if(id==='s-form-stop'){
-    document.getElementById('stop-immat').textContent=vehiculeData?vehiculeData['Immatriculation']:'';
-    serviceStopChoisi=null;
-    document.querySelectorAll('[id^="svc-stop-"]').forEach(function(b){b.classList.remove('actif');});
-    document.getElementById('prenom-stop-zone').style.display='none';
+  if(id==='s-stop'){
+    document.getElementById('stop-immat-label').textContent=vehiculeData?vehiculeData['Immatriculation']:'';
+    svcStop=null;prenomStop=null;
+    document.querySelectorAll('[id^="ssb-"]').forEach(function(b){b.className='svc-btn';});
+    document.getElementById('stop-prenom-zone').style.display='none';
     document.getElementById('stop-commentaire').value='';
     document.getElementById('err-stop').innerHTML='';
+    document.getElementById('btn-valider-stop').disabled=true;
   }
 }
 
 function getParam(p){return new URLSearchParams(window.location.search).get(p);}
 
-function formatDuree(min){
+function fmt(min){
   if(!min||min<=0)return'0 min';
   if(min<60)return Math.round(min)+' min';
   return Math.floor(min/60)+'h'+(min%60>0?Math.floor(min%60)+'min':'');
 }
 
-function choisirService(svc){
-  serviceChoisi=svc;
-  ['Carrosserie','Mécanique','Peinture'].forEach(function(s){
-    const btn=document.getElementById('svc-'+s);
-    if(btn){btn.className='service-btn'+(s===svc?' actif '+svc:'');}
-  });
-  const prenoms=employesData.filter(function(e){return e.service===svc;});
-  const sel=document.getElementById('start-prenom');
-  sel.innerHTML='<option value="">-- Sélectionner --</option>'+prenoms.map(function(e){
-    return'<option value="'+e.prenom+'">'+e.prenom+'</option>';
-  }).join('');
-  document.getElementById('prenom-zone').style.display='block';
+function choisirSvc(svc,mode){
+  if(mode==='start'){
+    svcStart=svc;prenomStart=null;
+    ['Carrosserie','Mécanique','Peinture'].forEach(function(s){
+      const b=document.getElementById('sb-'+s);
+      b.className='svc-btn'+(s===svc?' sel '+svc:'');
+    });
+    const prenoms=employesData.filter(function(e){return e.service===svc;});
+    const grid=document.getElementById('start-prenom-grid');
+    grid.innerHTML=prenoms.map(function(e){
+      return'<button class="prenom-btn" id="pb-start-'+e.prenom+'" onclick="choisirPrenom(\''+e.prenom+'\',\'start\')">'+e.prenom+'</button>';
+    }).join('');
+    document.getElementById('start-prenom-zone').style.display='block';
+    document.getElementById('btn-valider-start').disabled=true;
+  } else {
+    svcStop=svc;prenomStop=null;
+    ['Carrosserie','Mécanique','Peinture'].forEach(function(s){
+      const b=document.getElementById('ssb-'+s);
+      b.className='svc-btn'+(s===svc?' sel '+svc:'');
+    });
+    const prenoms=employesData.filter(function(e){return e.service===svc;});
+    const grid=document.getElementById('stop-prenom-grid');
+    grid.innerHTML=prenoms.map(function(e){
+      return'<button class="prenom-btn stop" id="pb-stop-'+e.prenom+'" onclick="choisirPrenom(\''+e.prenom+'\',\'stop\')">'+e.prenom+'</button>';
+    }).join('');
+    document.getElementById('stop-prenom-zone').style.display='block';
+    document.getElementById('btn-valider-stop').disabled=true;
+  }
 }
 
-function choisirServiceStop(svc){
-  serviceStopChoisi=svc;
-  ['Carrosserie','Mécanique','Peinture'].forEach(function(s){
-    const btn=document.getElementById('svc-stop-'+s);
-    if(btn){btn.className='service-btn'+(s===svc?' actif '+svc:'');}
-  });
-  const prenoms=employesData.filter(function(e){return e.service===svc;});
-  const sel=document.getElementById('stop-prenom');
-  sel.innerHTML='<option value="">-- Sélectionner --</option>'+prenoms.map(function(e){
-    return'<option value="'+e.prenom+'">'+e.prenom+'</option>';
-  }).join('');
-  document.getElementById('prenom-stop-zone').style.display='block';
+function choisirPrenom(prenom,mode){
+  if(mode==='start'){
+    prenomStart=prenom;
+    document.querySelectorAll('[id^="pb-start-"]').forEach(function(b){b.classList.remove('sel');});
+    const btn=document.getElementById('pb-start-'+prenom);
+    if(btn)btn.classList.add('sel');
+    document.getElementById('btn-valider-start').disabled=false;
+  } else {
+    prenomStop=prenom;
+    document.querySelectorAll('[id^="pb-stop-"]').forEach(function(b){b.classList.remove('sel');});
+    const btn=document.getElementById('pb-stop-'+prenom);
+    if(btn)btn.classList.add('sel');
+    document.getElementById('btn-valider-stop').disabled=false;
+  }
 }
 
 function afficherVehicule(){
@@ -242,26 +280,21 @@ function afficherVehicule(){
     let h='<div class="en-cours"><div class="en-cours-title">🟢 En cours ('+enCours.length+')</div>';
     enCours.forEach(function(p){
       const svc=p['Service']||'';
-      h+='<div class="pt-row"><div><div class="pt-prenom">'+p['Prénom employé']+'<span class="pt-service '+svc+'">'+svc+'</span></div><div class="pt-depuis">Depuis '+(String(p['Heure début']||'').substring(11,16)||'—')+'</div></div></div>';
+      h+='<div class="pt-row"><div><div class="pt-prenom">'+p['Prénom employé']+'<span class="pt-svc '+svc+'">'+svc+'</span></div><div class="pt-depuis">Depuis '+(String(p['Heure début']||'').substring(11,16)||'—')+'</div></div></div>';
     });
     h+='</div>';
     document.getElementById('zone-en-cours').innerHTML=h;
-  } else {
-    document.getElementById('zone-en-cours').innerHTML='';
-  }
+  } else document.getElementById('zone-en-cours').innerHTML='';
 
   const termines=pointagesData.filter(function(p){return p['Heure fin']&&p['Durée (min)'];});
   if(termines.length>0){
     let h='<div class="histo"><div class="histo-title">📋 Travaux effectués</div>';
     termines.slice(-5).reverse().forEach(function(p){
-      const svc=p['Service']||'';
-      h+='<div class="histo-row"><div class="histo-left"><div class="histo-prenom">'+p['Prénom employé']+'</div><span class="badge-service '+svc+'">'+svc+'</span></div><div class="histo-duree">'+formatDuree(parseInt(p['Durée (min)'])||0)+'</div></div>';
+      h+='<div class="histo-row"><div class="histo-prenom">'+p['Prénom employé']+'</div><div class="histo-duree">'+fmt(parseInt(p['Durée (min)'])||0)+'</div></div>';
     });
     h+='</div>';
     document.getElementById('zone-histo').innerHTML=h;
-  } else {
-    document.getElementById('zone-histo').innerHTML='';
-  }
+  } else document.getElementById('zone-histo').innerHTML='';
 }
 
 async function charger(){
@@ -282,50 +315,46 @@ async function charger(){
 function recharger(){charger();}
 
 async function demarrer(){
-  const prenom=document.getElementById('start-prenom').value;
-  if(!serviceChoisi){document.getElementById('err-start').innerHTML='<div class="erreur-msg">Choisis ton service !</div>';return;}
-  if(!prenom){document.getElementById('err-start').innerHTML='<div class="erreur-msg">Choisis ton prénom !</div>';return;}
-  const btn=document.getElementById('btn-start-submit');
+  if(!svcStart||!prenomStart)return;
+  const btn=document.getElementById('btn-valider-start');
   btn.disabled=true;btn.textContent='⏳ En cours...';
   try{
-    const res=await fetch(API,{method:'POST',body:JSON.stringify({action:'demarrer',vehiculeId:vehiculeId,prenom:prenom,service:serviceChoisi})});
+    const res=await fetch(API,{method:'POST',body:JSON.stringify({action:'demarrer',vehiculeId:vehiculeId,prenom:prenomStart,service:svcStart})});
     const data=await res.json();
     const heure=String(data.heureDebut||'').substring(11,16);
-    document.getElementById('ok-start-txt').textContent=prenom+' ('+serviceChoisi+')\n'+vehiculeData['Immatriculation']+' — Démarré à '+heure;
+    document.getElementById('ok-start-txt').textContent=prenomStart+' — '+svcStart+'\n'+vehiculeData['Immatriculation']+'\nDémarré à '+heure;
     aller('s-ok-start');
   }catch(e){
     document.getElementById('err-start').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
+    btn.disabled=false;btn.textContent='▶ Commencer le travail';
   }
-  btn.disabled=false;btn.textContent='▶ Commencer le travail';
 }
 
 async function terminer(){
-  const prenom=document.getElementById('stop-prenom').value;
+  if(!svcStop||!prenomStop)return;
   const commentaire=document.getElementById('stop-commentaire').value.trim();
-  if(!serviceStopChoisi){document.getElementById('err-stop').innerHTML='<div class="erreur-msg">Choisis ton service !</div>';return;}
-  if(!prenom){document.getElementById('err-stop').innerHTML='<div class="erreur-msg">Choisis ton prénom !</div>';return;}
 
   const enCours=pointagesData.find(function(p){
-    return !p['Heure fin']&&String(p['Prénom employé']||'').toLowerCase()===prenom.toLowerCase();
+    return !p['Heure fin']&&String(p['Prénom employé']||'').toLowerCase()===prenomStop.toLowerCase();
   });
 
   if(!enCours){
-    document.getElementById('err-stop').innerHTML='<div class="erreur-msg">Aucun pointage en cours pour <strong>'+prenom+'</strong>.<br>Tu n\'as pas encore démarré.</div>';
+    document.getElementById('err-stop').innerHTML='<div class="erreur-msg">'+prenomStop+' n\'a pas encore démarré sur ce véhicule.</div>';
     return;
   }
 
-  const btn=document.getElementById('btn-stop-submit');
+  const btn=document.getElementById('btn-valider-stop');
   btn.disabled=true;btn.textContent='⏳ En cours...';
   try{
     const res=await fetch(API,{method:'POST',body:JSON.stringify({action:'terminer',idPointage:enCours['ID Pointage'],commentaire:commentaire})});
     const data=await res.json();
-    document.getElementById('ok-duree').textContent=formatDuree(data.dureeMin||0);
-    document.getElementById('ok-stop-txt').textContent=prenom+' ('+serviceStopChoisi+')\n'+vehiculeData['Immatriculation'];
+    document.getElementById('ok-duree').textContent=fmt(data.dureeMin||0);
+    document.getElementById('ok-stop-txt').textContent=prenomStop+' — '+svcStop+'\n'+vehiculeData['Immatriculation'];
     aller('s-ok-stop');
   }catch(e){
     document.getElementById('err-stop').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
+    btn.disabled=false;btn.textContent='⏹ Terminer mon travail';
   }
-  btn.disabled=false;btn.textContent='⏹ Terminer mon travail';
 }
 
 charger();
