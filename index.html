@@ -88,6 +88,18 @@ textarea:focus{border-color:#3b82f6;}
 .succes-duree{font-size:36px;font-weight:900;color:#fff;margin:1rem 0;}
 .succes-sub{font-size:13px;color:#64748b;line-height:1.7;white-space:pre-line;}
 
+
+/* PAUSE */
+.btn-pause{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;padding:14px;border-radius:14px;font-size:15px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;width:100%;margin-bottom:10px;box-shadow:0 4px 16px rgba(245,158,11,0.3);}
+.btn-reprendre{background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;border:none;padding:14px;border-radius:14px;font-size:15px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;width:100%;margin-bottom:10px;box-shadow:0 4px 16px rgba(139,92,246,0.3);}
+.motif-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.motif-btn{padding:16px 8px;border-radius:12px;border:2px solid #334155;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;background:#0f172a;color:#475569;}
+.motif-btn.sel{background:#1a1200;border-color:#f59e0b;color:#f59e0b;}
+.motif-icon{font-size:24px;display:block;margin-bottom:5px;}
+.pause-active{background:#1a1200;border:1px solid #f59e0b40;border-radius:12px;padding:10px 14px;margin-bottom:1rem;text-align:center;}
+.pause-active-title{font-size:12px;font-weight:700;color:#f59e0b;margin-bottom:4px;}
+.pause-active-motif{font-size:14px;color:#fff;font-weight:800;}
+
 .loading{text-align:center;color:#64748b;padding:2rem;font-size:13px;}
 </style>
 </head>
@@ -108,8 +120,11 @@ textarea:focus{border-color:#3b82f6;}
       <div class="veh-client" id="v-client">—</div>
       <div class="veh-modele" id="v-modele">—</div>
     </div>
+    <div id="zone-pause-active"></div>
     <div class="btn-group">
       <button class="btn-start" onclick="aller('s-start')">▶&nbsp;&nbsp;Démarrer mon pointage</button>
+      <button class="btn-pause" id="btn-pause-accueil" onclick="allerPause()" style="display:none;">⏸&nbsp;&nbsp;Mettre en pause</button>
+      <button class="btn-reprendre" id="btn-reprendre-accueil" onclick="reprendrePointage()" style="display:none;">▶&nbsp;&nbsp;Reprendre le travail</button>
       <button class="btn-stop" onclick="aller('s-stop')">⏹&nbsp;&nbsp;Terminer mon pointage</button>
     </div>
   </div>
@@ -156,6 +171,42 @@ textarea:focus{border-color:#3b82f6;}
     <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
   </div>
 
+
+  <!-- PAUSE -->
+  <div class="screen" id="s-pause">
+    <div class="logo"><div class="logo-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706);">⏸️</div><div class="logo-title">Pause</div><div class="logo-sub" id="pause-immat-label">—</div></div>
+    <div class="form-card">
+      <div class="step-title">Motif de la pause</div>
+      <div class="motif-grid">
+        <button class="motif-btn" id="motif-dejeuner" onclick="choisirMotif('dejeuner')"><span class="motif-icon">🍽️</span>Pause déjeuner</button>
+        <button class="motif-btn" id="motif-piece" onclick="choisirMotif('piece')"><span class="motif-icon">🔩</span>Attente de pièce</button>
+      </div>
+      <button class="btn-valider" id="btn-valider-pause" style="background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 4px 16px rgba(245,158,11,0.3);" onclick="validerPause()" disabled>⏸ Mettre en pause</button>
+    </div>
+    <div id="err-pause"></div>
+    <button class="btn-back" onclick="aller('s-accueil')">← Retour</button>
+  </div>
+
+  <!-- SUCCES PAUSE -->
+  <div class="screen" id="s-ok-pause">
+    <div class="succes">
+      <div class="succes-icon">⏸️</div>
+      <div class="succes-title" style="color:#f59e0b;">Pause enregistrée</div>
+      <div class="succes-sub" id="ok-pause-txt">—</div>
+      <button class="btn-back" style="margin-top:1.5rem;" onclick="recharger()">← Retour au véhicule</button>
+    </div>
+  </div>
+
+  <!-- SUCCES REPRISE -->
+  <div class="screen" id="s-ok-reprise">
+    <div class="succes">
+      <div class="succes-icon">▶️</div>
+      <div class="succes-title vert">Reprise du travail !</div>
+      <div class="succes-sub" id="ok-reprise-txt">—</div>
+      <button class="btn-back" style="margin-top:1.5rem;" onclick="recharger()">← Retour au véhicule</button>
+    </div>
+  </div>
+
   <!-- SUCCES DEMARRER -->
   <div class="screen" id="s-ok-start">
     <div class="succes">
@@ -191,6 +242,7 @@ textarea:focus{border-color:#3b82f6;}
 const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
 let vehiculeId=null,vehiculeData=null,pointagesData=[],employesData=[];
 let svcStart=null,prenomStart=null,svcStop=null,prenomStop=null;
+let motifPause=null,pointageEnPauseId=null;
 
 function aller(id){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('actif');});
@@ -273,7 +325,88 @@ function afficherVehicule(){
   document.getElementById('v-client').textContent=vehiculeData['Client']||'—';
   document.getElementById('v-modele').textContent=vehiculeData['Modèle']||'—';
 
-  // Infos cachées aux employés
+  // Vérifier si un pointage est en pause
+  const enPause=pointagesData.find(function(p){return p['En pause']==='Oui'&&!p['Heure fin'];});
+  const enCours2=pointagesData.filter(function(p){return !p['Heure fin']&&p['En pause']!=='Oui';});
+  
+  const btnPause=document.getElementById('btn-pause-accueil');
+  const btnReprendre=document.getElementById('btn-reprendre-accueil');
+  const zonePause=document.getElementById('zone-pause-active');
+  
+  if(enPause){
+    btnPause.style.display='none';
+    btnReprendre.style.display='block';
+    pointageEnPauseId=enPause['ID Pointage'];
+    zonePause.innerHTML='<div class="pause-active"><div class="pause-active-title">⏸ En pause</div><div class="pause-active-motif">'+(enPause['Motif pause']||'Pause')+'</div></div>';
+  } else if(enCours2.length>0){
+    btnPause.style.display='block';
+    btnReprendre.style.display='none';
+    zonePause.innerHTML='';
+  } else {
+    btnPause.style.display='none';
+    btnReprendre.style.display='none';
+    zonePause.innerHTML='';
+  }
+}
+
+function allerPause(){
+  document.getElementById('pause-immat-label').textContent=vehiculeData?vehiculeData['Immatriculation']:'';
+  motifPause=null;
+  document.getElementById('motif-dejeuner').className='motif-btn';
+  document.getElementById('motif-piece').className='motif-btn';
+  document.getElementById('btn-valider-pause').disabled=true;
+  document.getElementById('err-pause').innerHTML='';
+  aller('s-pause');
+}
+
+function choisirMotif(motif){
+  motifPause=motif;
+  document.getElementById('motif-dejeuner').className='motif-btn'+(motif==='dejeuner'?' sel':'');
+  document.getElementById('motif-piece').className='motif-btn'+(motif==='piece'?' sel':'');
+  document.getElementById('btn-valider-pause').disabled=false;
+}
+
+async function validerPause(){
+  if(!motifPause)return;
+  
+  // Trouver le pointage en cours
+  const enCours=pointagesData.find(function(p){return !p['Heure fin']&&p['En pause']!=='Oui';});
+  if(!enCours){
+    document.getElementById('err-pause').innerHTML='<div class="erreur-msg">Aucun pointage en cours à mettre en pause.</div>';
+    return;
+  }
+  
+  const motifLabel=motifPause==='dejeuner'?'🍽️ Pause déjeuner':'🔩 Attente de pièce';
+  const btn=document.getElementById('btn-valider-pause');
+  btn.disabled=true;btn.textContent='⏳...';
+  
+  try{
+    const res=await fetch(API,{method:'POST',body:JSON.stringify({
+      action:'pause',
+      idPointage:enCours['ID Pointage'],
+      motif:motifLabel
+    })});
+    const data=await res.json();
+    document.getElementById('ok-pause-txt').textContent=motifLabel+'\n'+vehiculeData['Immatriculation'];
+    aller('s-ok-pause');
+  }catch(e){
+    document.getElementById('err-pause').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
+    btn.disabled=false;btn.textContent='⏸ Mettre en pause';
+  }
+}
+
+async function reprendrePointage(){
+  if(!pointageEnPauseId)return;
+  try{
+    const res=await fetch(API,{method:'POST',body:JSON.stringify({
+      action:'reprendre',
+      idPointage:pointageEnPauseId
+    })});
+    document.getElementById('ok-reprise-txt').textContent=vehiculeData?vehiculeData['Immatriculation']:'';
+    aller('s-ok-reprise');
+  }catch(e){
+    alert('Erreur. Réessaie.');
+  }
 }
 
 async function charger(){
