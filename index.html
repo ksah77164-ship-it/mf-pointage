@@ -108,8 +108,6 @@ textarea:focus{border-color:#3b82f6;}
       <div class="veh-client" id="v-client">—</div>
       <div class="veh-modele" id="v-modele">—</div>
     </div>
-    <div id="zone-en-cours"></div>
-    <div id="zone-histo"></div>
     <div class="btn-group">
       <button class="btn-start" onclick="aller('s-start')">▶&nbsp;&nbsp;Démarrer mon pointage</button>
       <button class="btn-stop" onclick="aller('s-stop')">⏹&nbsp;&nbsp;Terminer mon pointage</button>
@@ -275,26 +273,7 @@ function afficherVehicule(){
   document.getElementById('v-client').textContent=vehiculeData['Client']||'—';
   document.getElementById('v-modele').textContent=vehiculeData['Modèle']||'—';
 
-  const enCours=pointagesData.filter(function(p){return !p['Heure fin'];});
-  if(enCours.length>0){
-    let h='<div class="en-cours"><div class="en-cours-title">🟢 En cours ('+enCours.length+')</div>';
-    enCours.forEach(function(p){
-      const svc=p['Service']||'';
-      h+='<div class="pt-row"><div><div class="pt-prenom">'+p['Prénom employé']+'<span class="pt-svc '+svc+'">'+svc+'</span></div><div class="pt-depuis">Depuis '+(String(p['Heure début']||'').substring(11,16)||'—')+'</div></div></div>';
-    });
-    h+='</div>';
-    document.getElementById('zone-en-cours').innerHTML=h;
-  } else document.getElementById('zone-en-cours').innerHTML='';
-
-  const termines=pointagesData.filter(function(p){return p['Heure fin']&&p['Durée (min)'];});
-  if(termines.length>0){
-    let h='<div class="histo"><div class="histo-title">📋 Travaux effectués</div>';
-    termines.slice(-5).reverse().forEach(function(p){
-      h+='<div class="histo-row"><div class="histo-prenom">'+p['Prénom employé']+'</div><div class="histo-duree">'+fmt(parseInt(p['Durée (min)'])||0)+'</div></div>';
-    });
-    h+='</div>';
-    document.getElementById('zone-histo').innerHTML=h;
-  } else document.getElementById('zone-histo').innerHTML='';
+  // Infos cachées aux employés
 }
 
 async function charger(){
