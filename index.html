@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MF Pointage">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0f172a">
+<title>Pointage — Motors Factory</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;}
+.app{width:100%;max-width:380px;}
+
+/* ECRAN ACCUEIL */
+.screen{display:none;}
+.screen.actif{display:block;}
+
+/* HEADER */
+.logo{text-align:center;margin-bottom:2rem;}
+.logo-icon{width:70px;height:70px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 12px;}
+.logo-title{font-size:22px;font-weight:900;color:#fff;}
+.logo-sub{font-size:13px;color:#64748b;margin-top:4px;}
+
+/* VEHICULE INFO */
+.veh-card{background:#1e293b;border-radius:16px;padding:1.2rem;margin-bottom:1.2rem;border:1px solid #334155;}
+.veh-immat{font-size:28px;font-weight:900;color:#fff;text-align:center;letter-spacing:2px;}
+.veh-client{font-size:14px;color:#94a3b8;text-align:center;margin-top:4px;}
+.veh-modele{font-size:13px;color:#64748b;text-align:center;margin-top:2px;}
+.veh-date{font-size:11px;color:#475569;text-align:center;margin-top:6px;}
+
+/* POINTAGES EN COURS */
+.en-cours{background:#1a2a1a;border:1px solid #22c55e40;border-radius:12px;padding:10px 14px;margin-bottom:1rem;}
+.en-cours-title{font-size:11px;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.pointage-actif{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #22c55e20;}
+.pointage-actif:last-child{border-bottom:none;}
+.pointage-prenom{font-size:13px;font-weight:700;color:#fff;}
+.pointage-heure{font-size:11px;color:#22c55e;}
+.pointage-chrono{font-size:12px;font-weight:700;color:#4ade80;}
+
+/* HISTORIQUE */
+.historique{background:#1e293b;border-radius:12px;padding:10px 14px;margin-bottom:1rem;border:1px solid #334155;}
+.historique-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.histo-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #334155;}
+.histo-row:last-child{border-bottom:none;}
+.histo-prenom{font-size:12px;font-weight:600;color:#94a3b8;}
+.histo-duree{font-size:12px;font-weight:700;color:#60a5fa;}
+.histo-heure{font-size:10px;color:#475569;}
+
+/* FORMULAIRE */
+.form-card{background:#1e293b;border-radius:16px;padding:1.2rem;margin-bottom:1rem;border:1px solid #334155;}
+.form-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:1rem;text-align:center;}
+label{font-size:11px;font-weight:700;color:#64748b;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;}
+input,textarea{width:100%;background:#0f172a;border:1.5px solid #334155;border-radius:10px;padding:12px 14px;font-size:15px;font-family:'Inter',sans-serif;color:#fff;margin-bottom:12px;outline:none;-webkit-appearance:none;}
+input:focus,textarea:focus{border-color:#3b82f6;}
+textarea{min-height:80px;resize:vertical;font-size:13px;}
+
+/* BOUTONS */
+.btn-demarrer{width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;padding:16px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:10px;box-shadow:0 4px 20px rgba(34,197,94,0.3);}
+.btn-terminer{width:100%;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border:none;padding:16px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:10px;box-shadow:0 4px 20px rgba(239,68,68,0.3);}
+.btn-annuler{width:100%;background:#1e293b;color:#64748b;border:1.5px solid #334155;padding:12px;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* SUCCES */
+.succes{text-align:center;padding:2rem;}
+.succes-icon{font-size:60px;margin-bottom:1rem;}
+.succes-title{font-size:20px;font-weight:900;color:#22c55e;margin-bottom:8px;}
+.succes-sub{font-size:14px;color:#64748b;line-height:1.6;}
+.succes-duree{font-size:28px;font-weight:900;color:#fff;margin:1rem 0;}
+
+/* ERREUR */
+.erreur-msg{background:#1a0a0a;border:1px solid #ef444440;border-radius:10px;padding:10px;font-size:13px;color:#f87171;margin-bottom:10px;text-align:center;}
+
+.loading{text-align:center;color:#64748b;padding:1rem;font-size:13px;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ECRAN CHARGEMENT -->
+  <div class="screen actif" id="screen-loading">
+    <div class="logo">
+      <div class="logo-icon">🔧</div>
+      <div class="logo-title">Motors Factory</div>
+      <div class="logo-sub">Chargement...</div>
+    </div>
+    <div class="loading">Récupération des données du véhicule...</div>
+  </div>
+
+  <!-- ECRAN VEHICULE -->
+  <div class="screen" id="screen-vehicule">
+    <div class="logo">
+      <div class="logo-icon">🔧</div>
+      <div class="logo-title">Motors Factory</div>
+      <div class="logo-sub">Pointage véhicule</div>
+    </div>
+    <div class="veh-card">
+      <div class="veh-immat" id="veh-immat">—</div>
+      <div class="veh-client" id="veh-client">—</div>
+      <div class="veh-modele" id="veh-modele">—</div>
+      <div class="veh-date" id="veh-date">—</div>
+    </div>
+    <div id="en-cours-zone"></div>
+    <div id="historique-zone"></div>
+    <button class="btn-demarrer" onclick="afficherFormDemarrer()">▶ Démarrer mon pointage</button>
+    <button class="btn-annuler" onclick="afficherTerminer()">⏹ Terminer mon pointage</button>
+  </div>
+
+  <!-- ECRAN DEMARRER -->
+  <div class="screen" id="screen-demarrer">
+    <div class="logo">
+      <div class="logo-icon">▶️</div>
+      <div class="logo-title">Démarrer</div>
+      <div class="logo-sub" id="demarrer-immat">—</div>
+    </div>
+    <div class="form-card">
+      <div class="form-title">Qui êtes-vous ?</div>
+      <label>Votre prénom</label>
+      <input type="text" id="input-prenom" placeholder="Ex : Mohamed, Sarah..." autocomplete="given-name"/>
+      <button class="btn-demarrer" onclick="demarrer()">▶ Commencer le travail</button>
+      <button class="btn-annuler" onclick="retourVehicule()">← Retour</button>
+    </div>
+    <div id="erreur-demarrer"></div>
+  </div>
+
+  <!-- ECRAN TERMINER -->
+  <div class="screen" id="screen-terminer">
+    <div class="logo">
+      <div class="logo-icon">⏹️</div>
+      <div class="logo-title">Terminer</div>
+      <div class="logo-sub" id="terminer-immat">—</div>
+    </div>
+    <div class="form-card">
+      <div class="form-title">Votre prénom</div>
+      <label>Prénom</label>
+      <input type="text" id="input-prenom-fin" placeholder="Ex : Mohamed, Sarah..."/>
+      <label>Commentaire (optionnel)</label>
+      <textarea id="input-commentaire" placeholder="Ex : Vidange faite, freins vérifiés..."></textarea>
+      <button class="btn-terminer" onclick="terminer()">⏹ Terminer mon travail</button>
+      <button class="btn-annuler" onclick="retourVehicule()">← Retour</button>
+    </div>
+    <div id="erreur-terminer"></div>
+  </div>
+
+  <!-- ECRAN SUCCES DEMARRER -->
+  <div class="screen" id="screen-succes-demarrer">
+    <div class="succes">
+      <div class="succes-icon">✅</div>
+      <div class="succes-title">Pointage démarré !</div>
+      <div class="succes-sub" id="succes-demarrer-txt">—</div>
+      <button class="btn-annuler" style="margin-top:1.5rem;" onclick="retourVehicule()">← Retour au véhicule</button>
+    </div>
+  </div>
+
+  <!-- ECRAN SUCCES TERMINER -->
+  <div class="screen" id="screen-succes-terminer">
+    <div class="succes">
+      <div class="succes-icon">🎉</div>
+      <div class="succes-title">Travail terminé !</div>
+      <div class="succes-duree" id="succes-duree">—</div>
+      <div class="succes-sub" id="succes-terminer-txt">—</div>
+      <button class="btn-annuler" style="margin-top:1.5rem;" onclick="retourVehicule()">← Retour au véhicule</button>
+    </div>
+  </div>
+
+  <!-- ECRAN ERREUR -->
+  <div class="screen" id="screen-erreur">
+    <div class="succes">
+      <div class="succes-icon">❌</div>
+      <div class="succes-title" style="color:#ef4444;">Véhicule introuvable</div>
+      <div class="succes-sub">Ce QR code ne correspond à aucun véhicule enregistré.<br>Contactez le responsable.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
+let vehiculeId=null,vehiculeData=null,pointagesData=[],chronos={};
+
+function afficherScreen(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('actif');});
+  document.getElementById(id).classList.add('actif');
+}
+
+function getUrlParam(param){
+  return new URLSearchParams(window.location.search).get(param);
+}
+
+async function chargerVehicule(){
+  vehiculeId=getUrlParam('v');
+  if(!vehiculeId){afficherScreen('screen-erreur');return;}
+  
+  try{
+    const res=await fetch(API+'?action=vehicule&v='+vehiculeId+'&t='+Date.now());
+    const data=await res.json();
+    if(!data.vehicule){afficherScreen('screen-erreur');return;}
+    
+    vehiculeData=data.vehicule;
+    pointagesData=data.pointages||[];
+    afficherInfosVehicule();
+    afficherScreen('screen-vehicule');
+  }catch(e){
+    afficherScreen('screen-erreur');
+  }
+}
+
+function afficherInfosVehicule(){
+  document.getElementById('veh-immat').textContent=vehiculeData['Immatriculation']||'—';
+  document.getElementById('veh-client').textContent=vehiculeData['Client']||'—';
+  document.getElementById('veh-modele').textContent=vehiculeData['Modèle']||'—';
+  document.getElementById('veh-date').textContent='Entrée le '+vehiculeData['Date entrée']||'—';
+  
+  // Pointages en cours (sans heure de fin)
+  const enCours=pointagesData.filter(function(p){return !p['Heure fin'];});
+  const termines=pointagesData.filter(function(p){return p['Heure fin'];});
+  
+  // Afficher en cours
+  if(enCours.length>0){
+    let html='<div class="en-cours"><div class="en-cours-title">🟢 En cours de travail</div>';
+    enCours.forEach(function(p){
+      html+='<div class="pointage-actif">'
+        +'<div><div class="pointage-prenom">'+p['Prénom employé']+'</div>'
+        +'<div class="pointage-heure">Depuis '+p['Heure début'].split(' ')[1].substring(0,5)+'</div></div>'
+        +'<div class="pointage-chrono" id="chrono-'+p['ID Pointage']+'">...</div>'
+        +'</div>';
+      demarrerChrono(p['ID Pointage'],p['Heure début']);
+    });
+    html+='</div>';
+    document.getElementById('en-cours-zone').innerHTML=html;
+  } else {
+    document.getElementById('en-cours-zone').innerHTML='';
+  }
+  
+  // Afficher historique du jour
+  const today=new Date().toLocaleDateString('fr-FR');
+  const terminesAujourd=termines.filter(function(p){return String(p['Date']||'').indexOf(today.split('/')[0])!==-1;});
+  
+  if(terminesAujourd.length>0){
+    let html='<div class="historique"><div class="historique-title">📋 Travaux du jour</div>';
+    terminesAujourd.forEach(function(p){
+      html+='<div class="histo-row">'
+        +'<div><div class="histo-prenom">'+p['Prénom employé']+'</div>'
+        +'<div class="histo-heure">'+String(p['Heure début']||'').substring(11,16)+' → '+String(p['Heure fin']||'').substring(11,16)+'</div></div>'
+        +'<div class="histo-duree">'+formatDuree(p['Durée (min)'])+'</div>'
+        +'</div>';
+    });
+    html+='</div>';
+    document.getElementById('historique-zone').innerHTML=html;
+  } else {
+    document.getElementById('historique-zone').innerHTML='';
+  }
+}
+
+function demarrerChrono(id,heureDebut){
+  if(chronos[id])clearInterval(chronos[id]);
+  chronos[id]=setInterval(function(){
+    const el=document.getElementById('chrono-'+id);
+    if(!el){clearInterval(chronos[id]);return;}
+    const debut=new Date(heureDebut.replace(' ','T'));
+    const diff=Math.round((new Date()-debut)/60000);
+    el.textContent=formatDuree(diff);
+  },10000);
+}
+
+function formatDuree(min){
+  if(!min||min===0)return'0 min';
+  if(min<60)return min+' min';
+  const h=Math.floor(min/60);
+  const m=min%60;
+  return h+'h'+(m>0?m+'min':'');
+}
+
+function afficherFormDemarrer(){
+  document.getElementById('demarrer-immat').textContent=vehiculeData?vehiculeData['Immatriculation']:'';
+  document.getElementById('input-prenom').value='';
+  document.getElementById('erreur-demarrer').innerHTML='';
+  afficherScreen('screen-demarrer');
+}
+
+function afficherTerminer(){
+  document.getElementById('terminer-immat').textContent=vehiculeData?vehiculeData['Immatriculation']:'';
+  document.getElementById('input-prenom-fin').value='';
+  document.getElementById('input-commentaire').value='';
+  document.getElementById('erreur-terminer').innerHTML='';
+  afficherScreen('screen-terminer');
+}
+
+function retourVehicule(){
+  chargerVehicule();
+}
+
+async function demarrer(){
+  const prenom=document.getElementById('input-prenom').value.trim();
+  if(!prenom){
+    document.getElementById('erreur-demarrer').innerHTML='<div class="erreur-msg">Entre ton prénom !</div>';
+    return;
+  }
+  
+  try{
+    const res=await fetch(API,{
+      method:'POST',
+      body:JSON.stringify({action:'demarrer',vehiculeId:vehiculeId,prenom:prenom})
+    });
+    const data=await res.json();
+    
+    document.getElementById('succes-demarrer-txt').textContent=prenom+' — '+vehiculeData['Immatriculation']+'\nDémarré à '+data.heureDebut.split(' ')[1].substring(0,5);
+    afficherScreen('screen-succes-demarrer');
+  }catch(e){
+    document.getElementById('erreur-demarrer').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
+  }
+}
+
+async function terminer(){
+  const prenom=document.getElementById('input-prenom-fin').value.trim();
+  const commentaire=document.getElementById('input-commentaire').value.trim();
+  
+  if(!prenom){
+    document.getElementById('erreur-terminer').innerHTML='<div class="erreur-msg">Entre ton prénom !</div>';
+    return;
+  }
+  
+  // Trouver le pointage en cours pour ce prénom
+  const enCours=pointagesData.find(function(p){
+    return !p['Heure fin']&&p['Prénom employé'].toLowerCase()===prenom.toLowerCase();
+  });
+  
+  if(!enCours){
+    document.getElementById('erreur-terminer').innerHTML='<div class="erreur-msg">Aucun pointage en cours pour '+prenom+'.<br>As-tu bien démarré ?</div>';
+    return;
+  }
+  
+  try{
+    const res=await fetch(API,{
+      method:'POST',
+      body:JSON.stringify({action:'terminer',idPointage:enCours['ID Pointage'],commentaire:commentaire})
+    });
+    const data=await res.json();
+    
+    document.getElementById('succes-duree').textContent=formatDuree(data.dureeMin);
+    document.getElementById('succes-terminer-txt').textContent=prenom+' — '+vehiculeData['Immatriculation']+'\nTerminé à '+data.heureFin.split(' ')[1].substring(0,5);
+    afficherScreen('screen-succes-terminer');
+  }catch(e){
+    document.getElementById('erreur-terminer').innerHTML='<div class="erreur-msg">Erreur. Réessaie.</div>';
+  }
+}
+
+chargerVehicule();
+</script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion Pointage — Motors Factory</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#f0f5ff;min-height:100vh;}
+.header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.header-left{display:flex;align-items:center;gap:12px;}
+.header-icon{width:44px;height:44px;background:rgba(255,255,255,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.header-title{font-size:18px;font-weight:800;color:#fff;}
+.header-sub{font-size:11px;color:rgba(255,255,255,0.6);}
+.sync-btn{background:#fff;color:#1d4ed8;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+.tabs{display:flex;background:#fff;border-bottom:2px solid #e2e8f0;padding:0 1.5rem;}
+.tab{padding:12px 16px;font-size:13px;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;}
+.tab.actif{color:#1d4ed8;border-bottom-color:#1d4ed8;}
+.content{padding:1.2rem;max-width:900px;margin:0 auto;}
+
+/* FORM NOUVEAU VEHICULE */
+.form-card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.2rem;margin-bottom:1rem;}
+.form-title{font-size:14px;font-weight:800;color:#0f172a;margin-bottom:1rem;}
+.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem;}
+label{font-size:11px;font-weight:700;color:#64748b;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px;}
+input{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:13px;font-family:'Inter',sans-serif;color:#0f172a;outline:none;}
+input:focus{border-color:#1d4ed8;}
+.btn-creer{background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* VEHICULES */
+.veh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:1rem;}
+.veh-card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;}
+.veh-card-header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;}
+.veh-immat{font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;}
+.veh-statut{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700;}
+.veh-statut.cours{background:#22c55e;color:#fff;}
+.veh-statut.termine{background:#94a3b8;color:#fff;}
+.veh-card-body{padding:12px 14px;}
+.veh-info{font-size:12px;color:#64748b;margin-bottom:4px;}
+.veh-info strong{color:#0f172a;}
+.veh-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0;}
+.veh-stat{background:#f8faff;border-radius:6px;padding:6px;text-align:center;}
+.veh-stat-nb{font-size:16px;font-weight:800;color:#1d4ed8;}
+.veh-stat-label{font-size:9px;color:#94a3b8;font-weight:600;text-transform:uppercase;}
+.veh-actions{display:flex;gap:6px;margin-top:10px;}
+.btn-qr{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-terminer-veh{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* QR CODE MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.7);z-index:100;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:20px;padding:1.5rem;width:90%;max-width:350px;text-align:center;}
+.modal-title{font-size:16px;font-weight:800;color:#0f172a;margin-bottom:4px;}
+.modal-immat{font-size:22px;font-weight:900;color:#1d4ed8;margin-bottom:1rem;letter-spacing:2px;}
+.qr-img{width:220px;height:220px;border-radius:12px;border:3px solid #e2e8f0;margin:0 auto 1rem;}
+.qr-url{font-size:10px;color:#94a3b8;word-break:break-all;margin-bottom:1rem;}
+.btn-imprimer{background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;margin-right:8px;}
+.btn-fermer{background:#f1f5f9;color:#64748b;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* PRODUCTIVITE */
+.prod-table{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:1rem;}
+.prod-header{background:#f8faff;padding:10px 14px;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;}
+.prod-title{font-size:13px;font-weight:700;color:#0f172a;}
+table{width:100%;border-collapse:collapse;}
+th{background:#f8faff;padding:8px 14px;text-align:left;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e2e8f0;}
+td{padding:10px 14px;font-size:13px;color:#0f172a;border-bottom:1px solid #f1f5f9;}
+tr:last-child td{border-bottom:none;}
+.badge-employe{display:inline-block;background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;}
+.duree-bar{display:flex;align-items:center;gap:8px;}
+.bar{height:8px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:4px;min-width:4px;}
+
+.kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1rem;}
+.kpi{background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #e2e8f0;position:relative;overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.kpi.bleu::before{background:#1d4ed8;}
+.kpi.vert::before{background:#16a34a;}
+.kpi.orange::before{background:#d97706;}
+.kpi.violet::before{background:#7c3aed;}
+.kpi-nb{font-size:24px;font-weight:800;color:#0f172a;}
+.kpi-label{font-size:11px;font-weight:600;color:#94a3b8;margin-top:4px;text-transform:uppercase;}
+
+.vide{text-align:center;padding:2rem;color:#94a3b8;font-size:13px;}
+.erreur{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px;color:#dc2626;font-size:13px;margin-bottom:10px;}
+.maj-info{font-size:11px;color:#94a3b8;text-align:center;padding:0.5rem;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-icon">🔧</div>
+    <div>
+      <div class="header-title">Pointage Véhicules</div>
+      <div class="header-sub">Motors Factory — Gestion</div>
+    </div>
+  </div>
+  <button class="sync-btn" onclick="charger()">↻ Actualiser</button>
+</div>
+
+<div class="tabs">
+  <div class="tab actif" onclick="afficherOnglet('vehicules',this)">🚗 Véhicules</div>
+  <div class="tab" onclick="afficherOnglet('nouveau',this)">+ Nouveau véhicule</div>
+  <div class="tab" onclick="afficherOnglet('productivite',this)">📊 Productivité</div>
+</div>
+
+<!-- MODAL QR CODE -->
+<div class="modal-overlay" id="modal-qr">
+  <div class="modal">
+    <div class="modal-title">QR Code véhicule</div>
+    <div class="modal-immat" id="modal-immat">—</div>
+    <img class="qr-img" id="qr-img" src="" alt="QR Code"/>
+    <div class="qr-url" id="qr-url">—</div>
+    <button class="btn-imprimer" onclick="imprimerQR()">🖨️ Imprimer</button>
+    <button class="btn-fermer" onclick="fermerModal()">Fermer</button>
+  </div>
+</div>
+
+<div class="content">
+  <div id="erreur-zone"></div>
+
+  <!-- VEHICULES -->
+  <div id="onglet-vehicules">
+    <div class="kpi-row">
+      <div class="kpi bleu"><div class="kpi-nb" id="k-total">—</div><div class="kpi-label">Total véhicules</div></div>
+      <div class="kpi vert"><div class="kpi-nb" id="k-cours">—</div><div class="kpi-label">En cours</div></div>
+      <div class="kpi orange"><div class="kpi-nb" id="k-heures">—</div><div class="kpi-label">Heures totales</div></div>
+      <div class="kpi violet"><div class="kpi-nb" id="k-employes">—</div><div class="kpi-label">Employés actifs</div></div>
+    </div>
+    <div id="veh-grid" class="veh-grid"></div>
+  </div>
+
+  <!-- NOUVEAU VEHICULE -->
+  <div id="onglet-nouveau" style="display:none;">
+    <div class="form-card">
+      <div class="form-title">➕ Nouveau véhicule</div>
+      <div class="form-grid">
+        <div>
+          <label>Immatriculation *</label>
+          <input type="text" id="f-immat" placeholder="Ex : AB-123-CD" style="text-transform:uppercase;"/>
+        </div>
+        <div>
+          <label>Client *</label>
+          <input type="text" id="f-client" placeholder="Nom du client"/>
+        </div>
+        <div>
+          <label>Modèle véhicule</label>
+          <input type="text" id="f-modele" placeholder="Ex : Renault Clio"/>
+        </div>
+      </div>
+      <button class="btn-creer" onclick="creerVehicule()">➕ Créer et générer le QR code</button>
+      <div id="erreur-creation" style="margin-top:10px;"></div>
+    </div>
+  </div>
+
+  <!-- PRODUCTIVITE -->
+  <div id="onglet-productivite" style="display:none;">
+    <div class="prod-table">
+      <div class="prod-header">
+        <div class="prod-title">👷 Productivité par employé</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Employé</th>
+            <th>Sessions</th>
+            <th>Temps total</th>
+            <th>Moy./session</th>
+            <th>Véhicules</th>
+          </tr>
+        </thead>
+        <tbody id="prod-employes"></tbody>
+      </table>
+    </div>
+
+    <div class="prod-table">
+      <div class="prod-header">
+        <div class="prod-title">🚗 Temps par véhicule</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Immat.</th>
+            <th>Client</th>
+            <th>Temps total</th>
+            <th>Sessions</th>
+            <th>Employés</th>
+          </tr>
+        </thead>
+        <tbody id="prod-vehicules"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="maj-info" id="maj-info">—</div>
+</div>
+
+<script>
+const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
+let vehicules=[],pointages=[];
+
+function formatDuree(min){
+  if(!min||min===0)return'0 min';
+  if(min<60)return min+' min';
+  const h=Math.floor(min/60);
+  const m=min%60;
+  return h+'h'+(m>0?m+'min':'');
+}
+
+function afficherOnglet(nom,btn){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('actif');});
+  btn.classList.add('actif');
+  ['vehicules','nouveau','productivite'].forEach(function(o){
+    document.getElementById('onglet-'+o).style.display=o===nom?'block':'none';
+  });
+  if(nom==='productivite')rendreProductivite();
+}
+
+async function creerVehicule(){
+  const immat=document.getElementById('f-immat').value.trim().toUpperCase();
+  const client=document.getElementById('f-client').value.trim();
+  const modele=document.getElementById('f-modele').value.trim();
+  
+  if(!immat||!client){
+    document.getElementById('erreur-creation').innerHTML='<div class="erreur">Immatriculation et client sont obligatoires.</div>';
+    return;
+  }
+  
+  try{
+    const res=await fetch(API,{method:'POST',body:JSON.stringify({action:'creer',immat:immat,client:client,modele:modele})});
+    const data=await res.json();
+    
+    document.getElementById('f-immat').value='';
+    document.getElementById('f-client').value='';
+    document.getElementById('f-modele').value='';
+    document.getElementById('erreur-creation').innerHTML='';
+    
+    await charger();
+    afficherQR(immat,data.qrUrl,data.id);
+  }catch(e){
+    document.getElementById('erreur-creation').innerHTML='<div class="erreur">Erreur. Réessaie.</div>';
+  }
+}
+
+function afficherQR(immat,qrUrl,id){
+  const scanUrl="https://ksah77164-ship-it.github.io/mf-pointage/?v="+id;
+  document.getElementById('modal-immat').textContent=immat;
+  document.getElementById('qr-img').src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+encodeURIComponent(scanUrl);
+  document.getElementById('qr-url').textContent=scanUrl;
+  document.getElementById('modal-qr').classList.add('open');
+}
+
+function fermerModal(){
+  document.getElementById('modal-qr').classList.remove('open');
+}
+
+function imprimerQR(){
+  const immat=document.getElementById('modal-immat').textContent;
+  const imgSrc=document.getElementById('qr-img').src;
+  const w=window.open('','_blank');
+  w.document.write('<html><head><title>QR '+immat+'</title><style>body{font-family:Arial;text-align:center;padding:20px;}h1{font-size:32px;letter-spacing:4px;margin-bottom:10px;}p{color:#666;margin-bottom:20px;}img{width:250px;height:250px;}</style></head><body>');
+  w.document.write('<h1>'+immat+'</h1><p>Scannez pour pointer votre temps de travail</p>');
+  w.document.write('<img src="'+imgSrc+'"/><br><br>');
+  w.document.write('<p style="font-size:11px;color:#999;">Motors Factory</p>');
+  w.document.write('</body></html>');
+  w.document.close();
+  w.print();
+}
+
+function rendreVehicules(){
+  const grid=document.getElementById('veh-grid');
+  if(!vehicules.length){grid.innerHTML='<div class="vide">Aucun véhicule — Créez le premier !</div>';return;}
+  
+  // Stats globales
+  const enCours=vehicules.filter(function(v){return v['Statut']==='En cours';}).length;
+  const heuresTotal=pointages.reduce(function(acc,p){return acc+(parseInt(p['Durée (min)'])||0);},0);
+  const employes=new Set(pointages.map(function(p){return p['Prénom employé'];})).size;
+  
+  document.getElementById('k-total').textContent=vehicules.length;
+  document.getElementById('k-cours').textContent=enCours;
+  document.getElementById('k-heures').textContent=formatDuree(heuresTotal);
+  document.getElementById('k-employes').textContent=employes;
+  
+  grid.innerHTML=vehicules.map(function(v){
+    const vPts=pointages.filter(function(p){return p['ID Véhicule']===v['ID'];});
+    const totalMin=vPts.reduce(function(acc,p){return acc+(parseInt(p['Durée (min)'])||0);},0);
+    const enCoursVeh=vPts.filter(function(p){return !p['Heure fin'];}).length;
+    const employes=new Set(vPts.map(function(p){return p['Prénom employé'];})).size;
+    const statut=v['Statut']||'En cours';
+    
+    return'<div class="veh-card">'
+      +'<div class="veh-card-header">'
+      +'<div class="veh-immat">'+v['Immatriculation']+'</div>'
+      +'<span class="veh-statut '+(statut==='En cours'?'cours':'termine')+'">'+statut+'</span>'
+      +'</div>'
+      +'<div class="veh-card-body">'
+      +'<div class="veh-info"><strong>Client :</strong> '+(v['Client']||'—')+'</div>'
+      +'<div class="veh-info"><strong>Modèle :</strong> '+(v['Modèle']||'—')+'</div>'
+      +'<div class="veh-info"><strong>Entrée :</strong> '+(v['Date entrée']||'—')+'</div>'
+      +'<div class="veh-stats">'
+      +'<div class="veh-stat"><div class="veh-stat-nb">'+formatDuree(totalMin)+'</div><div class="veh-stat-label">Temps total</div></div>'
+      +'<div class="veh-stat"><div class="veh-stat-nb">'+vPts.length+'</div><div class="veh-stat-label">Sessions</div></div>'
+      +'<div class="veh-stat"><div class="veh-stat-nb">'+employes+'</div><div class="veh-stat-label">Employés</div></div>'
+      +'</div>'
+      +(enCoursVeh>0?'<div style="font-size:12px;color:#22c55e;font-weight:700;margin-bottom:8px;">🟢 '+enCoursVeh+' en cours de travail</div>':'')
+      +'<div class="veh-actions">'
+      +'<button class="btn-qr" onclick="afficherQR(\''+v['Immatriculation']+'\',\''+v['QR Code URL']+'\',\''+v['ID']+'\')">📱 QR Code</button>'
+      +(statut==='En cours'?'<button class="btn-terminer-veh" onclick="terminerVehicule(\''+v['ID']+'\')">✅ Terminer</button>':'')
+      +'</div></div></div>';
+  }).join('');
+}
+
+function rendreProductivite(){
+  // Stats par employé
+  const statsEmployes={};
+  pointages.forEach(function(p){
+    const prenom=p['Prénom employé']||'Inconnu';
+    if(!statsEmployes[prenom])statsEmployes[prenom]={sessions:0,totalMin:0,vehicules:new Set()};
+    statsEmployes[prenom].sessions++;
+    statsEmployes[prenom].totalMin+=parseInt(p['Durée (min)'])||0;
+    statsEmployes[prenom].vehicules.add(p['ID Véhicule']);
+  });
+  
+  const sortedEmployes=Object.entries(statsEmployes).sort(function(a,b){return b[1].totalMin-a[1].totalMin;});
+  const maxMin=sortedEmployes.length>0?sortedEmployes[0][1].totalMin:1;
+  
+  document.getElementById('prod-employes').innerHTML=sortedEmployes.map(function(e){
+    const prenom=e[0],stats=e[1];
+    const moy=stats.sessions>0?Math.round(stats.totalMin/stats.sessions):0;
+    const largeur=Math.max(4,Math.round((stats.totalMin/maxMin)*150));
+    return'<tr><td><span class="badge-employe">'+prenom+'</span></td>'
+      +'<td>'+stats.sessions+'</td>'
+      +'<td><div class="duree-bar"><div class="bar" style="width:'+largeur+'px"></div>'+formatDuree(stats.totalMin)+'</div></td>'
+      +'<td>'+formatDuree(moy)+'</td>'
+      +'<td>'+stats.vehicules.size+'</td></tr>';
+  }).join('') || '<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
+  
+  // Stats par véhicule
+  const statsVehicules={};
+  pointages.forEach(function(p){
+    const id=p['ID Véhicule'];
+    if(!statsVehicules[id])statsVehicules[id]={immat:p['Immatriculation'],sessions:0,totalMin:0,employes:new Set()};
+    statsVehicules[id].sessions++;
+    statsVehicules[id].totalMin+=parseInt(p['Durée (min)'])||0;
+    statsVehicules[id].employes.add(p['Prénom employé']);
+  });
+  
+  document.getElementById('prod-vehicules').innerHTML=Object.entries(statsVehicules).sort(function(a,b){return b[1].totalMin-a[1].totalMin;}).map(function(e){
+    const id=e[0],stats=e[1];
+    const veh=vehicules.find(function(v){return v['ID']===id;})||{};
+    return'<tr><td><strong>'+stats.immat+'</strong></td>'
+      +'<td>'+(veh['Client']||'—')+'</td>'
+      +'<td>'+formatDuree(stats.totalMin)+'</td>'
+      +'<td>'+stats.sessions+'</td>'
+      +'<td>'+Array.from(stats.employes).join(', ')+'</td></tr>';
+  }).join('') || '<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
+}
+
+async function terminerVehicule(id){
+  if(!confirm('Marquer ce véhicule comme terminé ?'))return;
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'statut',vehiculeId:id,statut:'Terminé'})});
+  charger();
+}
+
+async function charger(){
+  try{
+    const res=await fetch(API+'?action=tous&t='+Date.now());
+    const data=await res.json();
+    vehicules=data.vehicules||[];
+    pointages=data.pointages||[];
+    rendreVehicules();
+    const now=new Date();
+    document.getElementById('maj-info').textContent='Mis à jour à '+now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  }catch(e){
+    document.getElementById('erreur-zone').innerHTML='<div class="erreur">Erreur de connexion.</div>';
+  }
+}
+
+charger();
+setInterval(charger,5*60*1000);
+</script>
+</body>
+</html>
