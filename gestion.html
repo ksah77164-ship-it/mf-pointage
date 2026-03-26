@@ -14,74 +14,119 @@ body{font-family:'Inter',sans-serif;background:#f0f5ff;min-height:100vh;}
 .header-title{font-size:18px;font-weight:800;color:#fff;}
 .header-sub{font-size:11px;color:rgba(255,255,255,0.6);}
 .sync-btn{background:#fff;color:#1d4ed8;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
-.tabs{display:flex;background:#fff;border-bottom:2px solid #e2e8f0;padding:0 1.5rem;}
-.tab{padding:12px 16px;font-size:13px;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;}
+.tabs{display:flex;background:#fff;border-bottom:2px solid #e2e8f0;padding:0 1rem;overflow-x:auto;}
+.tab{padding:12px 14px;font-size:13px;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;}
 .tab.actif{color:#1d4ed8;border-bottom-color:#1d4ed8;}
-.content{padding:1.2rem;max-width:900px;margin:0 auto;}
-
-/* FORM NOUVEAU VEHICULE */
-.form-card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.2rem;margin-bottom:1rem;}
-.form-title{font-size:14px;font-weight:800;color:#0f172a;margin-bottom:1rem;}
-.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem;}
-label{font-size:11px;font-weight:700;color:#64748b;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px;}
-input{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:13px;font-family:'Inter',sans-serif;color:#0f172a;outline:none;}
-input:focus{border-color:#1d4ed8;}
-.btn-creer{background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
-
-/* VEHICULES */
-.veh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:1rem;}
-.veh-card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;}
-.veh-card-header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;}
-.veh-immat{font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;}
-.veh-statut{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700;}
-.veh-statut.cours{background:#22c55e;color:#fff;}
-.veh-statut.termine{background:#94a3b8;color:#fff;}
-.veh-card-body{padding:12px 14px;}
-.veh-info{font-size:12px;color:#64748b;margin-bottom:4px;}
-.veh-info strong{color:#0f172a;}
-.veh-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0;}
-.veh-stat{background:#f8faff;border-radius:6px;padding:6px;text-align:center;}
-.veh-stat-nb{font-size:16px;font-weight:800;color:#1d4ed8;}
-.veh-stat-label{font-size:9px;color:#94a3b8;font-weight:600;text-transform:uppercase;}
-.veh-actions{display:flex;gap:6px;margin-top:10px;}
-.btn-qr{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
-.btn-terminer-veh{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
-
-/* QR CODE MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.7);z-index:100;align-items:center;justify-content:center;}
-.modal-overlay.open{display:flex;}
-.modal{background:#fff;border-radius:20px;padding:1.5rem;width:90%;max-width:350px;text-align:center;}
-.modal-title{font-size:16px;font-weight:800;color:#0f172a;margin-bottom:4px;}
-.modal-immat{font-size:22px;font-weight:900;color:#1d4ed8;margin-bottom:1rem;letter-spacing:2px;}
-.qr-img{width:220px;height:220px;border-radius:12px;border:3px solid #e2e8f0;margin:0 auto 1rem;}
-.qr-url{font-size:10px;color:#94a3b8;word-break:break-all;margin-bottom:1rem;}
-.btn-imprimer{background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;margin-right:8px;}
-.btn-fermer{background:#f1f5f9;color:#64748b;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
-
-/* PRODUCTIVITE */
-.prod-table{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:1rem;}
-.prod-header{background:#f8faff;padding:10px 14px;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;}
-.prod-title{font-size:13px;font-weight:700;color:#0f172a;}
-table{width:100%;border-collapse:collapse;}
-th{background:#f8faff;padding:8px 14px;text-align:left;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e2e8f0;}
-td{padding:10px 14px;font-size:13px;color:#0f172a;border-bottom:1px solid #f1f5f9;}
-tr:last-child td{border-bottom:none;}
-.badge-employe{display:inline-block;background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;}
-.duree-bar{display:flex;align-items:center;gap:8px;}
-.bar{height:8px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:4px;min-width:4px;}
-
+.content{padding:1.2rem;max-width:1000px;margin:0 auto;}
 .kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1rem;}
 .kpi{background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #e2e8f0;position:relative;overflow:hidden;}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.kpi.bleu::before{background:#1d4ed8;}
-.kpi.vert::before{background:#16a34a;}
-.kpi.orange::before{background:#d97706;}
-.kpi.violet::before{background:#7c3aed;}
+.kpi.bleu::before{background:#1d4ed8;}.kpi.vert::before{background:#16a34a;}.kpi.orange::before{background:#d97706;}.kpi.violet::before{background:#7c3aed;}
 .kpi-nb{font-size:24px;font-weight:800;color:#0f172a;}
 .kpi-label{font-size:11px;font-weight:600;color:#94a3b8;margin-top:4px;text-transform:uppercase;}
+.form-card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.2rem;margin-bottom:1rem;}
+.form-title{font-size:14px;font-weight:800;color:#0f172a;margin-bottom:1rem;}
+.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem;}
+.form-grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:1rem;}
+label{font-size:11px;font-weight:700;color:#64748b;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px;}
+input,select{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:13px;font-family:'Inter',sans-serif;color:#0f172a;outline:none;}
+input:focus,select:focus{border-color:#1d4ed8;}
+textarea{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:13px;font-family:'Inter',sans-serif;color:#0f172a;outline:none;min-height:60px;resize:vertical;}
+.btn-primary{background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-primary:disabled{opacity:0.5;pointer-events:none;}
+.btn-sm{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border:1px solid;}
+.btn-qr{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;}
+.btn-ok{background:#f0fdf4;color:#16a34a;border-color:#bbf7d0;}
+.btn-arch{background:#f8faff;color:#64748b;border-color:#e2e8f0;}
+.btn-edit{background:#fefce8;color:#ca8a04;border-color:#fde68a;}
+.btn-danger{background:#fef2f2;color:#dc2626;border-color:#fecaca;}
+.filtres{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;}
+.filtre-btn{padding:6px 14px;border-radius:8px;border:1.5px solid #e2e8f0;font-size:12px;font-weight:700;cursor:pointer;background:#fff;color:#94a3b8;font-family:'Inter',sans-serif;}
+.filtre-btn.actif{background:#1d4ed8;border-color:#1d4ed8;color:#fff;}
+.veh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:1rem;}
+.veh-card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;}
+.veh-card.archive{opacity:0.6;border-style:dashed;}
+.veh-card-header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;}
+.veh-card-header.archive-h{background:linear-gradient(135deg,#475569,#64748b);}
+.veh-immat{font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;}
+.veh-statut{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700;}
+.veh-statut.cours{background:#22c55e;color:#fff;}.veh-statut.termine{background:#94a3b8;color:#fff;}.veh-statut.archive{background:#475569;color:#fff;}
+.veh-card-body{padding:12px 14px;}
+.veh-info{font-size:12px;color:#64748b;margin-bottom:3px;}
+.veh-info strong{color:#0f172a;}
+.veh-expertise{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 10px;margin:8px 0;font-size:12px;}
+.veh-expertise-label{font-size:10px;font-weight:700;color:#d97706;text-transform:uppercase;margin-bottom:2px;}
+.veh-expertise-val{font-size:16px;font-weight:800;color:#92400e;}
+.veh-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0;}
+.veh-stat{background:#f8faff;border-radius:6px;padding:6px;text-align:center;}
+.veh-stat-nb{font-size:15px;font-weight:800;color:#1d4ed8;}
+.veh-stat-label{font-size:9px;color:#94a3b8;font-weight:600;text-transform:uppercase;}
+.veh-actions{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.veh-pointages{margin-top:10px;border-top:1px solid #f1f5f9;padding-top:10px;}
+.veh-pt-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;margin-bottom:6px;}
+.pt-item{background:#f8faff;border-radius:6px;padding:7px 10px;margin-bottom:5px;border:1px solid #e2e8f0;}
+.pt-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;}
+.pt-nom{font-size:12px;font-weight:700;color:#0f172a;}
+.pt-service-badge{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:700;}
+.pt-service-badge.Carrosserie{background:#fef3c7;color:#d97706;}
+.pt-service-badge.Mécanique{background:#eff6ff;color:#1d4ed8;}
+.pt-service-badge.Peinture{background:#fdf2f8;color:#db2777;}
+.pt-duree{font-size:13px;font-weight:800;color:#1d4ed8;}
+.pt-heure{font-size:10px;color:#94a3b8;margin-top:2px;}
+.pt-travail{font-size:11px;color:#64748b;margin-top:3px;font-style:italic;}
+.pt-edit-zone{display:none;margin-top:6px;background:#fff;border-radius:6px;padding:8px;border:1px solid #e2e8f0;}
+.pt-edit-zone.open{display:block;}
+.expertise-edit{display:none;margin-top:8px;background:#fffbeb;border-radius:8px;padding:10px;border:1px solid #fde68a;}
+.expertise-edit.open{display:block;}
 
+/* PROD */
+.prod-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:1rem;}
+.prod-header{background:#f8faff;padding:10px 14px;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.prod-title{font-size:13px;font-weight:700;color:#0f172a;}
+.periode-btns{display:flex;gap:4px;}
+.periode-btn{padding:4px 10px;border-radius:6px;border:1.5px solid #e2e8f0;font-size:11px;font-weight:700;cursor:pointer;background:#fff;color:#94a3b8;font-family:'Inter',sans-serif;}
+.periode-btn.actif{background:#1d4ed8;border-color:#1d4ed8;color:#fff;}
+.employe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;padding:14px;}
+.employe-card{background:#f8faff;border-radius:10px;padding:12px;border:1px solid #e2e8f0;}
+.employe-nom{font-size:14px;font-weight:800;color:#0f172a;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.rang{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;}
+.r1{background:#fef3c7;color:#d97706;}.r2{background:#f1f5f9;color:#64748b;}.r3{background:#fff7ed;color:#ea580c;}.rn{background:#eff6ff;color:#1d4ed8;}
+.emp-stat{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;}
+.emp-stat-l{color:#64748b;}.emp-stat-v{font-weight:700;color:#0f172a;}
+.obj-bar{height:5px;background:#e2e8f0;border-radius:3px;margin-top:5px;overflow:hidden;}
+.obj-fill{height:100%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:3px;}
+.obj-fill.ok{background:linear-gradient(135deg,#22c55e,#16a34a);}
+.obj-txt{font-size:10px;color:#94a3b8;margin-top:2px;}
+.obj-form{background:#f8faff;border-radius:8px;padding:10px;margin-bottom:1rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.obj-form label{font-size:11px;font-weight:700;color:#64748b;white-space:nowrap;}
+.obj-form input{width:70px;padding:5px 8px;border-radius:6px;border:1.5px solid #e2e8f0;font-size:13px;font-family:'Inter',sans-serif;}
+
+/* EMPLOYES */
+.emp-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.emp-item{background:#fff;border-radius:10px;border:1px solid #e2e8f0;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;}
+.emp-item-info{display:flex;align-items:center;gap:8px;}
+.emp-svc-badge{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700;}
+.emp-svc-badge.Carrosserie{background:#fef3c7;color:#d97706;}
+.emp-svc-badge.Mécanique{background:#eff6ff;color:#1d4ed8;}
+.emp-svc-badge.Peinture{background:#fdf2f8;color:#db2777;}
+
+table{width:100%;border-collapse:collapse;}
+th{background:#f8faff;padding:8px 14px;text-align:left;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;border-bottom:1px solid #e2e8f0;}
+td{padding:9px 14px;font-size:13px;color:#0f172a;border-bottom:1px solid #f1f5f9;}
+tr:last-child td{border-bottom:none;}
+.bar-cell{display:flex;align-items:center;gap:8px;}
+.bar{height:8px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:4px;min-width:4px;}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.7);z-index:100;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:20px;padding:1.5rem;width:90%;max-width:350px;text-align:center;}
+.modal-immat{font-size:22px;font-weight:900;color:#1d4ed8;margin-bottom:1rem;letter-spacing:2px;}
+.qr-img{width:220px;height:220px;border-radius:12px;border:3px solid #e2e8f0;margin:0 auto 1rem;}
+.btn-imprimer{background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;margin-right:8px;}
+.btn-fermer{background:#f1f5f9;color:#64748b;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
 .vide{text-align:center;padding:2rem;color:#94a3b8;font-size:13px;}
 .erreur{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px;color:#dc2626;font-size:13px;margin-bottom:10px;}
+.succes-msg{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px;color:#16a34a;font-size:12px;margin-top:6px;}
 .maj-info{font-size:11px;color:#94a3b8;text-align:center;padding:0.5rem;}
 </style>
 </head>
@@ -90,27 +135,24 @@ tr:last-child td{border-bottom:none;}
 <div class="header">
   <div class="header-left">
     <div class="header-icon">🔧</div>
-    <div>
-      <div class="header-title">Pointage Véhicules</div>
-      <div class="header-sub">Motors Factory — Gestion</div>
-    </div>
+    <div><div class="header-title">Pointage Véhicules</div><div class="header-sub">Motors Factory</div></div>
   </div>
   <button class="sync-btn" onclick="charger()">↻ Actualiser</button>
 </div>
 
 <div class="tabs">
   <div class="tab actif" onclick="afficherOnglet('vehicules',this)">🚗 Véhicules</div>
-  <div class="tab" onclick="afficherOnglet('nouveau',this)">+ Nouveau véhicule</div>
+  <div class="tab" onclick="afficherOnglet('nouveau',this)">➕ Nouveau</div>
   <div class="tab" onclick="afficherOnglet('productivite',this)">📊 Productivité</div>
+  <div class="tab" onclick="afficherOnglet('employes',this)">👷 Employés</div>
+  <div class="tab" onclick="afficherOnglet('archives',this)">📦 Archives</div>
 </div>
 
-<!-- MODAL QR CODE -->
 <div class="modal-overlay" id="modal-qr">
   <div class="modal">
-    <div class="modal-title">QR Code véhicule</div>
+    <div style="font-size:15px;font-weight:800;color:#0f172a;margin-bottom:4px;">QR Code véhicule</div>
     <div class="modal-immat" id="modal-immat">—</div>
     <img class="qr-img" id="qr-img" src="" alt="QR Code"/>
-    <div class="qr-url" id="qr-url">—</div>
     <button class="btn-imprimer" onclick="imprimerQR()">🖨️ Imprimer</button>
     <button class="btn-fermer" onclick="fermerModal()">Fermer</button>
   </div>
@@ -127,6 +169,11 @@ tr:last-child td{border-bottom:none;}
       <div class="kpi orange"><div class="kpi-nb" id="k-heures">—</div><div class="kpi-label">Heures totales</div></div>
       <div class="kpi violet"><div class="kpi-nb" id="k-employes">—</div><div class="kpi-label">Employés actifs</div></div>
     </div>
+    <div class="filtres">
+      <button class="filtre-btn actif" onclick="filtrerVeh('actifs',this)">En cours</button>
+      <button class="filtre-btn" onclick="filtrerVeh('tous',this)">Tous</button>
+      <button class="filtre-btn" onclick="filtrerVeh('termines',this)">Terminés</button>
+    </div>
     <div id="veh-grid" class="veh-grid"></div>
   </div>
 
@@ -135,61 +182,73 @@ tr:last-child td{border-bottom:none;}
     <div class="form-card">
       <div class="form-title">➕ Nouveau véhicule</div>
       <div class="form-grid">
-        <div>
-          <label>Immatriculation *</label>
-          <input type="text" id="f-immat" placeholder="Ex : AB-123-CD" style="text-transform:uppercase;"/>
-        </div>
-        <div>
-          <label>Client *</label>
-          <input type="text" id="f-client" placeholder="Nom du client"/>
-        </div>
-        <div>
-          <label>Modèle véhicule</label>
-          <input type="text" id="f-modele" placeholder="Ex : Renault Clio"/>
-        </div>
+        <div><label>Immatriculation *</label><input type="text" id="f-immat" placeholder="AA-123-BB" style="text-transform:uppercase;"/></div>
+        <div><label>Client *</label><input type="text" id="f-client" placeholder="Nom du client"/></div>
+        <div><label>Modèle</label><input type="text" id="f-modele" placeholder="Ex : Renault Clio"/></div>
       </div>
-      <button class="btn-creer" onclick="creerVehicule()">➕ Créer et générer le QR code</button>
+      <div class="form-grid">
+        <div><label>Montant expertise (€)</label><input type="number" id="f-expertise" placeholder="Ex : 1500"/></div>
+      </div>
+      <button class="btn-primary" id="btn-creer" onclick="creerVehicule()">➕ Créer et générer le QR code</button>
       <div id="erreur-creation" style="margin-top:10px;"></div>
     </div>
   </div>
 
   <!-- PRODUCTIVITE -->
   <div id="onglet-productivite" style="display:none;">
-    <div class="prod-table">
-      <div class="prod-header">
-        <div class="prod-title">👷 Productivité par employé</div>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Employé</th>
-            <th>Sessions</th>
-            <th>Temps total</th>
-            <th>Moy./session</th>
-            <th>Véhicules</th>
-          </tr>
-        </thead>
-        <tbody id="prod-employes"></tbody>
-      </table>
+    <div class="obj-form">
+      <label>🎯 Objectif heures/jour :</label>
+      <input type="number" id="objectif-h" value="8" min="1" max="24"/>
+      <button class="btn-primary" onclick="sauvegarderObjectif()">Appliquer</button>
     </div>
+    <div class="prod-section">
+      <div class="prod-header">
+        <div class="prod-title">👷 Classement employés</div>
+        <div class="periode-btns">
+          <button class="periode-btn actif" onclick="changerPeriode('jour',this)">Aujourd'hui</button>
+          <button class="periode-btn" onclick="changerPeriode('semaine',this)">7 jours</button>
+          <button class="periode-btn" onclick="changerPeriode('mois',this)">30 jours</button>
+          <button class="periode-btn" onclick="changerPeriode('tout',this)">Tout</button>
+        </div>
+      </div>
+      <div class="employe-grid" id="employe-grid"></div>
+    </div>
+    <div class="prod-section">
+      <div class="prod-header"><div class="prod-title">🚗 Véhicules les plus chronophages</div></div>
+      <table><thead><tr><th>Immat.</th><th>Client</th><th>Modèle</th><th>Expertise</th><th>Temps total</th><th>Sessions</th><th>Employés</th></tr></thead>
+      <tbody id="prod-veh-table"></tbody></table>
+    </div>
+    <div class="prod-section">
+      <div class="prod-header"><div class="prod-title">🏭 Productivité par service</div></div>
+      <table><thead><tr><th>Service</th><th>Sessions</th><th>Temps total</th><th>Moy./session</th><th>Employés</th></tr></thead>
+      <tbody id="prod-service-table"></tbody></table>
+    </div>
+  </div>
 
-    <div class="prod-table">
-      <div class="prod-header">
-        <div class="prod-title">🚗 Temps par véhicule</div>
+  <!-- EMPLOYES -->
+  <div id="onglet-employes" style="display:none;">
+    <div class="form-card">
+      <div class="form-title">➕ Ajouter un employé</div>
+      <div class="form-grid-2">
+        <div><label>Prénom *</label><input type="text" id="emp-prenom" placeholder="Prénom"/></div>
+        <div><label>Service *</label>
+          <select id="emp-service">
+            <option value="">-- Choisir --</option>
+            <option value="Carrosserie">🚗 Carrosserie</option>
+            <option value="Mécanique">🔧 Mécanique</option>
+            <option value="Peinture">🎨 Peinture</option>
+          </select>
+        </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Immat.</th>
-            <th>Client</th>
-            <th>Temps total</th>
-            <th>Sessions</th>
-            <th>Employés</th>
-          </tr>
-        </thead>
-        <tbody id="prod-vehicules"></tbody>
-      </table>
+      <button class="btn-primary" onclick="ajouterEmploye()">➕ Ajouter</button>
+      <div id="emp-msg" style="margin-top:8px;"></div>
     </div>
+    <div id="emp-list" class="emp-list"></div>
+  </div>
+
+  <!-- ARCHIVES -->
+  <div id="onglet-archives" style="display:none;">
+    <div class="veh-grid" id="archives-grid"></div>
   </div>
 
   <div class="maj-info" id="maj-info">—</div>
@@ -197,179 +256,336 @@ tr:last-child td{border-bottom:none;}
 
 <script>
 const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
-let vehicules=[],pointages=[];
+let vehicules=[],pointages=[],employes=[],filtreVeh='actifs',periodeP='jour',objectifH=8;
+let editZones={};
 
-function formatDuree(min){
-  if(!min||min===0)return'0 min';
-  if(min<60)return min+' min';
-  const h=Math.floor(min/60);
-  const m=min%60;
-  return h+'h'+(m>0?m+'min':'');
-}
+function fmt(min){if(!min||min<=0)return'0 min';if(min<60)return Math.round(min)+' min';return Math.floor(min/60)+'h'+(min%60>0?Math.floor(min%60)+'min':'');}
 
 function afficherOnglet(nom,btn){
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('actif');});
   btn.classList.add('actif');
-  ['vehicules','nouveau','productivite'].forEach(function(o){
+  ['vehicules','nouveau','productivite','employes','archives'].forEach(function(o){
     document.getElementById('onglet-'+o).style.display=o===nom?'block':'none';
   });
   if(nom==='productivite')rendreProductivite();
+  if(nom==='employes')rendreEmployes();
+  if(nom==='archives')rendreArchives();
 }
 
-async function creerVehicule(){
-  const btn=document.querySelector('.btn-creer');
-  if(btn.disabled)return;
-  
-  const immat=document.getElementById('f-immat').value.trim().toUpperCase();
-  const client=document.getElementById('f-client').value.trim();
-  const modele=document.getElementById('f-modele').value.trim();
-  
-  if(!immat||!client){
-    document.getElementById('erreur-creation').innerHTML='<div class="erreur">Immatriculation et client sont obligatoires.</div>';
-    return;
-  }
-  
-  // Désactiver le bouton pour éviter double clic
-  btn.disabled=true;
-  btn.textContent='⏳ Création en cours...';
-  
-  try{
-    const res=await fetch(API,{method:'POST',body:JSON.stringify({action:'creer',immat:immat,client:client,modele:modele})});
-    const data=await res.json();
-    
-    document.getElementById('f-immat').value='';
-    document.getElementById('f-client').value='';
-    document.getElementById('f-modele').value='';
-    document.getElementById('erreur-creation').innerHTML='';
-    
-    await charger();
-    afficherQR(immat,data.qrUrl,data.id);
-  }catch(e){
-    document.getElementById('erreur-creation').innerHTML='<div class="erreur">Erreur. Réessaie.</div>';
-  }finally{
-    btn.disabled=false;
-    btn.textContent='➕ Créer et générer le QR code';
-  }
+function filtrerVeh(f,btn){
+  filtreVeh=f;
+  document.querySelectorAll('.filtre-btn').forEach(function(b){b.classList.remove('actif');});
+  btn.classList.add('actif');
+  rendreVehicules();
 }
 
-function afficherQR(immat,qrUrl,id){
-  const scanUrl="https://ksah77164-ship-it.github.io/mf-pointage/?v="+id;
-  document.getElementById('modal-immat').textContent=immat;
-  document.getElementById('qr-img').src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+encodeURIComponent(scanUrl);
-  document.getElementById('qr-url').textContent=scanUrl;
-  document.getElementById('modal-qr').classList.add('open');
+function changerPeriode(p,btn){
+  periodeP=p;
+  document.querySelectorAll('.periode-btn').forEach(function(b){b.classList.remove('actif');});
+  btn.classList.add('actif');
+  rendreProductivite();
 }
 
-function fermerModal(){
-  document.getElementById('modal-qr').classList.remove('open');
+function sauvegarderObjectif(){
+  objectifH=parseInt(document.getElementById('objectif-h').value)||8;
+  localStorage.setItem('mf_obj',objectifH);
+  rendreProductivite();
 }
 
-function imprimerQR(){
-  const immat=document.getElementById('modal-immat').textContent;
-  const imgSrc=document.getElementById('qr-img').src;
-  const w=window.open('','_blank');
-  w.document.write('<html><head><title>QR '+immat+'</title><style>body{font-family:Arial;text-align:center;padding:20px;}h1{font-size:32px;letter-spacing:4px;margin-bottom:10px;}p{color:#666;margin-bottom:20px;}img{width:250px;height:250px;}</style></head><body>');
-  w.document.write('<h1>'+immat+'</h1><p>Scannez pour pointer votre temps de travail</p>');
-  w.document.write('<img src="'+imgSrc+'"/><br><br>');
-  w.document.write('<p style="font-size:11px;color:#999;">Motors Factory</p>');
-  w.document.write('</body></html>');
-  w.document.close();
-  w.print();
+function filtrerParPeriode(pts){
+  const now=new Date();
+  return pts.filter(function(p){
+    if(periodeP==='tout')return true;
+    const d=new Date(String(p['Heure début']||'').replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
+    if(isNaN(d))return true;
+    const diffJ=(now-d)/(1000*60*60*24);
+    if(periodeP==='jour')return diffJ<1;
+    if(periodeP==='semaine')return diffJ<7;
+    if(periodeP==='mois')return diffJ<30;
+    return true;
+  });
 }
 
 function rendreVehicules(){
-  const grid=document.getElementById('veh-grid');
-  if(!vehicules.length){grid.innerHTML='<div class="vide">Aucun véhicule — Créez le premier !</div>';return;}
-  
-  // Stats globales
-  const enCours=vehicules.filter(function(v){return v['Statut']==='En cours';}).length;
-  const heuresTotal=pointages.reduce(function(acc,p){return acc+(parseInt(p['Durée (min)'])||0);},0);
-  const employes=new Set(pointages.map(function(p){return p['Prénom employé'];})).size;
-  
-  document.getElementById('k-total').textContent=vehicules.length;
+  const actifs=vehicules.filter(function(v){
+    const s=v['Statut']||'En cours';
+    if(filtreVeh==='actifs')return s==='En cours';
+    if(filtreVeh==='termines')return s==='Terminé';
+    return s!=='Archivé';
+  });
+  const enCours=vehicules.filter(function(v){return(v['Statut']||'En cours')==='En cours';}).length;
+  const hTotal=pointages.reduce(function(a,p){return a+(parseInt(p['Durée (min)'])||0);},0);
+  const emp=new Set(pointages.map(function(p){return p['Prénom employé'];})).size;
+  document.getElementById('k-total').textContent=vehicules.filter(function(v){return v['Statut']!=='Archivé';}).length;
   document.getElementById('k-cours').textContent=enCours;
-  document.getElementById('k-heures').textContent=formatDuree(heuresTotal);
-  document.getElementById('k-employes').textContent=employes;
-  
-  grid.innerHTML=vehicules.map(function(v){
+  document.getElementById('k-heures').textContent=fmt(hTotal);
+  document.getElementById('k-employes').textContent=emp;
+
+  const grid=document.getElementById('veh-grid');
+  if(!actifs.length){grid.innerHTML='<div class="vide">Aucun véhicule</div>';return;}
+
+  grid.innerHTML=actifs.map(function(v){
     const vPts=pointages.filter(function(p){return p['ID Véhicule']===v['ID'];});
-    const totalMin=vPts.reduce(function(acc,p){return acc+(parseInt(p['Durée (min)'])||0);},0);
+    const totalMin=vPts.reduce(function(a,p){return a+(parseInt(p['Durée (min)'])||0);},0);
     const enCoursVeh=vPts.filter(function(p){return !p['Heure fin'];}).length;
-    const employes=new Set(vPts.map(function(p){return p['Prénom employé'];})).size;
+    const nbEmp=new Set(vPts.map(function(p){return p['Prénom employé'];})).size;
     const statut=v['Statut']||'En cours';
-    
+    const expertise=v['Montant expertise']||'';
+    const vid=v['ID'];
+
+    let ptsList='';
+    if(vPts.length>0){
+      ptsList='<div class="veh-pointages"><div class="veh-pt-title">Détail des travaux</div>';
+      vPts.forEach(function(p){
+        const pid=p['ID Pointage'];
+        const svc=p['Service']||'';
+        const typeTravail=p['Type travail']||'';
+        const commentaire=p['Commentaire']||'';
+        const heureD=String(p['Heure début']||'').substring(0,16);
+        const heureF=p['Heure fin']?String(p['Heure fin']||'').substring(0,16):'En cours';
+        ptsList+='<div class="pt-item">'
+          +'<div class="pt-header">'
+          +'<div><div class="pt-nom">'+p['Prénom employé']+'<span class="pt-service-badge '+svc+'" style="margin-left:6px;">'+svc+'</span></div>'
+          +'<div class="pt-heure">'+heureD+' → '+heureF+'</div>'
+          +(typeTravail?'<div class="pt-travail">🔨 '+typeTravail+'</div>':'')
+          +(commentaire?'<div class="pt-travail">💬 '+commentaire+'</div>':'')
+          +'</div>'
+          +'<div style="display:flex;align-items:center;gap:6px;">'
+          +'<div class="pt-duree">'+fmt(parseInt(p['Durée (min)'])||0)+'</div>'
+          +'<button class="btn-sm btn-edit" onclick="toggleEditPt(\''+pid+'\')">✏️</button>'
+          +'</div></div>'
+          +'<div class="pt-edit-zone" id="edit-pt-'+pid+'">'
+          +'<label style="margin-top:4px;">Type de travail</label>'
+          +'<input type="text" id="travail-'+pid+'" value="'+typeTravail+'" placeholder="Ex: Débosselage, vidange..."/>'
+          +'<label style="margin-top:4px;">Commentaire</label>'
+          +'<textarea id="comment-'+pid+'" placeholder="Notes...">'+commentaire+'</textarea>'
+          +'<button class="btn-primary" style="margin-top:4px;font-size:12px;padding:6px 12px;" onclick="sauvegarderPt(\''+pid+'\')">💾 Enregistrer</button>'
+          +'</div></div>';
+      });
+      ptsList+='</div>';
+    }
+
     return'<div class="veh-card">'
-      +'<div class="veh-card-header">'
-      +'<div class="veh-immat">'+v['Immatriculation']+'</div>'
-      +'<span class="veh-statut '+(statut==='En cours'?'cours':'termine')+'">'+statut+'</span>'
-      +'</div>'
+      +'<div class="veh-card-header"><div class="veh-immat">'+v['Immatriculation']+'</div>'
+      +'<span class="veh-statut '+(statut==='En cours'?'cours':'termine')+'">'+statut+'</span></div>'
       +'<div class="veh-card-body">'
       +'<div class="veh-info"><strong>Client :</strong> '+(v['Client']||'—')+'</div>'
       +'<div class="veh-info"><strong>Modèle :</strong> '+(v['Modèle']||'—')+'</div>'
       +'<div class="veh-info"><strong>Entrée :</strong> '+(v['Date entrée']||'—')+'</div>'
-      +'<div class="veh-stats">'
-      +'<div class="veh-stat"><div class="veh-stat-nb">'+formatDuree(totalMin)+'</div><div class="veh-stat-label">Temps total</div></div>'
-      +'<div class="veh-stat"><div class="veh-stat-nb">'+vPts.length+'</div><div class="veh-stat-label">Sessions</div></div>'
-      +'<div class="veh-stat"><div class="veh-stat-nb">'+employes+'</div><div class="veh-stat-label">Employés</div></div>'
+      +'<div class="expertise-edit" id="exp-zone-'+vid+'">'
+      +'<label>Montant expertise (€)</label>'
+      +'<input type="number" id="exp-val-'+vid+'" value="'+expertise+'" placeholder="Ex : 1500"/>'
+      +'<button class="btn-primary" style="margin-top:6px;font-size:12px;padding:6px 12px;" onclick="sauvegarderExpertise(\''+vid+'\')">💾 Enregistrer</button>'
       +'</div>'
-      +(enCoursVeh>0?'<div style="font-size:12px;color:#22c55e;font-weight:700;margin-bottom:8px;">🟢 '+enCoursVeh+' en cours de travail</div>':'')
+      +(expertise?'<div class="veh-expertise"><div class="veh-expertise-label">💰 Rapport expertise</div><div class="veh-expertise-val">'+parseFloat(expertise).toLocaleString('fr-FR')+'€</div></div>':'')
+      +'<div class="veh-stats">'
+      +'<div class="veh-stat"><div class="veh-stat-nb">'+fmt(totalMin)+'</div><div class="veh-stat-label">Temps total</div></div>'
+      +'<div class="veh-stat"><div class="veh-stat-nb">'+vPts.length+'</div><div class="veh-stat-label">Sessions</div></div>'
+      +'<div class="veh-stat"><div class="veh-stat-nb">'+nbEmp+'</div><div class="veh-stat-label">Employés</div></div>'
+      +'</div>'
+      +(enCoursVeh>0?'<div style="font-size:12px;color:#22c55e;font-weight:700;margin-bottom:6px;">🟢 '+enCoursVeh+' en cours</div>':'')
       +'<div class="veh-actions">'
-      +'<button class="btn-qr" onclick="afficherQR(\''+v['Immatriculation']+'\',\''+v['QR Code URL']+'\',\''+v['ID']+'\')">📱 QR Code</button>'
-      +(statut==='En cours'?'<button class="btn-terminer-veh" onclick="terminerVehicule(\''+v['ID']+'\')">✅ Terminer</button>':'')
-      +'</div></div></div>';
+      +'<button class="btn-sm btn-qr" onclick="afficherQR(\''+v['Immatriculation']+'\',\''+vid+'\')">📱 QR Code</button>'
+      +'<button class="btn-sm btn-edit" onclick="toggleExpertise(\''+vid+'\')">💰 Expertise</button>'
+      +(statut==='En cours'?'<button class="btn-sm btn-ok" onclick="changerStatut(\''+vid+'\',\'Terminé\')">✅ Terminer</button>':'')
+      +'<button class="btn-sm btn-arch" onclick="changerStatut(\''+vid+'\',\'Archivé\')">📦 Archiver</button>'
+      +'</div>'
+      +ptsList
+      +'</div></div>';
+  }).join('');
+}
+
+function toggleEditPt(pid){
+  const el=document.getElementById('edit-pt-'+pid);
+  if(el)el.classList.toggle('open');
+}
+
+function toggleExpertise(vid){
+  const el=document.getElementById('exp-zone-'+vid);
+  if(el)el.classList.toggle('open');
+}
+
+async function sauvegarderPt(pid){
+  const travail=document.getElementById('travail-'+pid).value.trim();
+  const comment=document.getElementById('comment-'+pid).value.trim();
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_pointage',idPointage:pid,typeTravail:travail,commentaire:comment})});
+  charger();
+}
+
+async function sauvegarderExpertise(vid){
+  const montant=document.getElementById('exp-val-'+vid).value;
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_vehicule',vehiculeId:vid,montantExpertise:montant})});
+  charger();
+}
+
+function rendreArchives(){
+  const archives=vehicules.filter(function(v){return v['Statut']==='Archivé';});
+  const grid=document.getElementById('archives-grid');
+  if(!archives.length){grid.innerHTML='<div class="vide">Aucun véhicule archivé</div>';return;}
+  grid.innerHTML=archives.map(function(v){
+    const vPts=pointages.filter(function(p){return p['ID Véhicule']===v['ID'];});
+    const totalMin=vPts.reduce(function(a,p){return a+(parseInt(p['Durée (min)'])||0);},0);
+    return'<div class="veh-card archive"><div class="veh-card-header archive-h"><div class="veh-immat">'+v['Immatriculation']+'</div><span class="veh-statut archive">Archivé</span></div>'
+      +'<div class="veh-card-body"><div class="veh-info"><strong>Client :</strong> '+(v['Client']||'—')+'</div>'
+      +'<div class="veh-info"><strong>Temps total :</strong> '+fmt(totalMin)+'</div>'
+      +(v['Montant expertise']?'<div class="veh-info"><strong>Expertise :</strong> '+parseFloat(v['Montant expertise']).toLocaleString('fr-FR')+'€</div>':'')
+      +'<div class="veh-actions"><button class="btn-sm btn-ok" onclick="changerStatut(\''+v['ID']+'\',\'En cours\')">↩ Réactiver</button></div>'
+      +'</div></div>';
   }).join('');
 }
 
 function rendreProductivite(){
-  // Stats par employé
-  const statsEmployes={};
-  pointages.forEach(function(p){
-    const prenom=p['Prénom employé']||'Inconnu';
-    if(!statsEmployes[prenom])statsEmployes[prenom]={sessions:0,totalMin:0,vehicules:new Set()};
-    statsEmployes[prenom].sessions++;
-    statsEmployes[prenom].totalMin+=parseInt(p['Durée (min)'])||0;
-    statsEmployes[prenom].vehicules.add(p['ID Véhicule']);
+  const ptsFilt=filtrerParPeriode(pointages.filter(function(p){return p['Durée (min)'];}));
+  const statsEmp={};
+  ptsFilt.forEach(function(p){
+    const nom=p['Prénom employé']||'Inconnu';
+    if(!statsEmp[nom])statsEmp[nom]={sessions:0,totalMin:0,vehicules:new Set(),service:p['Service']||''};
+    statsEmp[nom].sessions++;
+    statsEmp[nom].totalMin+=parseInt(p['Durée (min)'])||0;
+    statsEmp[nom].vehicules.add(p['ID Véhicule']);
   });
-  
-  const sortedEmployes=Object.entries(statsEmployes).sort(function(a,b){return b[1].totalMin-a[1].totalMin;});
-  const maxMin=sortedEmployes.length>0?sortedEmployes[0][1].totalMin:1;
-  
-  document.getElementById('prod-employes').innerHTML=sortedEmployes.map(function(e){
-    const prenom=e[0],stats=e[1];
-    const moy=stats.sessions>0?Math.round(stats.totalMin/stats.sessions):0;
-    const largeur=Math.max(4,Math.round((stats.totalMin/maxMin)*150));
-    return'<tr><td><span class="badge-employe">'+prenom+'</span></td>'
-      +'<td>'+stats.sessions+'</td>'
-      +'<td><div class="duree-bar"><div class="bar" style="width:'+largeur+'px"></div>'+formatDuree(stats.totalMin)+'</div></td>'
-      +'<td>'+formatDuree(moy)+'</td>'
-      +'<td>'+stats.vehicules.size+'</td></tr>';
-  }).join('') || '<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
-  
-  // Stats par véhicule
-  const statsVehicules={};
-  pointages.forEach(function(p){
+  const sorted=Object.entries(statsEmp).sort(function(a,b){return b[1].totalMin-a[1].totalMin;});
+  const objMin=objectifH*60;
+  const rangsC=['r1','r2','r3'];
+  const rangsL=['🥇','🥈','🥉'];
+
+  document.getElementById('employe-grid').innerHTML=sorted.length>0?sorted.map(function(e,i){
+    const nom=e[0],s=e[1];
+    const moy=s.sessions>0?Math.round(s.totalMin/s.sessions):0;
+    const pct=Math.min(100,Math.round((s.totalMin/objMin)*100));
+    const ok=s.totalMin>=objMin;
+    const rc=i<3?rangsC[i]:'rn';
+    const rl=i<3?rangsL[i]:(i+1)+'';
+    return'<div class="employe-card"><div class="employe-nom"><span class="rang '+rc+'">'+rl+'</span>'+nom+'</div>'
+      +'<div class="emp-stat"><span class="emp-stat-l">⏱ Temps</span><span class="emp-stat-v">'+fmt(s.totalMin)+'</span></div>'
+      +'<div class="emp-stat"><span class="emp-stat-l">📋 Sessions</span><span class="emp-stat-v">'+s.sessions+'</span></div>'
+      +'<div class="emp-stat"><span class="emp-stat-l">🚗 Véhicules</span><span class="emp-stat-v">'+s.vehicules.size+'</span></div>'
+      +'<div class="emp-stat"><span class="emp-stat-l">⌀ Moy.</span><span class="emp-stat-v">'+fmt(moy)+'</span></div>'
+      +(s.service?'<div class="emp-stat"><span class="emp-stat-l">🏭 Service</span><span class="emp-stat-v">'+s.service+'</span></div>':'')
+      +'<div class="obj-bar"><div class="obj-fill'+(ok?' ok':'')+'" style="width:'+pct+'%"></div></div>'
+      +'<div class="obj-txt">'+(ok?'✅ Objectif atteint !':pct+'% — objectif '+objectifH+'h')+'</div>'
+      +'</div>';
+  }).join(''):'<div class="vide" style="grid-column:1/-1;">Aucun pointage sur cette période</div>';
+
+  // Par véhicule
+  const statsVeh={};
+  pointages.filter(function(p){return p['Durée (min)'];}).forEach(function(p){
     const id=p['ID Véhicule'];
-    if(!statsVehicules[id])statsVehicules[id]={immat:p['Immatriculation'],sessions:0,totalMin:0,employes:new Set()};
-    statsVehicules[id].sessions++;
-    statsVehicules[id].totalMin+=parseInt(p['Durée (min)'])||0;
-    statsVehicules[id].employes.add(p['Prénom employé']);
+    if(!statsVeh[id])statsVeh[id]={immat:p['Immatriculation'],totalMin:0,sessions:0,employes:new Set()};
+    statsVeh[id].totalMin+=parseInt(p['Durée (min)'])||0;
+    statsVeh[id].sessions++;
+    statsVeh[id].employes.add(p['Prénom employé']);
   });
-  
-  document.getElementById('prod-vehicules').innerHTML=Object.entries(statsVehicules).sort(function(a,b){return b[1].totalMin-a[1].totalMin;}).map(function(e){
-    const id=e[0],stats=e[1];
-    const veh=vehicules.find(function(v){return v['ID']===id;})||{};
-    return'<tr><td><strong>'+stats.immat+'</strong></td>'
-      +'<td>'+(veh['Client']||'—')+'</td>'
-      +'<td>'+formatDuree(stats.totalMin)+'</td>'
-      +'<td>'+stats.sessions+'</td>'
-      +'<td>'+Array.from(stats.employes).join(', ')+'</td></tr>';
-  }).join('') || '<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
+  const svSorted=Object.entries(statsVeh).sort(function(a,b){return b[1].totalMin-a[1].totalMin;});
+  const maxM=svSorted.length>0?svSorted[0][1].totalMin:1;
+  document.getElementById('prod-veh-table').innerHTML=svSorted.map(function(e){
+    const id=e[0],s=e[1];
+    const v=vehicules.find(function(x){return x['ID']===id;})||{};
+    const larg=Math.max(4,Math.round((s.totalMin/maxM)*100));
+    const exp=v['Montant expertise']?parseFloat(v['Montant expertise']).toLocaleString('fr-FR')+'€':'—';
+    return'<tr><td><strong>'+s.immat+'</strong></td><td>'+(v['Client']||'—')+'</td><td>'+(v['Modèle']||'—')+'</td>'
+      +'<td>'+exp+'</td>'
+      +'<td><div class="bar-cell"><div class="bar" style="width:'+larg+'px"></div>'+fmt(s.totalMin)+'</div></td>'
+      +'<td>'+s.sessions+'</td><td>'+Array.from(s.employes).join(', ')+'</td></tr>';
+  }).join('')||'<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
+
+  // Par service
+  const statsSvc={Carrosserie:{sessions:0,totalMin:0,employes:new Set()},Mécanique:{sessions:0,totalMin:0,employes:new Set()},Peinture:{sessions:0,totalMin:0,employes:new Set()}};
+  ptsFilt.forEach(function(p){
+    const svc=p['Service']||'Autre';
+    if(!statsSvc[svc])statsSvc[svc]={sessions:0,totalMin:0,employes:new Set()};
+    statsSvc[svc].sessions++;
+    statsSvc[svc].totalMin+=parseInt(p['Durée (min)'])||0;
+    statsSvc[svc].employes.add(p['Prénom employé']);
+  });
+  const icons={Carrosserie:'🚗',Mécanique:'🔧',Peinture:'🎨'};
+  document.getElementById('prod-service-table').innerHTML=Object.entries(statsSvc).filter(function(e){return e[1].sessions>0;}).sort(function(a,b){return b[1].totalMin-a[1].totalMin;}).map(function(e){
+    const svc=e[0],s=e[1];
+    const moy=s.sessions>0?Math.round(s.totalMin/s.sessions):0;
+    return'<tr><td><strong>'+(icons[svc]||'')+'&nbsp;'+svc+'</strong></td><td>'+s.sessions+'</td><td>'+fmt(s.totalMin)+'</td><td>'+fmt(moy)+'</td><td>'+s.employes.size+'</td></tr>';
+  }).join('')||'<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
 }
 
-async function terminerVehicule(id){
-  if(!confirm('Marquer ce véhicule comme terminé ?'))return;
-  await fetch(API,{method:'POST',body:JSON.stringify({action:'statut',vehiculeId:id,statut:'Terminé'})});
+function rendreEmployes(){
+  const list=document.getElementById('emp-list');
+  if(!employes.length){list.innerHTML='<div class="vide">Aucun employé — Ajoutez le premier !</div>';return;}
+  list.innerHTML=employes.map(function(e){
+    return'<div class="emp-item">'
+      +'<div class="emp-item-info">'
+      +'<strong style="font-size:13px;">'+e.prenom+'</strong>'
+      +'<span class="emp-svc-badge '+e.service+'">'+e.service+'</span>'
+      +'</div>'
+      +'<button class="btn-sm btn-danger" onclick="supprimerEmploye('+e.index+')">✕</button>'
+      +'</div>';
+  }).join('');
+}
+
+async function ajouterEmploye(){
+  const prenom=document.getElementById('emp-prenom').value.trim();
+  const service=document.getElementById('emp-service').value;
+  if(!prenom||!service){document.getElementById('emp-msg').innerHTML='<div class="erreur">Prénom et service obligatoires.</div>';return;}
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'ajouter_employe',prenom:prenom,service:service})});
+  document.getElementById('emp-prenom').value='';
+  document.getElementById('emp-service').value='';
+  document.getElementById('emp-msg').innerHTML='<div class="succes-msg">✅ '+prenom+' ajouté !</div>';
+  await charger();
+  rendreEmployes();
+}
+
+async function supprimerEmploye(index){
+  if(!confirm('Désactiver cet employé ?'))return;
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'supprimer_employe',index:index})});
+  await charger();
+  rendreEmployes();
+}
+
+function afficherQR(immat,id){
+  const url="https://ksah77164-ship-it.github.io/mf-pointage/?v="+id;
+  document.getElementById('modal-immat').textContent=immat;
+  document.getElementById('qr-img').src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+encodeURIComponent(url);
+  document.getElementById('modal-qr').classList.add('open');
+}
+function fermerModal(){document.getElementById('modal-qr').classList.remove('open');}
+function imprimerQR(){
+  const immat=document.getElementById('modal-immat').textContent;
+  const src=document.getElementById('qr-img').src;
+  const w=window.open('','_blank');
+  w.document.write('<html><head><title>QR '+immat+'</title><style>body{font-family:Arial;text-align:center;padding:30px;}h1{font-size:36px;letter-spacing:4px;margin-bottom:8px;}p{color:#666;margin-bottom:20px;}img{width:260px;height:260px;}</style></head><body><h1>'+immat+'</h1><p>Scannez pour pointer votre temps de travail</p><img src="'+src+'"/></body></html>');
+  w.document.close();w.print();
+}
+
+async function changerStatut(id,statut){
+  if(!confirm(statut==='Archivé'?'Archiver ?':statut==='Terminé'?'Marquer terminé ?':'Réactiver ?'))return;
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'statut',vehiculeId:id,statut:statut})});
   charger();
+}
+
+async function creerVehicule(){
+  const btn=document.getElementById('btn-creer');
+  if(btn.disabled)return;
+  const immat=document.getElementById('f-immat').value.trim().toUpperCase();
+  const client=document.getElementById('f-client').value.trim();
+  const modele=document.getElementById('f-modele').value.trim();
+  const expertise=document.getElementById('f-expertise').value.trim();
+  if(!immat||!client){document.getElementById('erreur-creation').innerHTML='<div class="erreur">Immatriculation et client obligatoires.</div>';return;}
+  btn.disabled=true;btn.textContent='⏳ Création...';
+  try{
+    const res=await fetch(API,{method:'POST',body:JSON.stringify({action:'creer',immat:immat,client:client,modele:modele})});
+    const data=await res.json();
+    if(expertise&&data.id){
+      await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_vehicule',vehiculeId:data.id,montantExpertise:expertise})});
+    }
+    document.getElementById('f-immat').value='';
+    document.getElementById('f-client').value='';
+    document.getElementById('f-modele').value='';
+    document.getElementById('f-expertise').value='';
+    document.getElementById('erreur-creation').innerHTML='';
+    await charger();
+    afficherQR(immat,data.id);
+  }catch(e){
+    document.getElementById('erreur-creation').innerHTML='<div class="erreur">Erreur. Réessaie.</div>';
+  }
+  btn.disabled=false;btn.textContent='➕ Créer et générer le QR code';
 }
 
 async function charger(){
@@ -378,9 +594,11 @@ async function charger(){
     const data=await res.json();
     vehicules=data.vehicules||[];
     pointages=data.pointages||[];
+    employes=data.employes||[];
+    objectifH=parseInt(localStorage.getItem('mf_obj'))||8;
+    document.getElementById('objectif-h').value=objectifH;
     rendreVehicules();
-    const now=new Date();
-    document.getElementById('maj-info').textContent='Mis à jour à '+now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('maj-info').textContent='Mis à jour à '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
   }catch(e){
     document.getElementById('erreur-zone').innerHTML='<div class="erreur">Erreur de connexion.</div>';
   }
