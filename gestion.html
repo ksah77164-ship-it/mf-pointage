@@ -31,7 +31,7 @@ body{font-family:'Inter',sans-serif;background:#f0f5ff;min-height:100vh;}
 label{font-size:11px;font-weight:700;color:#64748b;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px;}
 input,select{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:13px;font-family:'Inter',sans-serif;color:#0f172a;outline:none;}
 input:focus,select:focus{border-color:#1d4ed8;}
-textarea{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:13px;font-family:'Inter',sans-serif;color:#0f172a;outline:none;min-height:60px;resize:vertical;}
+textarea{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:13px;font-family:'Inter',sans-serif;color:#0f172a;outline:none;resize:vertical;}
 .btn-primary{background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
 .btn-primary:disabled{opacity:0.5;pointer-events:none;}
 .btn-sm{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border:1px solid;}
@@ -43,41 +43,67 @@ textarea{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:
 .filtres{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;}
 .filtre-btn{padding:6px 14px;border-radius:8px;border:1.5px solid #e2e8f0;font-size:12px;font-weight:700;cursor:pointer;background:#fff;color:#94a3b8;font-family:'Inter',sans-serif;}
 .filtre-btn.actif{background:#1d4ed8;border-color:#1d4ed8;color:#fff;}
-.veh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:1rem;}
+.veh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;margin-bottom:1rem;}
 .veh-card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;}
 .veh-card.archive{opacity:0.6;border-style:dashed;}
 .veh-card-header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;}
-.veh-card-header.archive-h{background:linear-gradient(135deg,#475569,#64748b);}
+.veh-card-header.arch{background:linear-gradient(135deg,#475569,#64748b);}
 .veh-immat{font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;}
 .veh-statut{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700;}
-.veh-statut.cours{background:#22c55e;color:#fff;}.veh-statut.termine{background:#94a3b8;color:#fff;}.veh-statut.archive{background:#475569;color:#fff;}
+.veh-statut.cours{background:#22c55e;color:#fff;}
+.veh-statut.termine{background:#94a3b8;color:#fff;}
+.veh-statut.archive{background:#475569;color:#fff;}
 .veh-card-body{padding:12px 14px;}
 .veh-info{font-size:12px;color:#64748b;margin-bottom:3px;}
 .veh-info strong{color:#0f172a;}
-.veh-expertise{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 10px;margin:8px 0;font-size:12px;}
-.veh-expertise-label{font-size:10px;font-weight:700;color:#d97706;text-transform:uppercase;margin-bottom:2px;}
-.veh-expertise-val{font-size:16px;font-weight:800;color:#92400e;}
 .veh-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0;}
 .veh-stat{background:#f8faff;border-radius:6px;padding:6px;text-align:center;}
 .veh-stat-nb{font-size:15px;font-weight:800;color:#1d4ed8;}
 .veh-stat-label{font-size:9px;color:#94a3b8;font-weight:600;text-transform:uppercase;}
 .veh-actions{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+
+/* RENTABILITE */
+.renta-section{margin-top:12px;border-top:1px solid #f1f5f9;padding-top:12px;}
+.renta-title{font-size:12px;font-weight:800;color:#0f172a;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.renta-toggle{font-size:11px;color:#1d4ed8;cursor:pointer;font-weight:600;}
+.renta-body{display:none;}
+.renta-body.open{display:block;}
+.renta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.renta-col{background:#f8faff;border-radius:8px;padding:10px;}
+.renta-col-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;margin-bottom:8px;}
+.renta-ligne{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:6px;}
+.renta-ligne label{font-size:11px;color:#64748b;font-weight:600;white-space:nowrap;text-transform:none;letter-spacing:0;}
+.renta-ligne input{width:80px;padding:4px 8px;font-size:12px;text-align:right;border-radius:6px;border:1.5px solid #e2e8f0;background:#fff;}
+.renta-save{margin-top:8px;width:100%;}
+
+/* BILAN */
+.bilan{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px;margin-top:8px;}
+.bilan.negatif{background:#fef2f2;border-color:#fecaca;}
+.bilan-title{font-size:12px;font-weight:800;color:#16a34a;margin-bottom:8px;}
+.bilan.negatif .bilan-title{color:#dc2626;}
+.bilan-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;}
+.bilan-label{color:#64748b;}
+.bilan-val{font-weight:700;color:#0f172a;}
+.bilan-val.vert{color:#16a34a;}
+.bilan-val.rouge{color:#dc2626;}
+.bilan-total{display:flex;justify-content:space-between;font-size:14px;font-weight:800;margin-top:8px;padding-top:8px;border-top:1px solid #bbf7d0;}
+.bilan.negatif .bilan-total{border-top-color:#fecaca;}
+
+/* POINTAGES DETAIL */
 .veh-pointages{margin-top:10px;border-top:1px solid #f1f5f9;padding-top:10px;}
 .veh-pt-title{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;margin-bottom:6px;}
 .pt-item{background:#f8faff;border-radius:6px;padding:7px 10px;margin-bottom:5px;border:1px solid #e2e8f0;}
 .pt-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;}
 .pt-nom{font-size:12px;font-weight:700;color:#0f172a;}
-.pt-service-badge{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:700;}
-.pt-service-badge.Carrosserie{background:#fef3c7;color:#d97706;}
-.pt-service-badge.Mécanique{background:#eff6ff;color:#1d4ed8;}
-.pt-service-badge.Peinture{background:#fdf2f8;color:#db2777;}
+.pt-svc{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:700;margin-left:4px;}
+.pt-svc.Carrosserie{background:#fef3c7;color:#d97706;}
+.pt-svc.Mécanique{background:#eff6ff;color:#1d4ed8;}
+.pt-svc.Peinture{background:#fdf2f8;color:#db2777;}
 .pt-duree{font-size:13px;font-weight:800;color:#1d4ed8;}
 .pt-heure{font-size:10px;color:#94a3b8;margin-top:2px;}
 .pt-travail{font-size:11px;color:#64748b;margin-top:3px;font-style:italic;}
 .pt-edit-zone{display:none;margin-top:6px;background:#fff;border-radius:6px;padding:8px;border:1px solid #e2e8f0;}
 .pt-edit-zone.open{display:block;}
-.expertise-edit{display:none;margin-top:8px;background:#fffbeb;border-radius:8px;padding:10px;border:1px solid #fde68a;}
-.expertise-edit.open{display:block;}
 
 /* PROD */
 .prod-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:1rem;}
@@ -98,17 +124,18 @@ textarea{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:
 .obj-fill.ok{background:linear-gradient(135deg,#22c55e,#16a34a);}
 .obj-txt{font-size:10px;color:#94a3b8;margin-top:2px;}
 .obj-form{background:#f8faff;border-radius:8px;padding:10px;margin-bottom:1rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.obj-form label{font-size:11px;font-weight:700;color:#64748b;white-space:nowrap;}
+.obj-form label{font-size:11px;font-weight:700;color:#64748b;white-space:nowrap;text-transform:none;letter-spacing:0;}
 .obj-form input{width:70px;padding:5px 8px;border-radius:6px;border:1.5px solid #e2e8f0;font-size:13px;font-family:'Inter',sans-serif;}
 
 /* EMPLOYES */
-.emp-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.emp-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
 .emp-item{background:#fff;border-radius:10px;border:1px solid #e2e8f0;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;}
-.emp-item-info{display:flex;align-items:center;gap:8px;}
-.emp-svc-badge{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700;}
-.emp-svc-badge.Carrosserie{background:#fef3c7;color:#d97706;}
-.emp-svc-badge.Mécanique{background:#eff6ff;color:#1d4ed8;}
-.emp-svc-badge.Peinture{background:#fdf2f8;color:#db2777;}
+.emp-info{display:flex;align-items:center;gap:8px;flex:1;}
+.emp-svc{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700;}
+.emp-svc.Carrosserie{background:#fef3c7;color:#d97706;}
+.emp-svc.Mécanique{background:#eff6ff;color:#1d4ed8;}
+.emp-svc.Peinture{background:#fdf2f8;color:#db2777;}
+.emp-taux{font-size:11px;color:#64748b;margin-left:auto;margin-right:8px;}
 
 table{width:100%;border-collapse:collapse;}
 th{background:#f8faff;padding:8px 14px;text-align:left;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;border-bottom:1px solid #e2e8f0;}
@@ -177,7 +204,7 @@ tr:last-child td{border-bottom:none;}
     <div id="veh-grid" class="veh-grid"></div>
   </div>
 
-  <!-- NOUVEAU VEHICULE -->
+  <!-- NOUVEAU -->
   <div id="onglet-nouveau" style="display:none;">
     <div class="form-card">
       <div class="form-title">➕ Nouveau véhicule</div>
@@ -185,9 +212,6 @@ tr:last-child td{border-bottom:none;}
         <div><label>Immatriculation *</label><input type="text" id="f-immat" placeholder="AA-123-BB" style="text-transform:uppercase;"/></div>
         <div><label>Client *</label><input type="text" id="f-client" placeholder="Nom du client"/></div>
         <div><label>Modèle</label><input type="text" id="f-modele" placeholder="Ex : Renault Clio"/></div>
-      </div>
-      <div class="form-grid">
-        <div><label>Montant expertise (€)</label><input type="number" id="f-expertise" placeholder="Ex : 1500"/></div>
       </div>
       <button class="btn-primary" id="btn-creer" onclick="creerVehicule()">➕ Créer et générer le QR code</button>
       <div id="erreur-creation" style="margin-top:10px;"></div>
@@ -214,13 +238,13 @@ tr:last-child td{border-bottom:none;}
       <div class="employe-grid" id="employe-grid"></div>
     </div>
     <div class="prod-section">
-      <div class="prod-header"><div class="prod-title">🚗 Véhicules les plus chronophages</div></div>
-      <table><thead><tr><th>Immat.</th><th>Client</th><th>Modèle</th><th>Expertise</th><th>Temps total</th><th>Sessions</th><th>Employés</th></tr></thead>
+      <div class="prod-header"><div class="prod-title">🚗 Rentabilité par véhicule</div></div>
+      <table><thead><tr><th>Immat.</th><th>Client</th><th>Temps réel</th><th>Coût MO réel</th><th>Coût MO expertise</th><th>Pièces réel</th><th>Pièces expert.</th><th>Résultat</th></tr></thead>
       <tbody id="prod-veh-table"></tbody></table>
     </div>
     <div class="prod-section">
-      <div class="prod-header"><div class="prod-title">🏭 Productivité par service</div></div>
-      <table><thead><tr><th>Service</th><th>Sessions</th><th>Temps total</th><th>Moy./session</th><th>Employés</th></tr></thead>
+      <div class="prod-header"><div class="prod-title">🏭 Par service</div></div>
+      <table><thead><tr><th>Service</th><th>Sessions</th><th>Temps total</th><th>Coût total</th><th>Moy./session</th></tr></thead>
       <tbody id="prod-service-table"></tbody></table>
     </div>
   </div>
@@ -229,7 +253,7 @@ tr:last-child td{border-bottom:none;}
   <div id="onglet-employes" style="display:none;">
     <div class="form-card">
       <div class="form-title">➕ Ajouter un employé</div>
-      <div class="form-grid-2">
+      <div class="form-grid">
         <div><label>Prénom *</label><input type="text" id="emp-prenom" placeholder="Prénom"/></div>
         <div><label>Service *</label>
           <select id="emp-service">
@@ -239,6 +263,7 @@ tr:last-child td{border-bottom:none;}
             <option value="Peinture">🎨 Peinture</option>
           </select>
         </div>
+        <div><label>Taux horaire (€/h)</label><input type="number" id="emp-taux" placeholder="Ex : 15"/></div>
       </div>
       <button class="btn-primary" onclick="ajouterEmploye()">➕ Ajouter</button>
       <div id="emp-msg" style="margin-top:8px;"></div>
@@ -256,10 +281,59 @@ tr:last-child td{border-bottom:none;}
 
 <script>
 const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
+const CATEGORIES=['T1','T2','T3','Peinture','Ingrédients','Main d\'oeuvre'];
 let vehicules=[],pointages=[],employes=[],filtreVeh='actifs',periodeP='jour',objectifH=8;
-let editZones={};
 
 function fmt(min){if(!min||min<=0)return'0 min';if(min<60)return Math.round(min)+' min';return Math.floor(min/60)+'h'+(min%60>0?Math.floor(min%60)+'min':'');}
+function fmtEur(v){return(parseFloat(v)||0).toLocaleString('fr-FR',{minimumFractionDigits:0,maximumFractionDigits:0})+'€';}
+
+function getTauxHoraire(prenom){
+  const emp=employes.find(function(e){return e.prenom===prenom;});
+  return emp?parseFloat(emp.tauxHoraire)||0:0;
+}
+
+function parseExpertise(json){
+  try{return JSON.parse(json||'{}');}catch(e){return {};}
+}
+
+function calculerBilan(v,vPts){
+  const expertise=parseExpertise(v['Expertise JSON']);
+  const piecesReelles=parseFloat(v['Pieces réelles'])||0;
+
+  // Coût MO réel
+  let coutMOReelTotal=0;
+  vPts.filter(function(p){return p['Durée (min)'];}).forEach(function(p){
+    const h=(parseInt(p['Durée (min)'])||0)/60;
+    const taux=getTauxHoraire(p['Prénom employé']);
+    coutMOReelTotal+=h*taux;
+  });
+
+  // Coût MO expertise
+  let coutMOExpertise=0;
+  CATEGORIES.forEach(function(cat){
+    const heures=parseFloat(expertise[cat+'_h'])||0;
+    const taux=parseFloat(expertise[cat+'_t'])||0;
+    coutMOExpertise+=heures*taux;
+  });
+
+  // Pièces estimées
+  const piecesEstimees=parseFloat(expertise['pieces_estimees'])||0;
+
+  // Résultat
+  const coutTotalReel=coutMOReelTotal+piecesReelles;
+  const coutTotalExpertise=coutMOExpertise+piecesEstimees;
+  const diff=coutTotalExpertise-coutTotalReel;
+
+  return{
+    coutMOReelTotal:coutMOReelTotal,
+    coutMOExpertise:coutMOExpertise,
+    piecesReelles:piecesReelles,
+    piecesEstimees:piecesEstimees,
+    coutTotalReel:coutTotalReel,
+    coutTotalExpertise:coutTotalExpertise,
+    diff:diff
+  };
+}
 
 function afficherOnglet(nom,btn){
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('actif');});
@@ -296,7 +370,12 @@ function filtrerParPeriode(pts){
   const now=new Date();
   return pts.filter(function(p){
     if(periodeP==='tout')return true;
-    const d=new Date(String(p['Heure début']||'').replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
+    const ds=String(p['Heure début']||'');
+    const parts=ds.split(' ');
+    if(parts.length<2)return true;
+    const dp=parts[0].split('/');
+    if(dp.length<3)return true;
+    const d=new Date(dp[2]+'-'+dp[1]+'-'+dp[0]+'T'+parts[1]);
     if(isNaN(d))return true;
     const diffJ=(now-d)/(1000*60*60*24);
     if(periodeP==='jour')return diffJ<1;
@@ -304,6 +383,99 @@ function filtrerParPeriode(pts){
     if(periodeP==='mois')return diffJ<30;
     return true;
   });
+}
+
+function rendreBilanVehicule(v,vPts,vid){
+  const expertise=parseExpertise(v['Expertise JSON']);
+  const bilan=calculerBilan(v,vPts);
+
+  let expertiseLignes='';
+  CATEGORIES.forEach(function(cat){
+    const h=parseFloat(expertise[cat+'_h'])||0;
+    const t=parseFloat(expertise[cat+'_t'])||0;
+    expertiseLignes+='<div class="renta-ligne">'
+      +'<label>'+cat+'</label>'
+      +'<div style="display:flex;gap:4px;align-items:center;">'
+      +'<input type="number" id="exp-'+vid+'-'+cat+'-h" value="'+(h||'')+'" placeholder="h" style="width:50px;" title="Heures"/>'
+      +'<span style="font-size:11px;color:#94a3b8;">h ×</span>'
+      +'<input type="number" id="exp-'+vid+'-'+cat+'-t" value="'+(t||'')+'" placeholder="€/h" style="width:55px;" title="Taux €/h"/>'
+      +'<span style="font-size:11px;color:#94a3b8;">€/h</span>'
+      +'</div></div>';
+  });
+
+  const bilanClass=bilan.diff>=0?'':'negatif';
+  const diffLabel=bilan.diff>=0?'✅ Bénéfice':'❌ Perte';
+
+  return'<div class="renta-section">'
+    +'<div class="renta-title">📊 Rentabilité <span class="renta-toggle" onclick="toggleRenta(\''+vid+'\')">▼ Voir détail</span></div>'
+    +'<div class="renta-body" id="renta-'+vid+'">'
+    +'<div class="renta-grid">'
+    +'<div class="renta-col">'
+    +'<div class="renta-col-title">⏱ Expertise (prévu)</div>'
+    +expertiseLignes
+    +'<div class="renta-ligne"><label>💰 Pièces estimées (€)</label><input type="number" id="exp-'+vid+'-pieces" value="'+(parseFloat(expertise['pieces_estimees'])||'')+'" placeholder="0"/></div>'
+    +'<button class="btn-primary renta-save btn-sm" onclick="sauvegarderExpertise(\''+vid+'\')">💾 Enregistrer expertise</button>'
+    +'</div>'
+    +'<div class="renta-col">'
+    +'<div class="renta-col-title">🔧 Réel (coûts)</div>'
+    +'<div class="renta-ligne"><label>💰 Pièces achetées (€)</label><input type="number" id="pieces-'+vid+'" value="'+(parseFloat(v['Pieces réelles'])||'')+'" placeholder="0"/></div>'
+    +'<button class="btn-primary renta-save btn-sm" onclick="sauvegarderPieces(\''+vid+'\')">💾 Enregistrer pièces</button>'
+    +'<div style="margin-top:10px;">'
+    +'<div class="renta-col-title">Coût MO réel par employé</div>'
+    +vPts.filter(function(p){return p['Durée (min)'];}).map(function(p){
+      const h=(parseInt(p['Durée (min)'])||0)/60;
+      const taux=getTauxHoraire(p['Prénom employé']);
+      return'<div class="renta-ligne"><label>'+p['Prénom employé']+' ('+fmt(parseInt(p['Durée (min)']))+' × '+taux+'€/h)</label><span style="font-size:12px;font-weight:700;color:#1d4ed8;">'+fmtEur(h*taux)+'</span></div>';
+    }).join('')
+    +'</div></div></div>'
+    +'<div class="bilan '+bilanClass+'">'
+    +'<div class="bilan-title">📊 Bilan véhicule</div>'
+    +'<div class="bilan-row"><span class="bilan-label">MO expertise prévue</span><span class="bilan-val">'+fmtEur(bilan.coutMOExpertise)+'</span></div>'
+    +'<div class="bilan-row"><span class="bilan-label">MO réelle (salaires)</span><span class="bilan-val">'+fmtEur(bilan.coutMOReelTotal)+'</span></div>'
+    +'<div class="bilan-row"><span class="bilan-label">Pièces estimées</span><span class="bilan-val">'+fmtEur(bilan.piecesEstimees)+'</span></div>'
+    +'<div class="bilan-row"><span class="bilan-label">Pièces réelles</span><span class="bilan-val">'+fmtEur(bilan.piecesReelles)+'</span></div>'
+    +'<div class="bilan-total"><span>'+diffLabel+'</span><span class="bilan-val '+(bilan.diff>=0?'vert':'rouge')+'">'+fmtEur(Math.abs(bilan.diff))+'</span></div>'
+    +'</div>'
+    +'</div></div>';
+}
+
+function toggleRenta(vid){
+  const el=document.getElementById('renta-'+vid);
+  if(el)el.classList.toggle('open');
+}
+
+function toggleEditPt(pid){
+  const el=document.getElementById('edit-pt-'+pid);
+  if(el)el.classList.toggle('open');
+}
+
+async function sauvegarderExpertise(vid){
+  const exp={};
+  CATEGORIES.forEach(function(cat){
+    const h=document.getElementById('exp-'+vid+'-'+cat+'-h');
+    const t=document.getElementById('exp-'+vid+'-'+cat+'-t');
+    if(h&&t&&(h.value||t.value)){
+      exp[cat+'_h']=parseFloat(h.value)||0;
+      exp[cat+'_t']=parseFloat(t.value)||0;
+    }
+  });
+  const pieces=document.getElementById('exp-'+vid+'-pieces');
+  if(pieces&&pieces.value)exp['pieces_estimees']=parseFloat(pieces.value)||0;
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_vehicule',vehiculeId:vid,expertiseJson:JSON.stringify(exp)})});
+  await charger();
+}
+
+async function sauvegarderPieces(vid){
+  const val=document.getElementById('pieces-'+vid).value;
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_vehicule',vehiculeId:vid,piecesReelles:val})});
+  await charger();
+}
+
+async function sauvegarderPt(pid){
+  const travail=document.getElementById('travail-'+pid).value.trim();
+  const comment=document.getElementById('comment-'+pid).value.trim();
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_pointage',idPointage:pid,typeTravail:travail,commentaire:comment})});
+  charger();
 }
 
 function rendreVehicules(){
@@ -325,40 +497,35 @@ function rendreVehicules(){
   if(!actifs.length){grid.innerHTML='<div class="vide">Aucun véhicule</div>';return;}
 
   grid.innerHTML=actifs.map(function(v){
-    const vPts=pointages.filter(function(p){return p['ID Véhicule']===v['ID'];});
+    const vid=v['ID'];
+    const vPts=pointages.filter(function(p){return p['ID Véhicule']===vid;});
     const totalMin=vPts.reduce(function(a,p){return a+(parseInt(p['Durée (min)'])||0);},0);
     const enCoursVeh=vPts.filter(function(p){return !p['Heure fin'];}).length;
     const nbEmp=new Set(vPts.map(function(p){return p['Prénom employé'];})).size;
     const statut=v['Statut']||'En cours';
-    const expertise=v['Montant expertise']||'';
-    const vid=v['ID'];
 
     let ptsList='';
     if(vPts.length>0){
-      ptsList='<div class="veh-pointages"><div class="veh-pt-title">Détail des travaux</div>';
+      ptsList='<div class="veh-pointages"><div class="veh-pt-title">Détail travaux</div>';
       vPts.forEach(function(p){
         const pid=p['ID Pointage'];
         const svc=p['Service']||'';
-        const typeTravail=p['Type travail']||'';
-        const commentaire=p['Commentaire']||'';
-        const heureD=String(p['Heure début']||'').substring(0,16);
-        const heureF=p['Heure fin']?String(p['Heure fin']||'').substring(0,16):'En cours';
         ptsList+='<div class="pt-item">'
           +'<div class="pt-header">'
-          +'<div><div class="pt-nom">'+p['Prénom employé']+'<span class="pt-service-badge '+svc+'" style="margin-left:6px;">'+svc+'</span></div>'
-          +'<div class="pt-heure">'+heureD+' → '+heureF+'</div>'
-          +(typeTravail?'<div class="pt-travail">🔨 '+typeTravail+'</div>':'')
-          +(commentaire?'<div class="pt-travail">💬 '+commentaire+'</div>':'')
+          +'<div><div class="pt-nom">'+p['Prénom employé']+'<span class="pt-svc '+svc+'">'+svc+'</span></div>'
+          +'<div class="pt-heure">'+String(p['Heure début']||'').substring(0,16)+' → '+(p['Heure fin']?String(p['Heure fin']||'').substring(0,16):'En cours')+'</div>'
+          +(p['Type travail']?'<div class="pt-travail">🔨 '+p['Type travail']+'</div>':'')
+          +(p['Commentaire']?'<div class="pt-travail">💬 '+p['Commentaire']+'</div>':'')
           +'</div>'
-          +'<div style="display:flex;align-items:center;gap:6px;">'
+          +'<div style="display:flex;align-items:center;gap:4px;">'
           +'<div class="pt-duree">'+fmt(parseInt(p['Durée (min)'])||0)+'</div>'
           +'<button class="btn-sm btn-edit" onclick="toggleEditPt(\''+pid+'\')">✏️</button>'
           +'</div></div>'
           +'<div class="pt-edit-zone" id="edit-pt-'+pid+'">'
           +'<label style="margin-top:4px;">Type de travail</label>'
-          +'<input type="text" id="travail-'+pid+'" value="'+typeTravail+'" placeholder="Ex: Débosselage, vidange..."/>'
+          +'<input type="text" id="travail-'+pid+'" value="'+(p['Type travail']||'')+'" placeholder="Ex: Débosselage..."/>'
           +'<label style="margin-top:4px;">Commentaire</label>'
-          +'<textarea id="comment-'+pid+'" placeholder="Notes...">'+commentaire+'</textarea>'
+          +'<textarea id="comment-'+pid+'" style="min-height:50px;">'+( p['Commentaire']||'')+'</textarea>'
           +'<button class="btn-primary" style="margin-top:4px;font-size:12px;padding:6px 12px;" onclick="sauvegarderPt(\''+pid+'\')">💾 Enregistrer</button>'
           +'</div></div>';
       });
@@ -372,50 +539,21 @@ function rendreVehicules(){
       +'<div class="veh-info"><strong>Client :</strong> '+(v['Client']||'—')+'</div>'
       +'<div class="veh-info"><strong>Modèle :</strong> '+(v['Modèle']||'—')+'</div>'
       +'<div class="veh-info"><strong>Entrée :</strong> '+(v['Date entrée']||'—')+'</div>'
-      +'<div class="expertise-edit" id="exp-zone-'+vid+'">'
-      +'<label>Montant expertise (€)</label>'
-      +'<input type="number" id="exp-val-'+vid+'" value="'+expertise+'" placeholder="Ex : 1500"/>'
-      +'<button class="btn-primary" style="margin-top:6px;font-size:12px;padding:6px 12px;" onclick="sauvegarderExpertise(\''+vid+'\')">💾 Enregistrer</button>'
-      +'</div>'
-      +(expertise?'<div class="veh-expertise"><div class="veh-expertise-label">💰 Rapport expertise</div><div class="veh-expertise-val">'+parseFloat(expertise).toLocaleString('fr-FR')+'€</div></div>':'')
       +'<div class="veh-stats">'
-      +'<div class="veh-stat"><div class="veh-stat-nb">'+fmt(totalMin)+'</div><div class="veh-stat-label">Temps total</div></div>'
+      +'<div class="veh-stat"><div class="veh-stat-nb">'+fmt(totalMin)+'</div><div class="veh-stat-label">Temps réel</div></div>'
       +'<div class="veh-stat"><div class="veh-stat-nb">'+vPts.length+'</div><div class="veh-stat-label">Sessions</div></div>'
       +'<div class="veh-stat"><div class="veh-stat-nb">'+nbEmp+'</div><div class="veh-stat-label">Employés</div></div>'
       +'</div>'
       +(enCoursVeh>0?'<div style="font-size:12px;color:#22c55e;font-weight:700;margin-bottom:6px;">🟢 '+enCoursVeh+' en cours</div>':'')
       +'<div class="veh-actions">'
       +'<button class="btn-sm btn-qr" onclick="afficherQR(\''+v['Immatriculation']+'\',\''+vid+'\')">📱 QR Code</button>'
-      +'<button class="btn-sm btn-edit" onclick="toggleExpertise(\''+vid+'\')">💰 Expertise</button>'
       +(statut==='En cours'?'<button class="btn-sm btn-ok" onclick="changerStatut(\''+vid+'\',\'Terminé\')">✅ Terminer</button>':'')
       +'<button class="btn-sm btn-arch" onclick="changerStatut(\''+vid+'\',\'Archivé\')">📦 Archiver</button>'
       +'</div>'
+      +rendreBilanVehicule(v,vPts,vid)
       +ptsList
       +'</div></div>';
   }).join('');
-}
-
-function toggleEditPt(pid){
-  const el=document.getElementById('edit-pt-'+pid);
-  if(el)el.classList.toggle('open');
-}
-
-function toggleExpertise(vid){
-  const el=document.getElementById('exp-zone-'+vid);
-  if(el)el.classList.toggle('open');
-}
-
-async function sauvegarderPt(pid){
-  const travail=document.getElementById('travail-'+pid).value.trim();
-  const comment=document.getElementById('comment-'+pid).value.trim();
-  await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_pointage',idPointage:pid,typeTravail:travail,commentaire:comment})});
-  charger();
-}
-
-async function sauvegarderExpertise(vid){
-  const montant=document.getElementById('exp-val-'+vid).value;
-  await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_vehicule',vehiculeId:vid,montantExpertise:montant})});
-  charger();
 }
 
 function rendreArchives(){
@@ -425,10 +563,11 @@ function rendreArchives(){
   grid.innerHTML=archives.map(function(v){
     const vPts=pointages.filter(function(p){return p['ID Véhicule']===v['ID'];});
     const totalMin=vPts.reduce(function(a,p){return a+(parseInt(p['Durée (min)'])||0);},0);
-    return'<div class="veh-card archive"><div class="veh-card-header archive-h"><div class="veh-immat">'+v['Immatriculation']+'</div><span class="veh-statut archive">Archivé</span></div>'
+    const bilan=calculerBilan(v,vPts);
+    return'<div class="veh-card archive"><div class="veh-card-header arch"><div class="veh-immat">'+v['Immatriculation']+'</div><span class="veh-statut archive">Archivé</span></div>'
       +'<div class="veh-card-body"><div class="veh-info"><strong>Client :</strong> '+(v['Client']||'—')+'</div>'
       +'<div class="veh-info"><strong>Temps total :</strong> '+fmt(totalMin)+'</div>'
-      +(v['Montant expertise']?'<div class="veh-info"><strong>Expertise :</strong> '+parseFloat(v['Montant expertise']).toLocaleString('fr-FR')+'€</div>':'')
+      +(bilan.diff!==0?'<div class="veh-info"><strong>Résultat :</strong> <span style="color:'+(bilan.diff>=0?'#16a34a':'#dc2626')+'">'+fmtEur(Math.abs(bilan.diff))+(bilan.diff>=0?' bénéfice':' perte')+'</span></div>':'')
       +'<div class="veh-actions"><button class="btn-sm btn-ok" onclick="changerStatut(\''+v['ID']+'\',\'En cours\')">↩ Réactiver</button></div>'
       +'</div></div>';
   }).join('');
@@ -439,16 +578,18 @@ function rendreProductivite(){
   const statsEmp={};
   ptsFilt.forEach(function(p){
     const nom=p['Prénom employé']||'Inconnu';
-    if(!statsEmp[nom])statsEmp[nom]={sessions:0,totalMin:0,vehicules:new Set(),service:p['Service']||''};
+    const taux=getTauxHoraire(nom);
+    const h=(parseInt(p['Durée (min)'])||0)/60;
+    if(!statsEmp[nom])statsEmp[nom]={sessions:0,totalMin:0,coutTotal:0,vehicules:new Set(),service:p['Service']||''};
     statsEmp[nom].sessions++;
     statsEmp[nom].totalMin+=parseInt(p['Durée (min)'])||0;
+    statsEmp[nom].coutTotal+=h*taux;
     statsEmp[nom].vehicules.add(p['ID Véhicule']);
   });
   const sorted=Object.entries(statsEmp).sort(function(a,b){return b[1].totalMin-a[1].totalMin;});
   const objMin=objectifH*60;
   const rangsC=['r1','r2','r3'];
   const rangsL=['🥇','🥈','🥉'];
-
   document.getElementById('employe-grid').innerHTML=sorted.length>0?sorted.map(function(e,i){
     const nom=e[0],s=e[1];
     const moy=s.sessions>0?Math.round(s.totalMin/s.sessions):0;
@@ -456,64 +597,69 @@ function rendreProductivite(){
     const ok=s.totalMin>=objMin;
     const rc=i<3?rangsC[i]:'rn';
     const rl=i<3?rangsL[i]:(i+1)+'';
+    const taux=getTauxHoraire(nom);
     return'<div class="employe-card"><div class="employe-nom"><span class="rang '+rc+'">'+rl+'</span>'+nom+'</div>'
       +'<div class="emp-stat"><span class="emp-stat-l">⏱ Temps</span><span class="emp-stat-v">'+fmt(s.totalMin)+'</span></div>'
+      +'<div class="emp-stat"><span class="emp-stat-l">💰 Coût MO</span><span class="emp-stat-v">'+fmtEur(s.coutTotal)+'</span></div>'
       +'<div class="emp-stat"><span class="emp-stat-l">📋 Sessions</span><span class="emp-stat-v">'+s.sessions+'</span></div>'
       +'<div class="emp-stat"><span class="emp-stat-l">🚗 Véhicules</span><span class="emp-stat-v">'+s.vehicules.size+'</span></div>'
-      +'<div class="emp-stat"><span class="emp-stat-l">⌀ Moy.</span><span class="emp-stat-v">'+fmt(moy)+'</span></div>'
+      +'<div class="emp-stat"><span class="emp-stat-l">💵 Taux/h</span><span class="emp-stat-v">'+taux+'€/h</span></div>'
       +(s.service?'<div class="emp-stat"><span class="emp-stat-l">🏭 Service</span><span class="emp-stat-v">'+s.service+'</span></div>':'')
       +'<div class="obj-bar"><div class="obj-fill'+(ok?' ok':'')+'" style="width:'+pct+'%"></div></div>'
       +'<div class="obj-txt">'+(ok?'✅ Objectif atteint !':pct+'% — objectif '+objectifH+'h')+'</div>'
       +'</div>';
-  }).join(''):'<div class="vide" style="grid-column:1/-1;">Aucun pointage sur cette période</div>';
+  }).join(''):'<div class="vide" style="grid-column:1/-1;">Aucun pointage</div>';
 
-  // Par véhicule
-  const statsVeh={};
-  pointages.filter(function(p){return p['Durée (min)'];}).forEach(function(p){
-    const id=p['ID Véhicule'];
-    if(!statsVeh[id])statsVeh[id]={immat:p['Immatriculation'],totalMin:0,sessions:0,employes:new Set()};
-    statsVeh[id].totalMin+=parseInt(p['Durée (min)'])||0;
-    statsVeh[id].sessions++;
-    statsVeh[id].employes.add(p['Prénom employé']);
-  });
-  const svSorted=Object.entries(statsVeh).sort(function(a,b){return b[1].totalMin-a[1].totalMin;});
-  const maxM=svSorted.length>0?svSorted[0][1].totalMin:1;
-  document.getElementById('prod-veh-table').innerHTML=svSorted.map(function(e){
-    const id=e[0],s=e[1];
-    const v=vehicules.find(function(x){return x['ID']===id;})||{};
-    const larg=Math.max(4,Math.round((s.totalMin/maxM)*100));
-    const exp=v['Montant expertise']?parseFloat(v['Montant expertise']).toLocaleString('fr-FR')+'€':'—';
-    return'<tr><td><strong>'+s.immat+'</strong></td><td>'+(v['Client']||'—')+'</td><td>'+(v['Modèle']||'—')+'</td>'
-      +'<td>'+exp+'</td>'
-      +'<td><div class="bar-cell"><div class="bar" style="width:'+larg+'px"></div>'+fmt(s.totalMin)+'</div></td>'
-      +'<td>'+s.sessions+'</td><td>'+Array.from(s.employes).join(', ')+'</td></tr>';
-  }).join('')||'<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
+  // Rentabilité par véhicule
+  const rows=vehicules.filter(function(v){return v['Statut']!=='Archivé'||true;}).map(function(v){
+    const vPts=pointages.filter(function(p){return p['ID Véhicule']===v['ID']&&p['Durée (min)'];});
+    if(!vPts.length)return null;
+    const totalMin=vPts.reduce(function(a,p){return a+(parseInt(p['Durée (min)'])||0);},0);
+    const bilan=calculerBilan(v,vPts);
+    return{immat:v['Immatriculation'],client:v['Client']||'—',totalMin:totalMin,bilan:bilan};
+  }).filter(Boolean).sort(function(a,b){return b.totalMin-a.totalMin;});
+  const maxM=rows.length>0?rows[0].totalMin:1;
+  document.getElementById('prod-veh-table').innerHTML=rows.map(function(r){
+    const larg=Math.max(4,Math.round((r.totalMin/maxM)*80));
+    const ok=r.bilan.diff>=0;
+    return'<tr><td><strong>'+r.immat+'</strong></td><td>'+r.client+'</td>'
+      +'<td><div class="bar-cell"><div class="bar" style="width:'+larg+'px"></div>'+fmt(r.totalMin)+'</div></td>'
+      +'<td>'+fmtEur(r.bilan.coutMOReelTotal)+'</td>'
+      +'<td>'+fmtEur(r.bilan.coutMOExpertise)+'</td>'
+      +'<td>'+fmtEur(r.bilan.piecesReelles)+'</td>'
+      +'<td>'+fmtEur(r.bilan.piecesEstimees)+'</td>'
+      +'<td style="font-weight:800;color:'+(ok?'#16a34a':'#dc2626')+'">'+(ok?'+':'-')+fmtEur(Math.abs(r.bilan.diff))+'</td></tr>';
+  }).join('')||'<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:1rem;">Aucune donnée</td></tr>';
 
   // Par service
-  const statsSvc={Carrosserie:{sessions:0,totalMin:0,employes:new Set()},Mécanique:{sessions:0,totalMin:0,employes:new Set()},Peinture:{sessions:0,totalMin:0,employes:new Set()}};
+  const statsSvc={};
   ptsFilt.forEach(function(p){
     const svc=p['Service']||'Autre';
-    if(!statsSvc[svc])statsSvc[svc]={sessions:0,totalMin:0,employes:new Set()};
+    const taux=getTauxHoraire(p['Prénom employé']);
+    const h=(parseInt(p['Durée (min)'])||0)/60;
+    if(!statsSvc[svc])statsSvc[svc]={sessions:0,totalMin:0,cout:0,employes:new Set()};
     statsSvc[svc].sessions++;
     statsSvc[svc].totalMin+=parseInt(p['Durée (min)'])||0;
+    statsSvc[svc].cout+=h*taux;
     statsSvc[svc].employes.add(p['Prénom employé']);
   });
   const icons={Carrosserie:'🚗',Mécanique:'🔧',Peinture:'🎨'};
   document.getElementById('prod-service-table').innerHTML=Object.entries(statsSvc).filter(function(e){return e[1].sessions>0;}).sort(function(a,b){return b[1].totalMin-a[1].totalMin;}).map(function(e){
     const svc=e[0],s=e[1];
     const moy=s.sessions>0?Math.round(s.totalMin/s.sessions):0;
-    return'<tr><td><strong>'+(icons[svc]||'')+'&nbsp;'+svc+'</strong></td><td>'+s.sessions+'</td><td>'+fmt(s.totalMin)+'</td><td>'+fmt(moy)+'</td><td>'+s.employes.size+'</td></tr>';
+    return'<tr><td><strong>'+(icons[svc]||'')+'&nbsp;'+svc+'</strong></td><td>'+s.sessions+'</td><td>'+fmt(s.totalMin)+'</td><td>'+fmtEur(s.cout)+'</td><td>'+fmt(moy)+'</td></tr>';
   }).join('')||'<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:1rem;">Aucun pointage</td></tr>';
 }
 
 function rendreEmployes(){
   const list=document.getElementById('emp-list');
-  if(!employes.length){list.innerHTML='<div class="vide">Aucun employé — Ajoutez le premier !</div>';return;}
+  if(!employes.length){list.innerHTML='<div class="vide">Aucun employé</div>';return;}
   list.innerHTML=employes.map(function(e){
     return'<div class="emp-item">'
-      +'<div class="emp-item-info">'
+      +'<div class="emp-info">'
       +'<strong style="font-size:13px;">'+e.prenom+'</strong>'
-      +'<span class="emp-svc-badge '+e.service+'">'+e.service+'</span>'
+      +'<span class="emp-svc '+e.service+'">'+e.service+'</span>'
+      +'<span class="emp-taux">'+e.tauxHoraire+'€/h</span>'
       +'</div>'
       +'<button class="btn-sm btn-danger" onclick="supprimerEmploye('+e.index+')">✕</button>'
       +'</div>';
@@ -523,17 +669,19 @@ function rendreEmployes(){
 async function ajouterEmploye(){
   const prenom=document.getElementById('emp-prenom').value.trim();
   const service=document.getElementById('emp-service').value;
+  const taux=document.getElementById('emp-taux').value;
   if(!prenom||!service){document.getElementById('emp-msg').innerHTML='<div class="erreur">Prénom et service obligatoires.</div>';return;}
-  await fetch(API,{method:'POST',body:JSON.stringify({action:'ajouter_employe',prenom:prenom,service:service})});
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'ajouter_employe',prenom:prenom,service:service,tauxHoraire:parseFloat(taux)||0})});
   document.getElementById('emp-prenom').value='';
   document.getElementById('emp-service').value='';
+  document.getElementById('emp-taux').value='';
   document.getElementById('emp-msg').innerHTML='<div class="succes-msg">✅ '+prenom+' ajouté !</div>';
   await charger();
   rendreEmployes();
 }
 
 async function supprimerEmploye(index){
-  if(!confirm('Désactiver cet employé ?'))return;
+  if(!confirm('Désactiver ?'))return;
   await fetch(API,{method:'POST',body:JSON.stringify({action:'supprimer_employe',index:index})});
   await charger();
   rendreEmployes();
@@ -566,19 +714,14 @@ async function creerVehicule(){
   const immat=document.getElementById('f-immat').value.trim().toUpperCase();
   const client=document.getElementById('f-client').value.trim();
   const modele=document.getElementById('f-modele').value.trim();
-  const expertise=document.getElementById('f-expertise').value.trim();
   if(!immat||!client){document.getElementById('erreur-creation').innerHTML='<div class="erreur">Immatriculation et client obligatoires.</div>';return;}
   btn.disabled=true;btn.textContent='⏳ Création...';
   try{
     const res=await fetch(API,{method:'POST',body:JSON.stringify({action:'creer',immat:immat,client:client,modele:modele})});
     const data=await res.json();
-    if(expertise&&data.id){
-      await fetch(API,{method:'POST',body:JSON.stringify({action:'maj_vehicule',vehiculeId:data.id,montantExpertise:expertise})});
-    }
     document.getElementById('f-immat').value='';
     document.getElementById('f-client').value='';
     document.getElementById('f-modele').value='';
-    document.getElementById('f-expertise').value='';
     document.getElementById('erreur-creation').innerHTML='';
     await charger();
     afficherQR(immat,data.id);
