@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="MF Pointage">
-<meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0f172a">
 <title>Pointage — Motors Factory</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -16,11 +15,11 @@ body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:
 .screen{display:none;}.screen.actif{display:block;}
 .logo{text-align:center;margin-bottom:1.2rem;}
 .logo-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 8px;}
-.logo-icon.bleu{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
-.logo-icon.vert{background:linear-gradient(135deg,#22c55e,#16a34a);}
-.logo-icon.rouge{background:linear-gradient(135deg,#ef4444,#dc2626);}
-.logo-icon.orange{background:linear-gradient(135deg,#f59e0b,#d97706);}
-.logo-icon.violet{background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
+.ic-bleu{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
+.ic-vert{background:linear-gradient(135deg,#22c55e,#16a34a);}
+.ic-rouge{background:linear-gradient(135deg,#ef4444,#dc2626);}
+.ic-orange{background:linear-gradient(135deg,#f59e0b,#d97706);}
+.ic-violet{background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
 .logo-title{font-size:18px;font-weight:900;color:#fff;}
 .logo-sub{font-size:12px;color:#64748b;margin-top:2px;}
 .veh-card{background:#1e293b;border-radius:14px;padding:1rem;margin-bottom:1rem;border:1px solid #334155;text-align:center;}
@@ -29,53 +28,49 @@ body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:
 .veh-modele{font-size:11px;color:#64748b;margin-top:2px;}
 .btn-group{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem;}
 .btn-main{color:#fff;border:none;padding:16px;border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;font-family:'Inter',sans-serif;width:100%;}
-.btn-main.vert{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 4px 16px rgba(34,197,94,0.25);}
-.btn-main.rouge{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 4px 16px rgba(239,68,68,0.25);}
-.btn-main.orange{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 4px 16px rgba(245,158,11,0.25);}
-.btn-main.violet{background:linear-gradient(135deg,#8b5cf6,#7c3aed);box-shadow:0 4px 16px rgba(139,92,246,0.25);}
+.btn-main.vert{background:linear-gradient(135deg,#22c55e,#16a34a);}
+.btn-main.rouge{background:linear-gradient(135deg,#ef4444,#dc2626);}
+.btn-main.orange{background:linear-gradient(135deg,#f59e0b,#d97706);}
+.btn-main.violet{background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
+.btn-main.gris{background:#334155;color:#94a3b8;}
 .btn-main:disabled{opacity:0.4;pointer-events:none;}
 .form-card{background:#1e293b;border-radius:14px;padding:1rem;margin-bottom:1rem;border:1px solid #334155;}
 .step-label{font-size:11px;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
-.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:12px;}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;}
 .svc-btn{padding:14px 6px;border-radius:10px;border:2px solid #334155;font-size:12px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;background:#0f172a;color:#475569;}
-.svc-btn.sel.Carrosserie{background:#1a1200;border-color:#fbbf24;color:#fbbf24;}
-.svc-btn.sel.Mécanique{background:#001020;border-color:#60a5fa;color:#60a5fa;}
-.svc-btn.sel.Peinture{background:#1a0015;border-color:#f472b6;color:#f472b6;}
+.svc-btn.sel-C{background:#1a1200;border-color:#fbbf24;color:#fbbf24;}
+.svc-btn.sel-M{background:#001020;border-color:#60a5fa;color:#60a5fa;}
+.svc-btn.sel-P{background:#1a0015;border-color:#f472b6;color:#f472b6;}
 .svc-icon{font-size:20px;display:block;margin-bottom:3px;}
-
-/* CLAVIER CODE */
-.code-zone{display:none;margin-bottom:12px;}
 .code-display{display:flex;justify-content:center;gap:10px;margin-bottom:16px;}
 .code-digit{width:48px;height:56px;background:#0f172a;border:2px solid #334155;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;}
 .code-digit.filled{border-color:#3b82f6;background:#001020;}
 .code-digit.error{border-color:#ef4444;background:#1a0808;}
-.clavier{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px;}
+.clavier{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
 .key{background:#1e293b;border:1.5px solid #334155;border-radius:10px;padding:16px 8px;font-size:20px;font-weight:800;color:#fff;cursor:pointer;text-align:center;font-family:'Inter',sans-serif;}
 .key:active{background:#334155;}
 .key.del{font-size:16px;color:#64748b;}
-.key.empty{background:transparent;border-color:transparent;cursor:default;}
-.employe-trouve{background:#0d1f0d;border:1px solid #22c55e40;border-radius:10px;padding:10px 14px;margin-bottom:10px;text-align:center;display:none;}
-.employe-nom{font-size:16px;font-weight:900;color:#22c55e;}
-.employe-svc{font-size:11px;color:#475569;margin-top:2px;}
-
-.multi-svc-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
-.multi-svc-btn{padding:14px 16px;border-radius:10px;border:2px solid #334155;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;background:#0f172a;color:#475569;flex:1;min-width:100px;text-align:center;}
-.multi-svc-btn.sel.Carrosserie{background:#1a1200;border-color:#fbbf24;color:#fbbf24;}
-.multi-svc-btn.sel.Mécanique{background:#001020;border-color:#60a5fa;color:#60a5fa;}
-.multi-svc-btn.sel.Peinture{background:#1a0015;border-color:#f472b6;color:#f472b6;}
-.multi-svc-icon{font-size:20px;display:block;margin-bottom:3px;}
+.key.vide{background:transparent;border-color:transparent;cursor:default;}
+.emp-trouve{background:#0d1f0d;border:1px solid #22c55e40;border-radius:10px;padding:10px 14px;margin-bottom:10px;text-align:center;display:none;}
+.emp-nom{font-size:16px;font-weight:900;color:#22c55e;}
+.emp-svc-txt{font-size:11px;color:#475569;margin-top:2px;}
+.multi-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.multi-btn{padding:14px 16px;border-radius:10px;border:2px solid #334155;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;background:#0f172a;color:#475569;flex:1;min-width:100px;text-align:center;}
+.multi-btn.sel-C{background:#1a1200;border-color:#fbbf24;color:#fbbf24;}
+.multi-btn.sel-M{background:#001020;border-color:#60a5fa;color:#60a5fa;}
+.multi-btn.sel-P{background:#1a0015;border-color:#f472b6;color:#f472b6;}
 .motif-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;}
 .motif-btn{padding:14px 8px;border-radius:10px;border:2px solid #334155;font-size:12px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;background:#0f172a;color:#475569;}
 .motif-btn.sel{background:#1a1200;border-color:#f59e0b;color:#f59e0b;}
 .motif-icon{font-size:22px;display:block;margin-bottom:3px;}
 textarea{width:100%;background:#0f172a;border:1.5px solid #334155;border-radius:10px;padding:10px 12px;font-size:13px;font-family:'Inter',sans-serif;color:#fff;outline:none;min-height:60px;resize:vertical;margin-bottom:10px;}
-.erreur-msg{background:#1a0808;border:1px solid #ef444440;border-radius:8px;padding:8px 12px;font-size:12px;color:#f87171;margin-bottom:8px;text-align:center;}
+.err-msg{background:#1a0808;border:1px solid #ef444440;border-radius:8px;padding:8px 12px;font-size:12px;color:#f87171;margin-bottom:8px;text-align:center;}
 .succes{text-align:center;padding:2rem 0.5rem;}
 .succes-icon{font-size:64px;margin-bottom:1rem;}
-.succes-title{font-size:22px;font-weight:900;margin-bottom:6px;}
-.succes-title.vert{color:#22c55e;}
-.succes-title.orange{color:#f59e0b;}
-.succes-title.violet{color:#8b5cf6;}
+.succes-titre{font-size:22px;font-weight:900;margin-bottom:6px;}
+.succes-titre.vert{color:#22c55e;}
+.succes-titre.orange{color:#f59e0b;}
+.succes-titre.violet{color:#8b5cf6;}
 .succes-duree{font-size:36px;font-weight:900;color:#fff;margin:1rem 0;}
 .succes-sub{font-size:13px;color:#64748b;line-height:1.8;white-space:pre-line;}
 .succes-info{font-size:12px;color:#334155;margin-top:1.5rem;padding:10px;background:#1e293b;border-radius:10px;}
@@ -85,383 +80,460 @@ textarea{width:100%;background:#0f172a;border:1.5px solid #334155;border-radius:
 <body>
 <div class="app">
 
-  <div class="screen actif" id="s-loading">
-    <div class="logo"><div class="logo-icon bleu">🔧</div><div class="logo-title">Motors Factory</div><div class="logo-sub">Chargement...</div></div>
-    <div class="loading">⏳</div>
-  </div>
+<div class="screen actif" id="s-loading">
+  <div class="logo"><div class="logo-icon ic-bleu">🔧</div><div class="logo-title">Motors Factory</div><div class="logo-sub">Chargement...</div></div>
+  <div class="loading">⏳</div>
+</div>
 
-  <div class="screen" id="s-accueil">
-    <div class="logo"><div class="logo-icon bleu">🔧</div><div class="logo-title">Motors Factory</div><div class="logo-sub">Pointage véhicule</div></div>
-    <div class="veh-card">
-      <div class="veh-immat" id="v-immat">—</div>
-      <div class="veh-client" id="v-client">—</div>
-      <div class="veh-modele" id="v-modele">—</div>
-    </div>
-    <div class="btn-group">
-      <button class="btn-main vert" onclick="initAction('start')">▶&nbsp; Démarrer</button>
-      <button class="btn-main orange" onclick="initAction('pause')">⏸&nbsp; Pause</button>
-      <button class="btn-main violet" onclick="initAction('reprendre')">▶▶&nbsp; Reprendre</button>
-      <button class="btn-main rouge" onclick="initAction('stop')">⏹&nbsp; Terminer</button>
-    </div>
+<div class="screen" id="s-accueil">
+  <div class="logo"><div class="logo-icon ic-bleu">🔧</div><div class="logo-title">Motors Factory</div><div class="logo-sub">Pointage véhicule</div></div>
+  <div class="veh-card">
+    <div class="veh-immat" id="v-immat">—</div>
+    <div class="veh-client" id="v-client">—</div>
+    <div class="veh-modele" id="v-modele">—</div>
   </div>
+  <div class="btn-group">
+    <button class="btn-main vert" onclick="initAction('start')">▶  Démarrer</button>
+    <button class="btn-main orange" onclick="initAction('pause')">⏸  Pause</button>
+    <button class="btn-main violet" onclick="initAction('reprendre')">▶▶  Reprendre</button>
+    <button class="btn-main rouge" onclick="initAction('stop')">⏹  Terminer</button>
+  </div>
+</div>
 
-  <!-- ECRAN ACTION (service + code) -->
-  <div class="screen" id="s-action">
-    <div class="logo">
-      <div class="logo-icon" id="action-icon">▶️</div>
-      <div class="logo-title" id="action-titre">Action</div>
-      <div class="logo-sub" id="action-immat">—</div>
-    </div>
-    <div class="form-card">
-      <div class="step-label">① Service</div>
-      <div class="svc-grid">
-        <button class="svc-btn" id="asb-Carrosserie" onclick="choisirSvc('Carrosserie')"><span class="svc-icon">🚗</span>Carrosserie</button>
-        <button class="svc-btn" id="asb-Mécanique" onclick="choisirSvc('Mécanique')"><span class="svc-icon">🔧</span>Mécanique</button>
-        <button class="svc-btn" id="asb-Peinture" onclick="choisirSvc('Peinture')"><span class="svc-icon">🎨</span>Peinture</button>
-      </div>
-      <div class="code-zone" id="code-zone">
-        <div class="step-label">② Code employé</div>
-        <div class="code-display">
-          <div class="code-digit" id="cd-0">_</div>
-          <div class="code-digit" id="cd-1">_</div>
-          <div class="code-digit" id="cd-2">_</div>
-          <div class="code-digit" id="cd-3">_</div>
-        </div>
-        <div class="employe-trouve" id="emp-trouve">
-          <div class="employe-nom" id="emp-nom">—</div>
-          <div class="employe-svc" id="emp-svc">—</div>
-        </div>
-        <div class="clavier">
-          <button class="key" onclick="taper('1')">1</button>
-          <button class="key" onclick="taper('2')">2</button>
-          <button class="key" onclick="taper('3')">3</button>
-          <button class="key" onclick="taper('4')">4</button>
-          <button class="key" onclick="taper('5')">5</button>
-          <button class="key" onclick="taper('6')">6</button>
-          <button class="key" onclick="taper('7')">7</button>
-          <button class="key" onclick="taper('8')">8</button>
-          <button class="key" onclick="taper('9')">9</button>
-          <button class="key empty"></button>
-          <button class="key" onclick="taper('0')">0</button>
-          <button class="key del" onclick="effacer()">⌫</button>
-        </div>
-      </div>
-      <!-- CHOIX SERVICE MULTI -->
-      <div id="multi-svc-zone" style="display:none;">
-        <div class="step-label" style="margin-top:4px;">② Votre service</div>
-        <div class="multi-svc-grid" id="multi-svc-grid"></div>
-      </div>
-      <!-- MOTIF PAUSE -->
-      <div id="motif-zone" style="display:none;">
-        <div class="step-label">③ Motif de pause</div>
-        <div class="motif-grid">
-          <button class="motif-btn" id="motif-dej" onclick="choisirMotif('🍽️ Pause déjeuner')"><span class="motif-icon">🍽️</span>Déjeuner</button>
-          <button class="motif-btn" id="motif-pce" onclick="choisirMotif('🔩 Attente pièce')"><span class="motif-icon">🔩</span>Attente pièce</button>
-        </div>
-      </div>
-      <!-- COMMENTAIRE STOP -->
-      <div id="comment-zone" style="display:none;">
-        <div class="step-label">③ Commentaire (optionnel)</div>
-        <textarea id="stop-comment" placeholder="Ex: Vidange faite..."></textarea>
-      </div>
-      <button class="btn-main" id="btn-valider" style="display:none;" onclick="valider()">Valider</button>
-    </div>
-    <div id="err-action"></div>
+<div class="screen" id="s-action">
+  <div class="logo">
+    <div class="logo-icon ic-bleu" id="a-icon">▶️</div>
+    <div class="logo-title" id="a-titre">Action</div>
+    <div class="logo-sub" id="a-immat">—</div>
   </div>
+  <div class="form-card">
+    <div class="step-label" id="step1-label">① Votre service</div>
+    <div class="svc-grid" id="svc-zone">
+      <button class="svc-btn" id="svc-C" onclick="choisirSvc('Carrosserie')"><span class="svc-icon">🚗</span>Carrosserie</button>
+      <button class="svc-btn" id="svc-M" onclick="choisirSvc('Mécanique')"><span class="svc-icon">🔧</span>Mécanique</button>
+      <button class="svc-btn" id="svc-P" onclick="choisirSvc('Peinture')"><span class="svc-icon">🎨</span>Peinture</button>
+    </div>
+    <div id="code-zone" style="display:none;">
+      <div class="step-label">② Code employé</div>
+      <div class="code-display">
+        <div class="code-digit" id="cd-0">_</div>
+        <div class="code-digit" id="cd-1">_</div>
+        <div class="code-digit" id="cd-2">_</div>
+        <div class="code-digit" id="cd-3">_</div>
+      </div>
+      <div class="emp-trouve" id="emp-trouve">
+        <div class="emp-nom" id="emp-nom-txt">—</div>
+        <div class="emp-svc-txt" id="emp-svc-txt">—</div>
+      </div>
+      <div class="clavier">
+        <button class="key" onclick="taper('1')">1</button>
+        <button class="key" onclick="taper('2')">2</button>
+        <button class="key" onclick="taper('3')">3</button>
+        <button class="key" onclick="taper('4')">4</button>
+        <button class="key" onclick="taper('5')">5</button>
+        <button class="key" onclick="taper('6')">6</button>
+        <button class="key" onclick="taper('7')">7</button>
+        <button class="key" onclick="taper('8')">8</button>
+        <button class="key" onclick="taper('9')">9</button>
+        <button class="key vide"></button>
+        <button class="key" onclick="taper('0')">0</button>
+        <button class="key del" onclick="effacer()">⌫</button>
+      </div>
+    </div>
+    <div id="multi-zone" style="display:none;">
+      <div class="step-label">③ Votre service</div>
+      <div class="multi-grid" id="multi-grid"></div>
+    </div>
+    <div id="motif-zone" style="display:none;">
+      <div class="step-label">③ Motif de pause</div>
+      <div class="motif-grid">
+        <button class="motif-btn" id="motif-dej" onclick="choisirMotif('Pause dejeuner')"><span class="motif-icon">🍽️</span>Déjeuner</button>
+        <button class="motif-btn" id="motif-pce" onclick="choisirMotif('Attente piece')"><span class="motif-icon">🔩</span>Attente pièce</button>
+      </div>
+    </div>
+    <div id="comment-zone" style="display:none;">
+      <div class="step-label">③ Commentaire (optionnel)</div>
+      <textarea id="stop-comment" placeholder="Ex: Vidange faite..."></textarea>
+    </div>
+    <button class="btn-main vert" id="btn-valider" style="display:none;" onclick="valider()">Valider</button>
+  </div>
+  <div id="err-zone"></div>
+</div>
 
-  <!-- SUCCES FINAL - PAS DE RETOUR -->
-  <div class="screen" id="s-ok">
-    <div class="succes">
-      <div class="succes-icon" id="ok-icon">✅</div>
-      <div class="succes-title" id="ok-title">Action effectuée</div>
-      <div class="succes-duree" id="ok-duree" style="display:none;">—</div>
-      <div class="succes-sub" id="ok-sub">—</div>
-      <div class="succes-info">🔒 Pour effectuer une nouvelle action,<br>veuillez rescanner le QR code du véhicule.</div>
-    </div>
+<div class="screen" id="s-ok">
+  <div class="succes">
+    <div class="succes-icon" id="ok-icon">✅</div>
+    <div class="succes-titre vert" id="ok-titre">OK</div>
+    <div class="succes-duree" id="ok-duree" style="display:none;">—</div>
+    <div class="succes-sub" id="ok-sub">—</div>
+    <div class="succes-info">🔒 Pour une nouvelle action, rescannez le QR code.</div>
   </div>
+</div>
 
-  <div class="screen" id="s-erreur">
-    <div class="succes">
-      <div class="succes-icon">❌</div>
-      <div class="succes-title" style="color:#ef4444;">Véhicule introuvable</div>
-      <div class="succes-sub">Contactez le responsable.</div>
-    </div>
+<div class="screen" id="s-erreur">
+  <div class="succes">
+    <div class="succes-icon">❌</div>
+    <div class="succes-titre rouge">Véhicule introuvable</div>
+    <div class="succes-sub">Contactez le responsable.</div>
   </div>
+</div>
 
 </div>
 <script>
-const API="https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
-let vehiculeId=null,veh=null,pts=[],emps=[];
-let actionMode=null,svcChoisi=null,empChoisi=null,motifChoisi=null;
-let codeActuel='';
+var API = "https://script.google.com/macros/s/AKfycbwBRfaIwhNpa6cZtnO_vTQ1iEO_8zE4jCnSoyTQBDNadtJ-_cI39h9fiVE2exvjgg/exec";
+var vehiculeId = null;
+var veh = null;
+var pts = [];
+var emps = [];
+var actionMode = null;
+var svcChoisi = null;
+var empChoisi = null;
+var motifChoisi = null;
+var codeActuel = "";
 
-const ACTIONS={
-  start:{icon:'▶️',titre:'Démarrer',classe:'vert',btnTxt:'▶ Commencer le travail'},
-  pause:{icon:'⏸️',titre:'Pause',classe:'orange',btnTxt:'⏸ Mettre en pause'},
-  reprendre:{icon:'▶️',titre:'Reprendre',classe:'violet',btnTxt:'▶▶ Reprendre'},
-  stop:{icon:'⏹️',titre:'Terminer',classe:'rouge',btnTxt:'⏹ Terminer le travail'}
+var ACTIONS = {
+  start: {icon:"▶️", titre:"Démarrer", icClass:"ic-vert", btnClass:"vert", btnTxt:"▶ Commencer le travail"},
+  pause: {icon:"⏸️", titre:"Pause", icClass:"ic-orange", btnClass:"orange", btnTxt:"⏸ Mettre en pause"},
+  reprendre: {icon:"▶️", titre:"Reprendre", icClass:"ic-violet", btnClass:"violet", btnTxt:"▶▶ Reprendre"},
+  stop: {icon:"⏹️", titre:"Terminer", icClass:"ic-rouge", btnClass:"rouge", btnTxt:"⏹ Terminer"}
 };
 
-function getParam(p){return new URLSearchParams(window.location.search).get(p);}
-function fmt(min){if(!min||min<=0)return'0 min';if(min<60)return Math.round(min)+' min';return Math.floor(min/60)+'h'+(min%60>0?Math.floor(min%60)+'min':'');}
-
-function afficher(id){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('actif');});
-  document.getElementById(id).classList.add('actif');
+var SVC_CLASS = {Carrosserie:"sel-C", Mecanique:"sel-M", Peinture:"sel-P"};
+function getSvcClass(s) {
+  if(s === "Carrosserie") return "sel-C";
+  if(s === "Mécanique") return "sel-M";
+  if(s === "Peinture") return "sel-P";
+  return "";
+}
+var SVC_ICONS = {Carrosserie:"🚗", Mecanique:"🔧", Peinture:"🎨"};
+function getSvcIcon(s) {
+  if(s === "Carrosserie") return "🚗";
+  if(s === "Mécanique") return "🔧";
+  if(s === "Peinture") return "🎨";
+  return "🔧";
 }
 
-function initAction(mode){
-  actionMode=mode;svcChoisi=null;empChoisi=null;motifChoisi=null;codeActuel='';
-  const a=ACTIONS[mode];
-  const icon=document.getElementById('action-icon');
-  icon.textContent=a.icon;
-  icon.className='logo-icon '+a.classe;
-  document.getElementById('action-titre').textContent=a.titre;
-  document.getElementById('action-immat').textContent=veh?veh['Immatriculation']:'';
-  // Reset service
-  ['Carrosserie','Mécanique','Peinture'].forEach(function(s){
-    document.getElementById('asb-'+s).className='svc-btn';
-  });
-  // Reset code
-  codeActuel='';
-  majAffichageCode();
-  document.getElementById('emp-trouve').style.display='none';
-  document.getElementById('code-zone').style.display='none';
-  document.getElementById('multi-svc-zone').style.display='none';
-  document.getElementById('motif-zone').style.display='none';
-  document.getElementById('comment-zone').style.display='none';
-  document.getElementById('btn-valider').style.display='none';
-  document.getElementById('err-action').innerHTML='';
-  if(mode==='stop'){
-    document.getElementById('stop-comment').value='';
+function getParam(p) {
+  return new URLSearchParams(window.location.search).get(p);
+}
+
+function fmt(min) {
+  if(!min || min <= 0) return "0 min";
+  if(min < 60) return Math.round(min) + " min";
+  return Math.floor(min/60) + "h" + (min%60 > 0 ? Math.floor(min%60) + "m" : "");
+}
+
+function afficher(id) {
+  var screens = document.querySelectorAll(".screen");
+  for(var i = 0; i < screens.length; i++) {
+    screens[i].classList.remove("actif");
   }
-  afficher('s-action');
+  document.getElementById(id).classList.add("actif");
 }
 
-function choisirSvc(s){
-  svcChoisi=s;
-  ['Carrosserie','Mécanique','Peinture'].forEach(function(x){
-    document.getElementById('asb-'+x).className='svc-btn'+(x===s?' sel '+s:'');
-  });
-  // Réinitialiser code
-  codeActuel='';empChoisi=null;motifChoisi=null;
+function initAction(mode) {
+  actionMode = mode;
+  svcChoisi = null;
+  empChoisi = null;
+  motifChoisi = null;
+  codeActuel = "";
+
+  var a = ACTIONS[mode];
+  var icon = document.getElementById("a-icon");
+  icon.textContent = a.icon;
+  icon.className = "logo-icon " + a.icClass;
+  document.getElementById("a-titre").textContent = a.titre;
+  document.getElementById("a-immat").textContent = veh ? veh["Immatriculation"] : "";
+
+  // Reset tout
+  document.getElementById("svc-C").className = "svc-btn";
+  document.getElementById("svc-M").className = "svc-btn";
+  document.getElementById("svc-P").className = "svc-btn";
+  document.getElementById("code-zone").style.display = "none";
+  document.getElementById("multi-zone").style.display = "none";
+  document.getElementById("motif-zone").style.display = "none";
+  document.getElementById("comment-zone").style.display = "none";
+  document.getElementById("btn-valider").style.display = "none";
+  document.getElementById("emp-trouve").style.display = "none";
+  document.getElementById("err-zone").innerHTML = "";
   majAffichageCode();
-  document.getElementById('emp-trouve').style.display='none';
-  document.getElementById('code-zone').style.display='block';
-  document.getElementById('motif-zone').style.display='none';
-  document.getElementById('comment-zone').style.display='none';
-  document.getElementById('btn-valider').style.display='none';
-}
 
-function taper(chiffre){
-  if(codeActuel.length>=4)return;
-  codeActuel+=chiffre;
-  majAffichageCode();
-  if(codeActuel.length===4)verifierCode();
-}
-
-function effacer(){
-  if(codeActuel.length===0)return;
-  codeActuel=codeActuel.slice(0,-1);
-  empChoisi=null;
-  document.getElementById('emp-trouve').style.display='none';
-  document.getElementById('motif-zone').style.display='none';
-  document.getElementById('comment-zone').style.display='none';
-  document.getElementById('btn-valider').style.display='none';
-  // Reset couleur digits
-  for(var i=0;i<4;i++){
-    document.getElementById('cd-'+i).className='code-digit'+(i<codeActuel.length?' filled':'');
+  // Pour pause/reprendre/stop : pas besoin de choisir service d'abord
+  // On affiche directement le clavier
+  if(mode === "pause" || mode === "reprendre" || mode === "stop") {
+    document.getElementById("svc-zone").style.display = "none";
+    document.getElementById("step1-label").style.display = "none";
+    document.getElementById("code-zone").style.display = "block";
+  } else {
+    document.getElementById("svc-zone").style.display = "grid";
+    document.getElementById("step1-label").style.display = "block";
   }
-  majAffichageCode();
+
+  afficher("s-action");
 }
 
-function majAffichageCode(){
-  for(var i=0;i<4;i++){
-    const el=document.getElementById('cd-'+i);
-    el.textContent=i<codeActuel.length?'●':'_';
-    el.className='code-digit'+(i<codeActuel.length?' filled':'');
+function choisirSvc(svc) {
+  svcChoisi = svc;
+  document.getElementById("svc-C").className = "svc-btn" + (svc === "Carrosserie" ? " sel-C" : "");
+  document.getElementById("svc-M").className = "svc-btn" + (svc === "Mécanique" ? " sel-M" : "");
+  document.getElementById("svc-P").className = "svc-btn" + (svc === "Peinture" ? " sel-P" : "");
+  codeActuel = "";
+  empChoisi = null;
+  majAffichageCode();
+  document.getElementById("emp-trouve").style.display = "none";
+  document.getElementById("multi-zone").style.display = "none";
+  document.getElementById("motif-zone").style.display = "none";
+  document.getElementById("comment-zone").style.display = "none";
+  document.getElementById("btn-valider").style.display = "none";
+  document.getElementById("err-zone").innerHTML = "";
+  document.getElementById("code-zone").style.display = "block";
+}
+
+function majAffichageCode() {
+  for(var i = 0; i < 4; i++) {
+    var el = document.getElementById("cd-" + i);
+    el.textContent = i < codeActuel.length ? "●" : "_";
+    el.className = "code-digit" + (i < codeActuel.length ? " filled" : "");
   }
 }
 
-function getServicesEmp(emp){
-  // Retourne un tableau de services (gère multi-services séparés par virgule)
-  return String(emp.service||'').split(',').map(function(s){return s.trim();}).filter(Boolean);
+function taper(chiffre) {
+  if(codeActuel.length >= 4) return;
+  codeActuel += chiffre;
+  majAffichageCode();
+  if(codeActuel.length === 4) verifierCode();
 }
 
-const SVC_ICONS={Carrosserie:'🚗',Mécanique:'🔧',Peinture:'🎨'};
+function effacer() {
+  if(codeActuel.length === 0) return;
+  codeActuel = codeActuel.slice(0, -1);
+  empChoisi = null;
+  document.getElementById("emp-trouve").style.display = "none";
+  document.getElementById("btn-valider").style.display = "none";
+  majAffichageCode();
+}
 
-function verifierCode(){
-  // Chercher l'employé par code uniquement (pas par service)
-  const emp=emps.find(function(e){
-    return String(e.code)===codeActuel;
-  });
+function getServices(emp) {
+  return String(emp.service || "").split(",").map(function(s) { return s.trim(); }).filter(Boolean);
+}
 
-  if(!emp){
-    for(var i=0;i<4;i++){
-      document.getElementById('cd-'+i).className='code-digit error';
+function verifierCode() {
+  // Chercher employé par code uniquement
+  var emp = null;
+  for(var i = 0; i < emps.length; i++) {
+    if(String(emps[i].code) === codeActuel) {
+      emp = emps[i];
+      break;
     }
-    setTimeout(function(){codeActuel='';majAffichageCode();},800);
+  }
+
+  if(!emp) {
+    for(var j = 0; j < 4; j++) {
+      document.getElementById("cd-" + j).className = "code-digit error";
+    }
+    setTimeout(function() {
+      codeActuel = "";
+      majAffichageCode();
+    }, 800);
     return;
   }
 
-  // Code correct
-  empChoisi=emp;
-  const services=getServicesEmp(emp);
-  document.getElementById('emp-nom').textContent=emp.prenom;
-  document.getElementById('emp-svc').textContent=services.join(' & ');
-  document.getElementById('emp-trouve').style.display='block';
-  document.getElementById('err-action').innerHTML='';
+  empChoisi = emp;
+  var services = getServices(emp);
+  document.getElementById("emp-nom-txt").textContent = emp.prenom;
+  document.getElementById("emp-svc-txt").textContent = services.join(" & ");
+  document.getElementById("emp-trouve").style.display = "block";
+  document.getElementById("err-zone").innerHTML = "";
 
-  // Si plusieurs services → proposer le choix AVANT de continuer
-  if(services.length>1 && (actionMode==='start')){
-    // Afficher choix de service
-    const grid=document.getElementById('multi-svc-grid');
-    grid.innerHTML=services.map(function(s){
-      return'<button class="multi-svc-btn" id="msvc-'+s+'" onclick="choisirMultiSvc(''+s+'')">'
-        +'<span class="multi-svc-icon">'+(SVC_ICONS[s]||'🔧')+'</span>'+s+'</button>';
-    }).join('');
-    document.getElementById('multi-svc-zone').style.display='block';
-    document.getElementById('btn-valider').style.display='none';
+  // Si start avec multi-services → choisir le service
+  if(actionMode === "start" && services.length > 1) {
+    var grid = document.getElementById("multi-grid");
+    var html = "";
+    for(var k = 0; k < services.length; k++) {
+      var s = services[k];
+      html += '<button class="multi-btn" id="ms-' + k + '" onclick="choisirMultiSvc(\'' + s + '\')">'
+        + '<span style="font-size:20px;display:block;margin-bottom:3px;">' + getSvcIcon(s) + '</span>' + s + '</button>';
+    }
+    grid.innerHTML = html;
+    document.getElementById("multi-zone").style.display = "block";
+    document.getElementById("btn-valider").style.display = "none";
     return;
   }
 
-  // 1 seul service ou action autre que start → utiliser le service de l'employé
-  // Pour pause/stop/reprendre on utilise le service du pointage en cours
-  if(services.length===1){svcChoisi=services[0];}
+  // 1 seul service pour start
+  if(actionMode === "start" && services.length === 1) {
+    svcChoisi = services[0];
+  }
 
   continuerApresCode();
 }
 
-function choisirMultiSvc(svc){
-  svcChoisi=svc;
-  document.querySelectorAll('[id^="msvc-"]').forEach(function(b){b.className='multi-svc-btn';});
-  const btn=document.getElementById('msvc-'+svc);
-  if(btn)btn.className='multi-svc-btn sel '+svc;
+function choisirMultiSvc(svc) {
+  svcChoisi = svc;
+  var btns = document.querySelectorAll("[id^='ms-']");
+  for(var i = 0; i < btns.length; i++) {
+    btns[i].className = "multi-btn";
+  }
+  // Trouver le bon bouton
+  var grid = document.getElementById("multi-grid");
+  var allBtns = grid.querySelectorAll("button");
+  for(var j = 0; j < allBtns.length; j++) {
+    if(allBtns[j].textContent.indexOf(svc) !== -1) {
+      allBtns[j].className = "multi-btn " + getSvcClass(svc);
+      break;
+    }
+  }
   continuerApresCode();
 }
 
-function continuerApresCode(){
-  const emp=empChoisi;
-  const ptEnCours=pts.find(function(p){
-    return String(p['Prénom employé']||'').toLowerCase()===emp.prenom.toLowerCase()&&!p['Heure fin'];
-  });
-  const ptEnPause=ptEnCours&&String(ptEnCours['En pause']||'')==='Oui';
-  const ptActif=ptEnCours&&!ptEnPause;
+function choisirMotif(motif) {
+  motifChoisi = motif;
+  document.getElementById("motif-dej").className = "motif-btn" + (motif === "Pause dejeuner" ? " sel" : "");
+  document.getElementById("motif-pce").className = "motif-btn" + (motif === "Attente piece" ? " sel" : "");
+  afficherBtnValider();
+}
 
-  document.getElementById('err-action').innerHTML='';
+function getPtEnCours() {
+  if(!empChoisi) return null;
+  for(var i = 0; i < pts.length; i++) {
+    var p = pts[i];
+    if(String(p["Prénom employé"] || "").toLowerCase() === empChoisi.prenom.toLowerCase() && !p["Heure fin"]) {
+      return p;
+    }
+  }
+  return null;
+}
 
-  if(actionMode==='start'&&ptEnCours){
-    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' a déjà un pointage en cours !</div>';
+function continuerApresCode() {
+  var pt = getPtEnCours();
+  var enPause = pt && String(pt["En pause"] || "") === "Oui";
+  var actif = pt && !enPause;
+
+  document.getElementById("err-zone").innerHTML = "";
+
+  if(actionMode === "start" && pt) {
+    document.getElementById("err-zone").innerHTML = '<div class="err-msg">' + empChoisi.prenom + ' a déjà un pointage en cours !</div>';
     return;
   }
-  if(actionMode==='pause'&&!ptActif){
-    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n’est pas en cours de travail.</div>';
+  if(actionMode === "pause" && !actif) {
+    document.getElementById("err-zone").innerHTML = '<div class="err-msg">' + empChoisi.prenom + ' n\'est pas en cours de travail.</div>';
     return;
   }
-  if(actionMode==='reprendre'&&!ptEnPause){
-    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n’est pas en pause.</div>';
+  if(actionMode === "reprendre" && !enPause) {
+    document.getElementById("err-zone").innerHTML = '<div class="err-msg">' + empChoisi.prenom + ' n\'est pas en pause.</div>';
     return;
   }
-  if(actionMode==='stop'&&!ptEnCours){
-    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n’a pas de pointage en cours.</div>';
+  if(actionMode === "stop" && !pt) {
+    document.getElementById("err-zone").innerHTML = '<div class="err-msg">' + empChoisi.prenom + ' n\'a pas de pointage en cours.</div>';
     return;
   }
 
-  // Récupérer le service du pointage en cours pour pause/stop/reprendre
-  if(ptEnCours&&(actionMode==='pause'||actionMode==='stop'||actionMode==='reprendre')){
-    svcChoisi=ptEnCours['Service']||svcChoisi;
+  // Récupérer service du pointage en cours pour pause/stop/reprendre
+  if(pt && (actionMode === "pause" || actionMode === "stop" || actionMode === "reprendre")) {
+    svcChoisi = pt["Service"] || svcChoisi;
   }
 
-  if(actionMode==='pause'){
-    document.getElementById('motif-zone').style.display='block';
-  } else if(actionMode==='stop'){
-    document.getElementById('comment-zone').style.display='block';
+  if(actionMode === "pause") {
+    document.getElementById("motif-zone").style.display = "block";
+  } else if(actionMode === "stop") {
+    document.getElementById("comment-zone").style.display = "block";
     afficherBtnValider();
   } else {
     afficherBtnValider();
   }
 }
 
-function choisirMotif(motif){
-  motifChoisi=motif;
-  document.getElementById('motif-dej').className='motif-btn'+(motif.includes('Déjeuner')||motif.includes('dejeuner')?' sel':'');
-  document.getElementById('motif-pce').className='motif-btn'+(motif.includes('pièce')||motif.includes('Attente')?' sel':'');
-  afficherBtnValider();
+function afficherBtnValider() {
+  var a = ACTIONS[actionMode];
+  var btn = document.getElementById("btn-valider");
+  btn.style.display = "block";
+  btn.textContent = a.btnTxt;
+  btn.className = "btn-main " + a.btnClass;
 }
 
-function afficherBtnValider(){
-  const btn=document.getElementById('btn-valider');
-  btn.style.display='block';
-  btn.textContent=ACTIONS[actionMode].btnTxt;
-  btn.className='btn-main '+ACTIONS[actionMode].classe;
+function postData(body, callback) {
+  fetch(API, {method:"POST", body:JSON.stringify(body)})
+    .then(function(res) { return res.json(); })
+    .then(function(data) { callback(null, data); })
+    .catch(function(err) { callback(err, null); });
 }
 
-async function valider(){
-  if(!empChoisi)return;
-  const btn=document.getElementById('btn-valider');
-  btn.disabled=true;btn.textContent='⏳ En cours...';
+function valider() {
+  if(!empChoisi) return;
+  var btn = document.getElementById("btn-valider");
+  btn.disabled = true;
+  btn.textContent = "⏳ En cours...";
 
-  const ptEnCours=pts.find(function(p){
-    return String(p['Prénom employé']||'').toLowerCase()===empChoisi.prenom.toLowerCase()&&!p['Heure fin'];
-  });
+  var pt = getPtEnCours();
 
-  try{
-    let data={};
-    if(actionMode==='start'){
-      data=await post({action:'demarrer',vehiculeId:vehiculeId,prenom:empChoisi.prenom,service:svcChoisi});
-      afficherSucces('✅','vert','Pointage démarré !',empChoisi.prenom+' — '+svcChoisi+'\n'+veh['Immatriculation']+'\nDémarré à '+(String(data.heureDebut||'').substring(11,16)),false);
+  if(actionMode === "start") {
+    postData({action:"demarrer", vehiculeId:vehiculeId, prenom:empChoisi.prenom, service:svcChoisi}, function(err, data) {
+      if(err) { showErr(btn); return; }
+      var heure = String(data.heureDebut || "").substring(11, 16);
+      showSucces("✅", "vert", "Pointage démarré !", empChoisi.prenom + " — " + svcChoisi + "\n" + veh["Immatriculation"] + "\nDémarré à " + heure, 0);
+    });
+  } else if(actionMode === "pause") {
+    if(!motifChoisi) {
+      document.getElementById("err-zone").innerHTML = '<div class="err-msg">Choisis un motif !</div>';
+      btn.disabled = false;
+      btn.textContent = ACTIONS[actionMode].btnTxt;
+      return;
     }
-    else if(actionMode==='pause'){
-      if(!motifChoisi){document.getElementById('err-action').innerHTML='<div class="erreur-msg">Choisis un motif !</div>';btn.disabled=false;btn.textContent=ACTIONS[actionMode].btnTxt;return;}
-      data=await post({action:'pause',idPointage:ptEnCours['ID Pointage'],motif:motifChoisi});
-      afficherSucces('⏸️','orange','Pause enregistrée',empChoisi.prenom+'\n'+motifChoisi+'\n'+veh['Immatriculation'],false);
-    }
-    else if(actionMode==='reprendre'){
-      data=await post({action:'reprendre',idPointage:ptEnCours['ID Pointage']});
-      afficherSucces('▶️','violet','Reprise du travail !',empChoisi.prenom+'\n'+veh['Immatriculation'],false);
-    }
-    else if(actionMode==='stop'){
-      const commentaire=document.getElementById('stop-comment').value.trim();
-      data=await post({action:'terminer',idPointage:ptEnCours['ID Pointage'],commentaire:commentaire});
-      afficherSucces('🎉','vert','Travail terminé !',empChoisi.prenom+' — '+svcChoisi+'\n'+veh['Immatriculation'],data.dureeMin);
-    }
-  }catch(e){
-    document.getElementById('err-action').innerHTML='<div class="erreur-msg">Erreur réseau. Réessaie.</div>';
-    btn.disabled=false;btn.textContent=ACTIONS[actionMode].btnTxt;
+    postData({action:"pause", idPointage:pt["ID Pointage"], motif:motifChoisi}, function(err, data) {
+      if(err) { showErr(btn); return; }
+      showSucces("⏸️", "orange", "Pause enregistrée", empChoisi.prenom + "\n" + motifChoisi + "\n" + veh["Immatriculation"], 0);
+    });
+  } else if(actionMode === "reprendre") {
+    postData({action:"reprendre", idPointage:pt["ID Pointage"]}, function(err, data) {
+      if(err) { showErr(btn); return; }
+      showSucces("▶️", "violet", "Reprise !", empChoisi.prenom + "\n" + veh["Immatriculation"], 0);
+    });
+  } else if(actionMode === "stop") {
+    var commentaire = document.getElementById("stop-comment").value;
+    postData({action:"terminer", idPointage:pt["ID Pointage"], commentaire:commentaire}, function(err, data) {
+      if(err) { showErr(btn); return; }
+      showSucces("🎉", "vert", "Travail terminé !", empChoisi.prenom + " — " + svcChoisi + "\n" + veh["Immatriculation"], data.dureeMin || 0);
+    });
   }
 }
 
-function afficherSucces(icon,classe,titre,sub,duree){
-  document.getElementById('ok-icon').textContent=icon;
-  document.getElementById('ok-title').textContent=titre;
-  document.getElementById('ok-title').className='succes-title '+classe;
-  document.getElementById('ok-sub').textContent=sub;
-  const dureeEl=document.getElementById('ok-duree');
-  if(duree){dureeEl.style.display='block';dureeEl.textContent=fmt(duree);}
-  else{dureeEl.style.display='none';}
-  afficher('s-ok');
+function showErr(btn) {
+  document.getElementById("err-zone").innerHTML = '<div class="err-msg">Erreur réseau. Réessaie.</div>';
+  btn.disabled = false;
+  btn.textContent = ACTIONS[actionMode].btnTxt;
 }
 
-async function post(body){
-  const res=await fetch(API,{method:'POST',body:JSON.stringify(body)});
-  return res.json();
+function showSucces(icon, classe, titre, sub, duree) {
+  document.getElementById("ok-icon").textContent = icon;
+  document.getElementById("ok-titre").textContent = titre;
+  document.getElementById("ok-titre").className = "succes-titre " + classe;
+  document.getElementById("ok-sub").textContent = sub;
+  var el = document.getElementById("ok-duree");
+  if(duree > 0) {
+    el.style.display = "block";
+    el.textContent = fmt(duree);
+  } else {
+    el.style.display = "none";
+  }
+  afficher("s-ok");
 }
 
-async function charger(){
-  vehiculeId=getParam('v');
-  if(!vehiculeId){afficher('s-erreur');return;}
-  try{
-    const res=await fetch(API+'?action=vehicule&v='+vehiculeId+'&t='+Date.now());
-    const data=await res.json();
-    if(!data.vehicule){afficher('s-erreur');return;}
-    veh=data.vehicule;
-    pts=data.pointages||[];
-    emps=data.employes||[];
-    document.getElementById('v-immat').textContent=veh['Immatriculation']||'—';
-    document.getElementById('v-client').textContent=veh['Client']||'—';
-    document.getElementById('v-modele').textContent=veh['Modèle']||'—';
-    afficher('s-accueil');
-  }catch(e){afficher('s-erreur');}
+function charger() {
+  vehiculeId = getParam("v");
+  if(!vehiculeId) { afficher("s-erreur"); return; }
+  fetch(API + "?action=vehicule&v=" + vehiculeId + "&t=" + Date.now())
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if(!data.vehicule) { afficher("s-erreur"); return; }
+      veh = data.vehicule;
+      pts = data.pointages || [];
+      emps = data.employes || [];
+      document.getElementById("v-immat").textContent = veh["Immatriculation"] || "—";
+      document.getElementById("v-client").textContent = veh["Client"] || "—";
+      document.getElementById("v-modele").textContent = veh["Modèle"] || "—";
+      afficher("s-accueil");
+    })
+    .catch(function() { afficher("s-erreur"); });
 }
 
 charger();
