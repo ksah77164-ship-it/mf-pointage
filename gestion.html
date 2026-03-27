@@ -97,6 +97,8 @@ textarea{width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:
 .veh-stat{background:#f8faff;border-radius:6px;padding:6px;text-align:center;}
 .veh-stat-nb{font-size:15px;font-weight:800;color:#1d4ed8;}
 .veh-stat-label{font-size:9px;color:#94a3b8;font-weight:600;text-transform:uppercase;}
+.chrono{font-size:15px;font-weight:800;color:#22c55e;font-variant-numeric:tabular-nums;}
+.chrono.pause{color:#f59e0b;}
 .veh-actions{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
 
 /* RENTABILITE */
@@ -551,7 +553,9 @@ function rendreVehicules(){
           +(p['Type travail']?'<div style="font-size:11px;color:#64748b;font-style:italic;">🔨 '+p['Type travail']+'</div>':'')
           +'</div>'
           +'<div style="display:flex;gap:4px;align-items:center;">'
-          +'<div class="pt-duree">'+fmt(parseInt(p['Durée (min)'])||0)+'</div>'
+          +(p['Heure fin']
+  ?'<div class="pt-duree">'+fmt(parseInt(p['Durée (min)'])||0)+'</div>'
+  :'<div class="chrono'+(String(p['En pause']||'')==='Oui'?' pause':'')+'" data-debut="'+String(p['Heure début']||'')+'" data-pause="'+(String(p['En pause']||'')==='Oui'?'1':'0')+'">⏱ ...</div>')
           +'<button class="btn-sm btn-edit" onclick="toggleEditPt(\''+pid+'\')">✏️</button>'
           +'</div></div>'
           +'<div class="pt-edit-zone" id="edit-pt-'+pid+'">'
@@ -576,7 +580,7 @@ function rendreVehicules(){
       +'<div class="veh-info"><strong>Modèle :</strong> '+(v['Modèle']||'—')+'</div>'
       +'<div class="veh-info"><strong>Entrée :</strong> '+(v['Date entrée']||'—')+'</div>'
       +'<div class="veh-stats">'
-      +'<div class="veh-stat"><div class="veh-stat-nb">'+fmt(totalMin)+'</div><div class="veh-stat-label">Temps réel</div></div>'
+      +'<div class="veh-stat"><div class="veh-stat-nb chrono" data-total="'+totalMin+'" data-pts="'+encodeURIComponent(JSON.stringify(vPts.filter(function(p){return !p['Heure fin'];}).map(function(p){return p['Heure début'];})))+'" id="total-'+vid+'">'+fmt(totalMin)+'</div><div class="veh-stat-label">Temps réel</div></div>'
       +'<div class="veh-stat"><div class="veh-stat-nb">'+vPts.length+'</div><div class="veh-stat-label">Sessions</div></div>'
       +'<div class="veh-stat"><div class="veh-stat-nb">'+nbEmp+'</div><div class="veh-stat-label">Employés</div></div>'
       +'</div>'
@@ -858,6 +862,53 @@ async function charger(){
 
 charger();
 demarrerRefreshAuto();
+demarrerChronos();
+
+function parseDebut(debut){
+  if(!debut)return null;
+  const parts=String(debut).split(' ');
+  if(parts.length<2)return null;
+  const dp=parts[0].split('/');
+  if(dp.length<3)return null;
+  const d=new Date(dp[2]+'-'+dp[1]+'-'+dp[0]+'T'+parts[1]);
+  return isNaN(d)?null:d;
+}
+
+function demarrerChronos(){
+  setInterval(function(){
+    const now=new Date();
+    // Mettre à jour les chronos individuels (pointages en cours)
+    document.querySelectorAll('[data-debut]').forEach(function(el){
+      if(el.hasAttribute('data-total'))return; // skip totaux
+      const debut=el.getAttribute('data-debut');
+      const enPause=el.getAttribute('data-pause')==='1';
+      const d=parseDebut(debut);
+      if(!d)return;
+      const diffMin=Math.round((now-d)/60000);
+      el.textContent=(enPause?'⏸ ':'')+fmtChrono(diffMin);
+      el.className='chrono'+(enPause?' pause':'');
+    });
+    // Mettre à jour les totaux véhicule
+    document.querySelectorAll('[data-total]').forEach(function(el){
+      const totalBase=parseInt(el.getAttribute('data-total'))||0;
+      let extra=0;
+      try{
+        const pts=JSON.parse(decodeURIComponent(el.getAttribute('data-pts')||'[]'));
+        pts.forEach(function(debut){
+          const d=parseDebut(debut);
+          if(d)extra+=Math.round((now-d)/60000);
+        });
+      }catch(e){}
+      el.textContent=fmtChrono(totalBase+extra);
+    });
+  },10000); // Toutes les 10 secondes
+}
+
+function fmtChrono(min){
+  if(!min||min<=0)return'0 min';
+  if(min<60)return min+' min';
+  return Math.floor(min/60)+'h'+(min%60>0?String(Math.floor(min%60)).padStart(2,'0')+'m':'');
+}
 </script>
 </body>
 </html>
