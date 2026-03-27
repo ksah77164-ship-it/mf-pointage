@@ -383,9 +383,14 @@ function _afficherOnglet(nom,btn){
   ['accueil','vehicules','productivite','employes','archives'].forEach(function(o){
     document.getElementById('onglet-'+o).style.display=o===nom?'block':'none';
   });
-  if(nom==='productivite')rendreProductivite();
-  if(nom==='employes')rendreEmployes();
-  if(nom==='archives')rendreArchives();
+  try{
+    if(nom==='productivite')rendreProductivite();
+    if(nom==='employes')rendreEmployes();
+    if(nom==='archives')rendreArchives();
+  }catch(err){
+    console.error('Erreur rendu onglet '+nom+':',err);
+    document.getElementById('erreur-zone').innerHTML='<div class="erreur">Erreur affichage: '+err.message+'</div>';
+  }
 }
 
 async function verifierPwd(){
@@ -740,7 +745,7 @@ function rendreEmployes(){
       +'<div class="emp-info">'
       +'<strong style="font-size:13px;">'+e.prenom+'</strong>'
       +'<span class="emp-svc '+e.service+'">'+e.service+'</span>'
-      +'<span class="emp-taux">'+e.tauxHoraire+'€/h</span>'
+      +(sessionStorage.getItem('mf_atelier')==='1'?'<span class="emp-taux">'+e.tauxHoraire+'€/h</span>':'')
       +'<span class="emp-code">🔑 '+e.code+'</span>'
       +'</div>'
       +'<div style="display:flex;gap:4px;">'
