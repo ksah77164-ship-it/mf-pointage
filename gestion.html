@@ -199,6 +199,7 @@ tr:last-child td{border-bottom:none;}
   <div class="header-right">
     <span class="refresh-badge" id="refresh-badge">↻ auto</span>
     <button class="sync-btn" onclick="charger()">↻ Actualiser</button>
+    <button class="sync-btn" id="btn-deconnexion" onclick="deconnecter()" style="display:none;background:#ef4444;color:#fff;">🔒 Verrouiller</button>
   </div>
 </div>
 
@@ -365,7 +366,12 @@ async function sha256(msg){
 function estAutorise(){return sessionStorage.getItem('mf_atelier')==='1';}
 
 function afficherOnglet(nom,btn){
-  if(nom==='accueil'){_changerOnglet(nom,btn);return;}
+  // Accueil toujours libre
+  if(nom==='accueil'){
+    _changerOnglet(nom,btn);
+    return;
+  }
+  // Tous les autres nécessitent le mot de passe
   if(!estAutorise()){
     ongletEnAttente=nom;
     document.getElementById('pwd-input').value='';
@@ -389,11 +395,20 @@ function _changerOnglet(nom,btn){
   ['accueil','vehicules','productivite','employes','archives'].forEach(function(o){
     document.getElementById('onglet-'+o).style.display=o===nom?'block':'none';
   });
+  // Afficher bouton déconnexion si onglet protégé
+  document.getElementById('btn-deconnexion').style.display=nom==='accueil'?'none':'block';
   try{
     if(nom==='productivite')rendreProductivite();
     if(nom==='employes')rendreEmployes();
     if(nom==='archives')rendreArchives();
   }catch(err){console.error('Erreur rendu:',err);}
+}
+
+function deconnecter(){
+  sessionStorage.removeItem('mf_atelier');
+  document.getElementById('btn-deconnexion').style.display='none';
+  // Retour à l'accueil
+  _changerOnglet('accueil',null);
 }
 
 async function verifierPwd(){
@@ -403,7 +418,10 @@ async function verifierPwd(){
   if(h===PWD_HASH){
     sessionStorage.setItem('mf_atelier','1');
     document.getElementById('modal-pwd').classList.remove('open');
-    if(ongletEnAttente){_changerOnglet(ongletEnAttente,null);ongletEnAttente=null;}
+    if(ongletEnAttente){
+      _changerOnglet(ongletEnAttente,null);
+      ongletEnAttente=null;
+    }
   }else{
     document.getElementById('pwd-err').style.display='block';
     document.getElementById('pwd-input').value='';
