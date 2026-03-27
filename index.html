@@ -58,6 +58,12 @@ body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;display:
 .employe-nom{font-size:16px;font-weight:900;color:#22c55e;}
 .employe-svc{font-size:11px;color:#475569;margin-top:2px;}
 
+.multi-svc-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.multi-svc-btn{padding:14px 16px;border-radius:10px;border:2px solid #334155;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;background:#0f172a;color:#475569;flex:1;min-width:100px;text-align:center;}
+.multi-svc-btn.sel.Carrosserie{background:#1a1200;border-color:#fbbf24;color:#fbbf24;}
+.multi-svc-btn.sel.Mécanique{background:#001020;border-color:#60a5fa;color:#60a5fa;}
+.multi-svc-btn.sel.Peinture{background:#1a0015;border-color:#f472b6;color:#f472b6;}
+.multi-svc-icon{font-size:20px;display:block;margin-bottom:3px;}
 .motif-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;}
 .motif-btn{padding:14px 8px;border-radius:10px;border:2px solid #334155;font-size:12px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;background:#0f172a;color:#475569;}
 .motif-btn.sel{background:#1a1200;border-color:#f59e0b;color:#f59e0b;}
@@ -140,6 +146,11 @@ textarea{width:100%;background:#0f172a;border:1.5px solid #334155;border-radius:
           <button class="key del" onclick="effacer()">⌫</button>
         </div>
       </div>
+      <!-- CHOIX SERVICE MULTI -->
+      <div id="multi-svc-zone" style="display:none;">
+        <div class="step-label" style="margin-top:4px;">② Votre service</div>
+        <div class="multi-svc-grid" id="multi-svc-grid"></div>
+      </div>
       <!-- MOTIF PAUSE -->
       <div id="motif-zone" style="display:none;">
         <div class="step-label">③ Motif de pause</div>
@@ -216,6 +227,7 @@ function initAction(mode){
   majAffichageCode();
   document.getElementById('emp-trouve').style.display='none';
   document.getElementById('code-zone').style.display='none';
+  document.getElementById('multi-svc-zone').style.display='none';
   document.getElementById('motif-zone').style.display='none';
   document.getElementById('comment-zone').style.display='none';
   document.getElementById('btn-valider').style.display='none';
@@ -271,31 +283,65 @@ function majAffichageCode(){
   }
 }
 
+function getServicesEmp(emp){
+  // Retourne un tableau de services (gère multi-services séparés par virgule)
+  return String(emp.service||'').split(',').map(function(s){return s.trim();}).filter(Boolean);
+}
+
+const SVC_ICONS={Carrosserie:'🚗',Mécanique:'🔧',Peinture:'🎨'};
+
 function verifierCode(){
-  // Chercher l'employé avec ce code ET ce service
+  // Chercher l'employé par code uniquement (pas par service)
   const emp=emps.find(function(e){
-    return String(e.code)===codeActuel&&e.service===svcChoisi;
+    return String(e.code)===codeActuel;
   });
 
   if(!emp){
-    // Mauvais code — afficher erreur
     for(var i=0;i<4;i++){
       document.getElementById('cd-'+i).className='code-digit error';
     }
-    setTimeout(function(){
-      codeActuel='';
-      majAffichageCode();
-    },800);
+    setTimeout(function(){codeActuel='';majAffichageCode();},800);
     return;
   }
 
   // Code correct
   empChoisi=emp;
+  const services=getServicesEmp(emp);
   document.getElementById('emp-nom').textContent=emp.prenom;
-  document.getElementById('emp-svc').textContent=emp.service;
+  document.getElementById('emp-svc').textContent=services.join(' & ');
   document.getElementById('emp-trouve').style.display='block';
+  document.getElementById('err-action').innerHTML='';
 
-  // Vérifier disponibilité selon action
+  // Si plusieurs services → proposer le choix AVANT de continuer
+  if(services.length>1 && (actionMode==='start')){
+    // Afficher choix de service
+    const grid=document.getElementById('multi-svc-grid');
+    grid.innerHTML=services.map(function(s){
+      return'<button class="multi-svc-btn" id="msvc-'+s+'" onclick="choisirMultiSvc(''+s+'')">'
+        +'<span class="multi-svc-icon">'+(SVC_ICONS[s]||'🔧')+'</span>'+s+'</button>';
+    }).join('');
+    document.getElementById('multi-svc-zone').style.display='block';
+    document.getElementById('btn-valider').style.display='none';
+    return;
+  }
+
+  // 1 seul service ou action autre que start → utiliser le service de l'employé
+  // Pour pause/stop/reprendre on utilise le service du pointage en cours
+  if(services.length===1){svcChoisi=services[0];}
+
+  continuerApresCode();
+}
+
+function choisirMultiSvc(svc){
+  svcChoisi=svc;
+  document.querySelectorAll('[id^="msvc-"]').forEach(function(b){b.className='multi-svc-btn';});
+  const btn=document.getElementById('msvc-'+svc);
+  if(btn)btn.className='multi-svc-btn sel '+svc;
+  continuerApresCode();
+}
+
+function continuerApresCode(){
+  const emp=empChoisi;
   const ptEnCours=pts.find(function(p){
     return String(p['Prénom employé']||'').toLowerCase()===emp.prenom.toLowerCase()&&!p['Heure fin'];
   });
@@ -321,7 +367,11 @@ function verifierCode(){
     return;
   }
 
-  // Afficher options selon action
+  // Récupérer le service du pointage en cours pour pause/stop/reprendre
+  if(ptEnCours&&(actionMode==='pause'||actionMode==='stop'||actionMode==='reprendre')){
+    svcChoisi=ptEnCours['Service']||svcChoisi;
+  }
+
   if(actionMode==='pause'){
     document.getElementById('motif-zone').style.display='block';
   } else if(actionMode==='stop'){
