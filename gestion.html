@@ -365,73 +365,89 @@ async function sha256(msg){
   return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
 }
 
-function estAutorise(){return sessionStorage.getItem('mf_atelier')==='1';}
+function estAutorise(){
+  return sessionStorage.getItem('mf_atelier')==='1';
+}
 
 function afficherOnglet(nom,btn){
-  // Accueil toujours libre
   if(nom==='accueil'){
     _changerOnglet(nom,btn);
     return;
   }
-  // Tous les autres nécessitent le mot de passe
   if(!estAutorise()){
     ongletEnAttente=nom;
     document.getElementById('pwd-input').value='';
     document.getElementById('pwd-err').style.display='none';
     document.getElementById('modal-pwd').classList.add('open');
-    setTimeout(function(){document.getElementById('pwd-input').focus();},100);
+    setTimeout(function(){
+      var el=document.getElementById('pwd-input');
+      if(el)el.focus();
+    },150);
     return;
   }
   _changerOnglet(nom,btn);
 }
 
 function _changerOnglet(nom,btn){
+  // Mettre à jour les onglets actifs
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('actif');});
-  if(btn){btn.classList.add('actif');}
-  else{
+  if(btn){
+    btn.classList.add('actif');
+  } else {
     var noms=['accueil','vehicules','productivite','employes','archives'];
-    var idx=noms.indexOf(nom);
     var tabs=document.querySelectorAll('.tab');
-    if(tabs[idx])tabs[idx].classList.add('actif');
+    var i=noms.indexOf(nom);
+    if(i>=0&&tabs[i])tabs[i].classList.add('actif');
   }
-  ['accueil','vehicules','productivite','employes','archives'].forEach(function(o){
-    document.getElementById('onglet-'+o).style.display=o===nom?'block':'none';
-  });
-  // Afficher bouton déconnexion si onglet protégé
-  document.getElementById('btn-deconnexion').style.display=nom==='accueil'?'none':'block';
+  // Afficher/cacher les onglets
+  var tous=['accueil','vehicules','productivite','employes','archives'];
+  for(var j=0;j<tous.length;j++){
+    var el=document.getElementById('onglet-'+tous[j]);
+    if(el)el.style.display=tous[j]===nom?'block':'none';
+  }
+  // Bouton déconnexion
+  var btnDeco=document.getElementById('btn-deconnexion');
+  if(btnDeco)btnDeco.style.display=nom==='accueil'?'none':'block';
+  // Rendre le contenu
   try{
     if(nom==='productivite')rendreProductivite();
-    if(nom==='employes')rendreEmployes();
-    if(nom==='archives')rendreArchives();
-  }catch(err){console.error('Erreur rendu:',err);}
+    else if(nom==='employes')rendreEmployes();
+    else if(nom==='archives')rendreArchives();
+    else if(nom==='vehicules')rendreVehicules();
+  }catch(err){
+    console.error('Erreur rendu onglet',nom,err);
+  }
 }
 
 function deconnecter(){
   sessionStorage.removeItem('mf_atelier');
-  document.getElementById('btn-deconnexion').style.display='none';
-  // Retour à l'accueil
+  var btnDeco=document.getElementById('btn-deconnexion');
+  if(btnDeco)btnDeco.style.display='none';
   _changerOnglet('accueil',null);
 }
 
 async function verifierPwd(){
-  var val=document.getElementById('pwd-input').value;
+  var input=document.getElementById('pwd-input');
+  var val=input?input.value:'';
   if(!val)return;
   var h=await sha256(val);
   if(h===PWD_HASH){
     sessionStorage.setItem('mf_atelier','1');
     document.getElementById('modal-pwd').classList.remove('open');
     if(ongletEnAttente){
-      _changerOnglet(ongletEnAttente,null);
+      var nom=ongletEnAttente;
       ongletEnAttente=null;
+      _changerOnglet(nom,null);
     }
-  }else{
+  } else {
     document.getElementById('pwd-err').style.display='block';
-    document.getElementById('pwd-input').value='';
-    setTimeout(function(){document.getElementById('pwd-input').focus();},100);
+    if(input){input.value='';input.focus();}
   }
 }
 
-document.getElementById('pwd-input').addEventListener('keydown',function(e){if(e.key==='Enter')verifierPwd();});
+document.getElementById('pwd-input').addEventListener('keydown',function(e){
+  if(e.key==='Enter')verifierPwd();
+});
 
 function filtrerVeh(f,btn){
   filtreVeh=f;
@@ -555,7 +571,7 @@ function rendreVehicules(){
           +'<div style="display:flex;gap:4px;align-items:center;">'
           +(p['Heure fin']
   ?'<div class="pt-duree">'+fmt(parseInt(p['Durée (min)'])||0)+'</div>'
-  :'<div class="chrono'+(String(p['En pause']||'')==='Oui'?' pause':'')+'" data-debut="'+String(p['Heure début']||'')+'" data-pause="'+(String(p['En pause']||'')==='Oui'?'1':'0')+'">⏱ ...</div>')
+  :'<div class="chrono-live" data-debut="'+String(p['Heure début']||'')+'" data-pause="'+(String(p['En pause']||'')==='Oui'?'1':'0')+'">⏱...</div>')
           +'<button class="btn-sm btn-edit" onclick="toggleEditPt(\''+pid+'\')">✏️</button>'
           +'</div></div>'
           +'<div class="pt-edit-zone" id="edit-pt-'+pid+'">'
@@ -580,7 +596,11 @@ function rendreVehicules(){
       +'<div class="veh-info"><strong>Modèle :</strong> '+(v['Modèle']||'—')+'</div>'
       +'<div class="veh-info"><strong>Entrée :</strong> '+(v['Date entrée']||'—')+'</div>'
       +'<div class="veh-stats">'
-      +'<div class="veh-stat"><div class="veh-stat-nb chrono" data-total="'+totalMin+'" data-pts="'+encodeURIComponent(JSON.stringify(vPts.filter(function(p){return !p['Heure fin'];}).map(function(p){return p['Heure début'];})))+'" id="total-'+vid+'">'+fmt(totalMin)+'</div><div class="veh-stat-label">Temps réel</div></div>'
+      +(function(){
+        var enCoursDebuts=vPts.filter(function(p){return !p['Heure fin']&&String(p['En pause']||'')!=='Oui';}).map(function(p){return String(p['Heure début']||'');});
+        var hasLive=enCoursDebuts.length>0;
+        return '<div class="veh-stat"><div class="veh-stat-nb'+(hasLive?' total-live':'')+'" data-base="'+totalMin+'" data-debuts="'+encodeURIComponent(JSON.stringify(enCoursDebuts))+'">'+fmt(totalMin)+'</div><div class="veh-stat-label">Temps réel</div></div>';
+      })()
       +'<div class="veh-stat"><div class="veh-stat-nb">'+vPts.length+'</div><div class="veh-stat-label">Sessions</div></div>'
       +'<div class="veh-stat"><div class="veh-stat-nb">'+nbEmp+'</div><div class="veh-stat-label">Employés</div></div>'
       +'</div>'
@@ -796,9 +816,12 @@ async function supprimerEmploye(index){
 }
 
 function afficherQR(immat,id){
-  const url="https://ksah77164-ship-it.github.io/mf-pointage/?v="+id;
+  // Utiliser le QR code déjà stocké dans le Sheets
+  const veh=vehicules.find(function(v){return v['ID']===id;});
+  const qrUrl=veh&&veh['QR Code URL']?veh['QR Code URL']
+    :"https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+encodeURIComponent("https://ksah77164-ship-it.github.io/mf-pointage/?v="+id);
   document.getElementById('modal-immat').textContent=immat;
-  document.getElementById('qr-img').src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+encodeURIComponent(url);
+  document.getElementById('qr-img').src=qrUrl;
   document.getElementById('modal-qr').classList.add('open');
 }
 function fermerQR(){document.getElementById('modal-qr').classList.remove('open');}
@@ -864,44 +887,64 @@ charger();
 demarrerRefreshAuto();
 demarrerChronos();
 
-function parseDebut(debut){
-  if(!debut)return null;
-  const parts=String(debut).split(' ');
-  if(parts.length<2)return null;
-  const dp=parts[0].split('/');
-  if(dp.length<3)return null;
-  const d=new Date(dp[2]+'-'+dp[1]+'-'+dp[0]+'T'+parts[1]);
-  return isNaN(d)?null:d;
+function parseDebut(str){
+  if(!str)return null;
+  var s=String(str).trim();
+  // Format DD/MM/YYYY HH:MM:SS
+  var parts=s.split(' ');
+  if(parts.length>=2){
+    var dp=parts[0].split('/');
+    if(dp.length===3){
+      var d=new Date(dp[2]+'-'+dp[1]+'-'+dp[0]+'T'+parts[1]);
+      if(!isNaN(d))return d;
+    }
+  }
+  return null;
+}
+
+function fmtLive(min){
+  if(!min||min<0)return'0 min';
+  if(min<60)return min+' min';
+  var h=Math.floor(min/60);
+  var m=Math.floor(min%60);
+  return h+'h'+(m>0?(m<10?'0':'')+m+'m':'');
 }
 
 function demarrerChronos(){
-  setInterval(function(){
-    const now=new Date();
-    // Mettre à jour les chronos individuels (pointages en cours)
-    document.querySelectorAll('[data-debut]').forEach(function(el){
-      if(el.hasAttribute('data-total'))return; // skip totaux
-      const debut=el.getAttribute('data-debut');
-      const enPause=el.getAttribute('data-pause')==='1';
-      const d=parseDebut(debut);
-      if(!d)return;
-      const diffMin=Math.round((now-d)/60000);
-      el.textContent=(enPause?'⏸ ':'')+fmtChrono(diffMin);
-      el.className='chrono'+(enPause?' pause':'');
-    });
-    // Mettre à jour les totaux véhicule
-    document.querySelectorAll('[data-total]').forEach(function(el){
-      const totalBase=parseInt(el.getAttribute('data-total'))||0;
-      let extra=0;
-      try{
-        const pts=JSON.parse(decodeURIComponent(el.getAttribute('data-pts')||'[]'));
-        pts.forEach(function(debut){
-          const d=parseDebut(debut);
-          if(d)extra+=Math.round((now-d)/60000);
-        });
-      }catch(e){}
-      el.textContent=fmtChrono(totalBase+extra);
-    });
-  },10000); // Toutes les 10 secondes
+  // Mise à jour toutes les 30 secondes
+  setInterval(majChronos, 30000);
+  // Première maj immédiate après 1s
+  setTimeout(majChronos, 1000);
+}
+
+function majChronos(){
+  var now=new Date();
+  // Chronos individuels des pointages en cours
+  document.querySelectorAll('.chrono-live').forEach(function(el){
+    var debut=el.getAttribute('data-debut');
+    var enPause=el.getAttribute('data-pause')==='1';
+    var d=parseDebut(debut);
+    if(!d)return;
+    var diffMin=Math.round((now-d)/60000);
+    if(diffMin<0)diffMin=0;
+    el.textContent=(enPause?'⏸ ':'')+fmtLive(diffMin);
+  });
+  // Totaux véhicule
+  document.querySelectorAll('.total-live').forEach(function(el){
+    var base=parseInt(el.getAttribute('data-base'))||0;
+    var extra=0;
+    try{
+      var debuts=JSON.parse(decodeURIComponent(el.getAttribute('data-debuts')||'[]'));
+      debuts.forEach(function(debut){
+        var d=parseDebut(debut);
+        if(d){
+          var diff=Math.round((now-d)/60000);
+          if(diff>0)extra+=diff;
+        }
+      });
+    }catch(e){}
+    el.textContent=fmtLive(base+extra);
+  });
 }
 
 function fmtChrono(min){
