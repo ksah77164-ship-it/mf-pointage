@@ -355,15 +355,15 @@ function continuerApresCode(){
     return;
   }
   if(actionMode==='pause'&&!ptActif){
-    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n\'est pas en cours de travail.</div>';
+    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n’est pas en cours de travail.</div>';
     return;
   }
   if(actionMode==='reprendre'&&!ptEnPause){
-    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n\'est pas en pause.</div>';
+    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n’est pas en pause.</div>';
     return;
   }
   if(actionMode==='stop'&&!ptEnCours){
-    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n\'a pas de pointage en cours.</div>';
+    document.getElementById('err-action').innerHTML='<div class="erreur-msg">'+emp.prenom+' n’a pas de pointage en cours.</div>';
     return;
   }
 
