@@ -850,7 +850,8 @@ async function charger(){
     vehicules=data.vehicules||[];pointages=data.pointages||[];employes=data.employes||[];
     objectifH=parseInt(localStorage.getItem('mf_obj'))||8;
     document.getElementById('objectif-h').value=objectifH;
-    rendreAccueil();rendreVehicules();
+    rendreAccueil();
+    if(estAutorise())rendreVehicules();
     document.getElementById('maj-info').textContent='Mis à jour à '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
   }catch(e){document.getElementById('erreur-zone').innerHTML='<div class="erreur">Erreur de connexion.</div>';}
 }
