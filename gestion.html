@@ -362,23 +362,29 @@ async function sha256(msg){
   return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
 }
 
-const ONGLETS_PROTEGES=['productivite','employes','archives'];
+function estAutorise(){return sessionStorage.getItem('mf_atelier')==='1';}
 
 function afficherOnglet(nom,btn){
-  if(ONGLETS_PROTEGES.indexOf(nom)!==-1&&sessionStorage.getItem('mf_atelier')!=='1'){
+  if(nom==='accueil'){_changerOnglet(nom,btn);return;}
+  if(!estAutorise()){
     ongletEnAttente=nom;
     document.getElementById('pwd-input').value='';
     document.getElementById('pwd-err').style.display='none';
     document.getElementById('modal-pwd').classList.add('open');
+    setTimeout(function(){document.getElementById('pwd-input').focus();},100);
     return;
   }
-  _afficherOnglet(nom,btn);
+  _changerOnglet(nom,btn);
 }
 
-function _afficherOnglet(nom,btn){
-  if(btn){
-    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('actif');});
-    btn.classList.add('actif');
+function _changerOnglet(nom,btn){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('actif');});
+  if(btn){btn.classList.add('actif');}
+  else{
+    var noms=['accueil','vehicules','productivite','employes','archives'];
+    var idx=noms.indexOf(nom);
+    var tabs=document.querySelectorAll('.tab');
+    if(tabs[idx])tabs[idx].classList.add('actif');
   }
   ['accueil','vehicules','productivite','employes','archives'].forEach(function(o){
     document.getElementById('onglet-'+o).style.display=o===nom?'block':'none';
@@ -387,29 +393,21 @@ function _afficherOnglet(nom,btn){
     if(nom==='productivite')rendreProductivite();
     if(nom==='employes')rendreEmployes();
     if(nom==='archives')rendreArchives();
-  }catch(err){
-    console.error('Erreur rendu onglet '+nom+':',err);
-    document.getElementById('erreur-zone').innerHTML='<div class="erreur">Erreur affichage: '+err.message+'</div>';
-  }
+  }catch(err){console.error('Erreur rendu:',err);}
 }
 
 async function verifierPwd(){
-  const val=document.getElementById('pwd-input').value;
-  const h=await sha256(val);
+  var val=document.getElementById('pwd-input').value;
+  if(!val)return;
+  var h=await sha256(val);
   if(h===PWD_HASH){
     sessionStorage.setItem('mf_atelier','1');
     document.getElementById('modal-pwd').classList.remove('open');
-    if(ongletEnAttente){
-      // Trouver le bon tab
-      const tabs=document.querySelectorAll('.tab');
-      const noms=['accueil','vehicules','productivite','employes','archives'];
-      const idx=noms.indexOf(ongletEnAttente);
-      _afficherOnglet(ongletEnAttente,idx>=0?tabs[idx]:null);
-      ongletEnAttente=null;
-    }
-  } else {
+    if(ongletEnAttente){_changerOnglet(ongletEnAttente,null);ongletEnAttente=null;}
+  }else{
     document.getElementById('pwd-err').style.display='block';
     document.getElementById('pwd-input').value='';
+    setTimeout(function(){document.getElementById('pwd-input').focus();},100);
   }
 }
 
