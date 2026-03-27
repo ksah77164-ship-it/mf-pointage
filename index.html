@@ -447,21 +447,61 @@ async function post(body){
   return res.json();
 }
 
+async function fetchAvecTimeout(url, ms){
+  const controller=new AbortController();
+  const timer=setTimeout(function(){controller.abort();},ms);
+  try{
+    const res=await fetch(url,{signal:controller.signal});
+    clearTimeout(timer);
+    return res;
+  }catch(e){
+    clearTimeout(timer);
+    throw e;
+  }
+}
+
 async function charger(){
   vehiculeId=getParam('v');
   if(!vehiculeId){afficher('s-erreur');return;}
-  try{
-    const res=await fetch(API+'?action=vehicule&v='+vehiculeId+'&t='+Date.now());
-    const data=await res.json();
-    if(!data.vehicule){afficher('s-erreur');return;}
-    veh=data.vehicule;
-    pts=data.pointages||[];
-    emps=data.employes||[];
-    document.getElementById('v-immat').textContent=veh['Immatriculation']||'—';
-    document.getElementById('v-client').textContent=veh['Client']||'—';
-    document.getElementById('v-modele').textContent=veh['Modèle']||'—';
-    afficher('s-accueil');
-  }catch(e){afficher('s-erreur');}
+  
+  // Afficher message de chargement avec indication
+  document.querySelector('#s-loading .loading').textContent='⏳ Connexion en cours...';
+  
+  var tentatives=0;
+  var maxTentatives=3;
+  
+  async function tenter(){
+    tentatives++;
+    try{
+      document.querySelector('#s-loading .loading').textContent='⏳ Chargement... ('+tentatives+'/'+maxTentatives+')';
+      const res=await fetchAvecTimeout(API+'?action=vehicule&v='+vehiculeId+'&t='+Date.now(), 15000);
+      const data=await res.json();
+      if(!data.vehicule){
+        document.querySelector('#s-loading .loading').textContent='❌ Véhicule introuvable';
+        setTimeout(function(){afficher('s-erreur');},1500);
+        return;
+      }
+      veh=data.vehicule;
+      pts=data.pointages||[];
+      emps=data.employes||[];
+      document.getElementById('v-immat').textContent=veh['Immatriculation']||'—';
+      document.getElementById('v-client').textContent=veh['Client']||'—';
+      document.getElementById('v-modele').textContent=veh['Modèle']||'—';
+      afficher('s-accueil');
+    }catch(e){
+      if(tentatives<maxTentatives){
+        document.querySelector('#s-loading .loading').textContent='⚠️ Nouvelle tentative...';
+        setTimeout(tenter, 2000);
+      }else{
+        // Afficher bouton retry
+        document.querySelector('#s-loading .loading').innerHTML=
+          '<div style="color:#ef4444;margin-bottom:1rem;">❌ Connexion échouée</div>'
+          +'<button onclick="tentatives=0;tenter();" style="background:#3b82f6;color:#fff;border:none;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;">🔄 Réessayer</button>';
+      }
+    }
+  }
+  
+  tenter();
 }
 
 charger();
